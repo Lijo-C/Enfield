@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.name }} Details | Royal Enfield Catalog</title>
-    <link rel="stylesheet" href="/styles.css"> </head>
+    <link rel="stylesheet" href="{{ site.baseurl }}/styles.css"> </head>
 <body>
     <div class="detail-container">
-        <a href="/" class="back-link">&larr; Back to Catalog</a>
+        <a href="{{ site.baseurl }}/" class="back-link">&larr; Back to Catalog</a>
 
         <div class="detail-header">
             <h1>{{ page.name }}</h1>
             <p>Model Year: {{ page.year }}</p>
         </div>
         
-        <img src="/images/{{ page.image }}" alt="Image of {{ page.name }}" class="detail-image" aria-label="Image of Royal Enfield {{ page.name }}">
+        <img src="{{ site.baseurl }}/images/{{ page.image }}" alt="Image of {{ page.name }}" class="detail-image" aria-label="Image of Royal Enfield {{ page.name }}">
         
         <div class="detail-section">
             <h3>Engine Specifications</h3>
