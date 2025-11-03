@@ -13,6 +13,6 @@ chassis_details:
   frame: Twin Downtube Spine Frame
   suspension_front: Telescopic, 41mm forks
   suspension_rear: Twin tube Emulsion shock absorbers
-  weight: 195 kg
-history: The iconic retro cruiser, refined for the modern era...
+  weight: 195 kg (Kerb)
+history: The iconic retro cruiser, refined for the modern era with the J-series engine. It blends timeless design with modern reliability and a signature exhaust thump.
 ---
