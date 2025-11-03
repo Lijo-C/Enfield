@@ -1,16 +1,27 @@
 :root {
-    --primary-color: #740808; /* Bright Red Accent */
+    --primary-color: #CC0000; /* Bright Red Accent */
     --secondary-color: #EEEEEE; /* Main Heading Text Color (White) */
     --background-color: #121212; /* Dark Background */
     --text-color: #F0F0F0; /* Light Body Text Color (Off-white) */
+
+    /* --- ADDED FONT VARIABLES --- */
+    --font-heading: "New Rocker", cursive;
+    --font-body: "Bruno Ace", sans-serif;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    /* --- USE THE BODY FONT --- */
+    font-family: var(--font-body);
     margin: 0;
     padding: 0;
     background-color: var(--background-color);
     color: var(--text-color);
+}
+
+/* --- NEW RULE TO APPLY HEADING FONT --- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 400; /* New Rocker only has one weight */
 }
 
 header {
@@ -18,19 +29,20 @@ header {
     color: white;
     padding: 30px 20px;
     text-align: center;
-    /* Use dark border for high contrast against the red header */
     border-bottom: 5px solid #000000; 
 }
 
 header h1 {
     margin: 0;
     font-size: 2.5em;
+    /* This will now use var(--font-heading) */
 }
 
 header p {
     margin: 5px 0 0;
     font-style: italic;
     opacity: 0.9;
+    /* This will now use var(--font-body) */
 }
 
 /* --- Catalog Grid Styling --- */
@@ -44,8 +56,8 @@ header p {
 }
 
 .bike-card {
-    background-color: #252525; /* Dark Card Background */
-    border: 1px solid #333; /* Darker border for contrast */
+    background-color: #252525;
+    border: 1px solid #333;
     border-radius: 8px;
     overflow: hidden;
     text-decoration: none;
@@ -56,7 +68,6 @@ header p {
 
 .bike-card:hover {
     transform: translateY(-5px);
-    /* Soft red shadow */
     box-shadow: 0 10px 20px rgba(204, 0, 0, 0.3);
 }
 
@@ -74,19 +85,15 @@ header p {
 .card-details h2 {
     margin-top: 0;
     font-size: 1.5em;
-    color: var(--secondary-color); /* Uses white/light gray */
+    color: var(--secondary-color);
+    /* This will now use var(--font-heading) */
 }
 
-.category {
-    font-weight: bold;
-    color: var(--primary-color); /* Uses bright red */
-    margin: 5px 0;
-}
-
-.engine-info, .year {
+.category, .engine-info, .year {
     font-size: 0.9em;
-    color: #AAAAAA; /* Changed from dark gray (#666) to light gray for dark background */
+    color: #AAAAAA; 
     margin: 3px 0;
+    /* These will now use var(--font-body) */
 }
 
 
@@ -95,14 +102,14 @@ header p {
     max-width: 900px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #252525; /* Changed from white to dark gray */
+    background-color: #252525;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
     border-radius: 8px;
 }
 
 .detail-header {
     text-align: center;
-    border-bottom: 2px solid var(--primary-color); /* Uses bright red */
+    border-bottom: 2px solid var(--primary-color);
     margin-bottom: 30px;
     padding-bottom: 10px;
 }
@@ -123,33 +130,34 @@ header p {
 
 .spec-table th, .spec-table td {
     padding: 12px 15px;
-    /* Changed border from #eee to dark gray */
     border: 1px solid #333; 
     text-align: left;
+    /* This text will now use var(--font-body) */
 }
 
 .spec-table th {
-    /* Changed background from #f0f0f0 to dark, making the text color light */
     background-color: #1a1a1a; 
     font-weight: bold;
-    color: var(--secondary-color); /* Uses light text color */
+    color: var(--secondary-color);
     width: 30%;
+    /* This will also use var(--font-body) */
+    /* We can override it if we want */
+    /* font-family: var(--font-heading); */ 
 }
 
 .detail-section h3 {
-    color: var(--primary-color); /* Uses bright red */
+    color: var(--primary-color);
     border-left: 4px solid var(--primary-color);
     padding-left: 10px;
     margin-top: 30px;
+    /* This will now use var(--font-heading) */
 }
 
 footer {
     text-align: center;
     padding: 20px;
     margin-top: 40px;
-    /* Changed border from #ddd to dark gray */
     border-top: 1px solid #333; 
-    /* Changed color from #888 to light gray */
     color: #AAAAAA; 
     font-size: 0.8em;
 }
@@ -158,7 +166,7 @@ footer {
     display: inline-block;
     margin-bottom: 20px;
     text-decoration: none;
-    color: var(--primary-color); /* Uses bright red */
+    color: var(--primary-color);
     font-weight: bold;
 }
 
@@ -166,36 +174,26 @@ footer {
 /* --- NEW 2-Column Detail Page Layout --- */
 .detail-layout-grid {
     display: grid;
-    /* This creates two columns: 
-       The first column (main) takes 3 fractional units
-       The second column (sidebar) takes 2 fractional units */
     grid-template-columns: 3fr 2fr;
     gap: 30px;
 }
 
 .detail-main-content {
-    /* This column will hold the image and history */
     order: 1;
 }
 
 .detail-sidebar {
-    /* This column will hold the spec tables */
     order: 2;
 }
 
-/* --- Responsive Media Query --- */
-/* For screens 800px or less (tablets and phones) */
 @media (max-width: 800px) {
     .detail-layout-grid {
-        /* Stack the columns on top of each other */
         grid-template-columns: 1fr;
     }
-
     .detail-main-content {
-        order: 1; /* Image/History first */
+        order: 1;
     }
-
     .detail-sidebar {
-        order: 2; /* Specs second */
+        order: 2;
     }
 }
