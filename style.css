@@ -161,3 +161,41 @@ footer {
     color: var(--primary-color); /* Uses bright red */
     font-weight: bold;
 }
+
+
+/* --- NEW 2-Column Detail Page Layout --- */
+.detail-layout-grid {
+    display: grid;
+    /* This creates two columns: 
+       The first column (main) takes 3 fractional units
+       The second column (sidebar) takes 2 fractional units */
+    grid-template-columns: 3fr 2fr;
+    gap: 30px;
+}
+
+.detail-main-content {
+    /* This column will hold the image and history */
+    order: 1;
+}
+
+.detail-sidebar {
+    /* This column will hold the spec tables */
+    order: 2;
+}
+
+/* --- Responsive Media Query --- */
+/* For screens 800px or less (tablets and phones) */
+@media (max-width: 800px) {
+    .detail-layout-grid {
+        /* Stack the columns on top of each other */
+        grid-template-columns: 1fr;
+    }
+
+    .detail-main-content {
+        order: 1; /* Image/History first */
+    }
+
+    .detail-sidebar {
+        order: 2; /* Specs second */
+    }
+}
