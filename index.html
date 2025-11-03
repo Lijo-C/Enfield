@@ -1,0 +1,25 @@
+---
+layout: default
+---
+<header>
+    <h1>Royal Enfield: The Complete Catalog</h1>
+    <p>Documenting over a century of pure motorcycling heritage.</p>
+</header>
+
+<main class="catalog-grid">
+    {% for bike in site.data.bikes %}
+    <a href="/bikes/{{ bike.slug }}/" class="bike-card">
+        <img src="/images/{{ bike.image }}" alt="Royal Enfield {{ bike.name }}" aria-label="Image of Royal Enfield {{ bike.name }}">
+        <div class="card-details">
+            <h2>{{ bike.name }}</h2>
+            <p class="category">{{ bike.category }}</p>
+            <p class="engine-info">Engine: {{ bike.engine_details.displacement }}</p>
+            <p class="year">Year(s): {{ bike.year }}</p>
+        </div>
+    </a>
+    {% endfor %}
+</main>
+
+<footer>
+    <p>&copy; <script>document.write(new Date().getFullYear())</script> Royal Enfield Catalog Project | Hosted on GitHub Pages</p>
+</footer>

@@ -1,0 +1,17 @@
+# _config.yml
+title: Royal Enfield: The Complete Catalog
+description: A data-driven archive of all Royal Enfield motorcycles.
+theme: minima # You can use a simple theme or remove this for a custom look
+
+# Configuration to create pages for each bike from the data file
+defaults:
+  - scope:
+      path: ""
+      type: "bikes"
+    values:
+      layout: "bike_detail" # Tell the site generator to use the bike_detail layout
+
+collections:
+  bikes:
+    output: true
+    permalink: /bikes/:path/ # This creates a URL like yoursite.com/bikes/classic-350

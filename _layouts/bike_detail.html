@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.name }} Details | Royal Enfield Catalog</title>
+    <link rel="stylesheet" href="/styles.css"> </head>
+<body>
+    <div class="detail-container">
+        <a href="/" class="back-link">&larr; Back to Catalog</a>
+
+        <div class="detail-header">
+            <h1>{{ page.name }}</h1>
+            <p>Model Year: {{ page.year }}</p>
+        </div>
+        
+        <img src="/images/{{ page.image }}" alt="Image of {{ page.name }}" class="detail-image" aria-label="Image of Royal Enfield {{ page.name }}">
+        
+        <div class="detail-section">
+            <h3>Engine Specifications</h3>
+            <table class="spec-table">
+                {% for detail in page.engine_details %}
+                <tr><th>{{ detail[0] | replace: '_', ' ' | capitalize }}</th><td>{{ detail[1] }}</td></tr>
+                {% endfor %}
+            </table>
+
+            <h3>Chassis & Dimensions</h3>
+            <table class="spec-table">
+                {% for detail in page.chassis_details %}
+                <tr><th>{{ detail[0] | replace: '_', ' ' | capitalize }}</th><td>{{ detail[1] }}</td></tr>
+                {% endfor %}
+            </table>
+        </div>
+        
+        <div class="detail-section">
+            <h3>Historical Notes</h3>
+            <p>{{ page.history }}</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> Royal Enfield Catalog Project</p>
+    </footer>
+</body>
+</html>
