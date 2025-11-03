@@ -1,8 +1,8 @@
 :root {
     --primary-color: #CC0000; /* Bright Red Accent */
-    --secondary-color: #EEEEEE; /* Main Heading Text Color */
+    --secondary-color: #EEEEEE; /* Main Heading Text Color (White) */
     --background-color: #121212; /* Dark Background */
-    --text-color: #F0F0F0; /* Light Body Text Color */
+    --text-color: #F0F0F0; /* Light Body Text Color (Off-white) */
 }
 
 body {
@@ -18,7 +18,8 @@ header {
     color: white;
     padding: 30px 20px;
     text-align: center;
-    border-bottom: 5px solid var(--secondary-color);
+    /* Use dark border for high contrast against the red header */
+    border-bottom: 5px solid #000000; 
 }
 
 header h1 {
@@ -43,7 +44,7 @@ header p {
 }
 
 .bike-card {
-    background-color: #252525; /* Changed from white to dark gray */
+    background-color: #252525; /* Dark Card Background */
     border: 1px solid #333; /* Darker border for contrast */
     border-radius: 8px;
     overflow: hidden;
@@ -55,7 +56,7 @@ header p {
 
 .bike-card:hover {
     transform: translateY(-5px);
-    /* Darker shadow on a dark background needs opacity adjustment */
+    /* Soft red shadow */
     box-shadow: 0 10px 20px rgba(204, 0, 0, 0.3);
 }
 
@@ -73,18 +74,18 @@ header p {
 .card-details h2 {
     margin-top: 0;
     font-size: 1.5em;
-    color: var(--secondary-color);
+    color: var(--secondary-color); /* Uses white/light gray */
 }
 
 .category {
     font-weight: bold;
-    color: var(--primary-color);
+    color: var(--primary-color); /* Uses bright red */
     margin: 5px 0;
 }
 
 .engine-info, .year {
     font-size: 0.9em;
-    color: #666;
+    color: #AAAAAA; /* Changed from dark gray (#666) to light gray for dark background */
     margin: 3px 0;
 }
 
@@ -94,14 +95,14 @@ header p {
     max-width: 900px;
     margin: 50px auto;
     padding: 20px;
-    background-color: white;
+    background-color: #252525; /* Changed from white to dark gray */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
     border-radius: 8px;
 }
 
 .detail-header {
     text-align: center;
-    border-bottom: 2px solid var(--primary-color);
+    border-bottom: 2px solid var(--primary-color); /* Uses bright red */
     margin-bottom: 30px;
     padding-bottom: 10px;
 }
@@ -122,19 +123,21 @@ header p {
 
 .spec-table th, .spec-table td {
     padding: 12px 15px;
-    border: 1px solid #eee;
+    /* Changed border from #eee to dark gray */
+    border: 1px solid #333; 
     text-align: left;
 }
 
 .spec-table th {
-    background-color: #f0f0f0;
+    /* Changed background from #f0f0f0 to dark, making the text color light */
+    background-color: #1a1a1a; 
     font-weight: bold;
-    color: var(--secondary-color);
+    color: var(--secondary-color); /* Uses light text color */
     width: 30%;
 }
 
 .detail-section h3 {
-    color: var(--primary-color);
+    color: var(--primary-color); /* Uses bright red */
     border-left: 4px solid var(--primary-color);
     padding-left: 10px;
     margin-top: 30px;
@@ -144,8 +147,10 @@ footer {
     text-align: center;
     padding: 20px;
     margin-top: 40px;
-    border-top: 1px solid #ddd;
-    color: #888;
+    /* Changed border from #ddd to dark gray */
+    border-top: 1px solid #333; 
+    /* Changed color from #888 to light gray */
+    color: #AAAAAA; 
     font-size: 0.8em;
 }
 
@@ -153,6 +158,6 @@ footer {
     display: inline-block;
     margin-bottom: 20px;
     text-decoration: none;
-    color: var(--primary-color);
+    color: var(--primary-color); /* Uses bright red */
     font-weight: bold;
 }
