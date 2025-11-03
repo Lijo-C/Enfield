@@ -43,8 +43,8 @@ header p {
 }
 
 .bike-card {
-    background-color: white;
-    border: 1px solid #ddd;
+    background-color: #252525; /* Changed from white to dark gray */
+    border: 1px solid #333; /* Darker border for contrast */
     border-radius: 8px;
     overflow: hidden;
     text-decoration: none;
@@ -55,7 +55,8 @@ header p {
 
 .bike-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    /* Darker shadow on a dark background needs opacity adjustment */
+    box-shadow: 0 10px 20px rgba(204, 0, 0, 0.3);
 }
 
 .bike-card img {
