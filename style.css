@@ -1,8 +1,8 @@
 :root {
-    --primary-color: #A0522D; /* Sienna/Brown - Classic RE vibe */
-    --secondary-color: #333;
-    --background-color: #f7f7f7;
-    --text-color: #1a1a1a;
+    --primary-color: #CC0000; /* Bright Red Accent */
+    --secondary-color: #EEEEEE; /* Main Heading Text Color */
+    --background-color: #121212; /* Dark Background */
+    --text-color: #F0F0F0; /* Light Body Text Color */
 }
 
 body {
