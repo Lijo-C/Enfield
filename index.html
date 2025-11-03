@@ -7,8 +7,9 @@ layout: default
 </header>
 
 <main class="catalog-grid">
-    {% for bike in site.data.bikes %}
-    <a href="{{ site.baseurl }}/bikes/{{ bike.slug }}/" class="bike-card">
+    
+    {% for bike in site.bikes %}
+    <a href="{{ bike.url | relative_url }}" class="bike-card">
         <img src="{{ site.baseurl }}/images/{{ bike.image }}" alt="Royal Enfield {{ bike.name }}" aria-label="Image of Royal Enfield {{ bike.name }}">
         <div class="card-details">
             <h2>{{ bike.name }}</h2>
