@@ -1,6 +1,7 @@
 # _config.yml
 title: "Royal Enfield: The Complete Catalog"
 description: "A data-driven archive of all Royal Enfield motorcycles."
+baseurl: /Enfield # <--- THIS IS THE MISSING FIX
 theme: minima 
 
 # Configuration to create pages for each bike from the data file
