@@ -200,7 +200,7 @@ footer {
 }
 
 
-/* --- NEW 2-Column Detail Page Layout --- */
+/* --- 2-Column Detail Page Layout --- */
 .detail-layout-grid {
     display: grid;
     grid-template-columns: 3fr 2fr;
@@ -224,5 +224,95 @@ footer {
     }
     .detail-sidebar {
         order: 2;
+    }
+}
+
+
+/* ==================================================
+  NEW: HERO SECTION STYLES (from Dribbble shot)
+==================================================
+*/
+
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns for text and image */
+    gap: 2rem;
+    max-width: 1200px; /* Match your catalog grid width */
+    margin: 50px auto; /* Add space above and below */
+    padding: 0 20px; /* Match catalog grid padding */
+    align-items: center; /* Vertically center content in the grid */
+}
+
+/* --- 1. Hero Text Content --- */
+
+.hero-content h2 {
+    font-size: 3.5rem; /* Big, impactful heading (using New Rocker) */
+    color: var(--secondary-color);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-content .hero-subtitle {
+    font-family: var(--font-body); /* Use Roboto for this */
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--primary-color); /* Use your red accent */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    color: #AAAAAA; /* Your light text color */
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* --- 2. Hero Call-to-Action (CTA) Button --- */
+.cta-button {
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-decoration: none;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.cta-button:hover {
+    background-color: #a00d0d; /* A slightly darker red */
+    transform: translateY(-2px); /* Add a little "lift" */
+}
+
+/* --- 3. Hero Image --- */
+.hero-image img {
+    width: 100%;
+    border-radius: 12px; /* Modern rounded corners */
+    object-fit: cover;
+    aspect-ratio: 16/10; /* A good, wide ratio for a hero shot */
+}
+
+/* --- 4. Make the Hero Responsive --- */
+@media (max-width: 800px) {
+    .hero {
+        grid-template-columns: 1fr; /* Stack columns on mobile */
+        text-align: center;
+        margin-top: 30px;
+    }
+    
+    .hero-image {
+        order: 1; /* Put image on top on mobile */
+    }
+    .hero-content {
+        order: 2; /* Put text below */
+    }
+    
+    .hero-content h2 {
+        font-size: 2.5rem; /* Slightly smaller title for mobile */
     }
 }

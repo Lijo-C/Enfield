@@ -5,7 +5,46 @@ layout: default
     <h1>Royal Enfield: The Complete Catalog</h1>
     <p>Documenting over a century of pure motorcycling heritage.</p>
 </header>
+---
+layout: default
+---
+<header>
+    <h1>Royal Enfield: The Complete Catalog</h1>
+    <p>Documenting over a century of pure motorcycling heritage.</p>
+</header>
 
+<section class="hero">
+    <div class="hero-content">
+        <span class="hero-subtitle">Over a Century of Heritage</span>
+        <h2>Find Your Perfect Ride</h2>
+        <p>
+            Explore the complete catalog of new and classic Royal Enfield 
+            motorcycles, from the original 1901 model to today's icons.
+        </p>
+        <a href="#catalog" class="cta-button">Explore the Collection</a>
+    </div>
+    <div class="hero-image">
+        <img src="{{ site.baseurl }}/images/hero-motorcycle.jpg" alt="Hero Image of a Royal Enfield">
+    </div>
+</section>
+<main class="catalog-grid" id="catalog">
+    
+    {% for bike in site.bikes %}
+    <a href="{{ bike.url | relative_url }}" class="bike-card">
+        <img src="{{ site.baseurl }}/images/{{ bike.image }}" alt="Royal Enfield {{ bike.name }}" aria-label="Image of Royal Enfield {{ bike.name }}">
+        <div class="card-details">
+            <h2>{{ bike.name }}</h2>
+            <p class="category">{{ bike.category }}</p>
+            <p class="engine-info">Engine: {{ bike.engine_details.displacement }}</p>
+            <p class="year">Year(s): {{ bike.year }}</p>
+        </div>
+    </a>
+    {% endfor %}
+</main>
+
+<footer>
+    <p>&copy; <script>document.write(new Date().getFullYear())</script> Royal Enfield Catalog Project | Hosted on GitHub Pages</p>
+</footer>
 <main class="catalog-grid">
     
     {% for bike in site.bikes %}
