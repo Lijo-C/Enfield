@@ -13,7 +13,7 @@ engine_details:
 history: The original 692cc parallel-twin, developed from the 500 Twin. It was a powerful
   roadster designed to compete with other British twins and was the direct predecessor
   to the Super Meteor.
-image: https://images.bikesgallery.com/700-meteor.jpg
+image: 700-meteor.jpg
 name: 700 Meteor
 slug: 700-meteor
 year: 1953-1955

@@ -12,7 +12,7 @@ engine_details:
   type: Single Cylinder, 4-stroke, OHV, Air-Cooled
 history: The legendary 500cc "Thumper" produced in Redditch, England. This was the
   basis for the US "Woodsman" scrambler and the high-performance "Fury" single.
-image: https://images.bikesgallery.com/500-bullet-british.jpg
+image: 500-bullet-british.jpg
 name: 500 Bullet (British)
 slug: 500-bullet-british
 year: 1953-1962
