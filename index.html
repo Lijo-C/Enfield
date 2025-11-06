@@ -1,88 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Royal Enfield: The Complete Catalog</title>
+---
+layout: default
+---
+<header>
+    <h1>Royal Enfield: The Complete Catalog</h1>
+    <p>Documenting over a century of pure motorcycling heritage.</p>
+</header>
+
+<main class="catalog-grid">
     
-    <link rel="stylesheet" href="style.css">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-</head>
-<body>
+    {% for bike in site.bikes %}
+    <a href="{{ bike.url | relative_url }}" class="bike-card">
+        <img src="{{ site.baseurl }}/images/{{ bike.image }}" alt="Royal Enfield {{ bike.name }}" aria-label="Image of Royal Enfield {{ bike.name }}">
+        <div class="card-details">
+            <h2>{{ bike.name }}</h2>
+            <p class="category">{{ bike.category }}</p>
+            <p class="engine-info">Engine: {{ bike.engine_details.displacement }}</p>
+            <p class="year">Year(s): {{ bike.year }}</p>
+        </div>
+    </a>
+    {% endfor %}
+</main>
 
-    <header>
-        <div class="logo">Royal Enfield Catalog</div>
-        <input type="search" placeholder="Search models...">
-    </header>
-
-    <main>
-        <section class="hero">
-            
-            <div class="hero-content">
-                <h1>Royal Enfield: The Complete Catalog</h1>
-                <p>Documenting over a century of pure motorcycling heritage.</p>
-            </div>
-        </section>
-
-        <section class="catalog-container">
-            <h2>All Models</h2>
-            
-            <div class="catalog-grid">
-                
-                <a href="/Enfield/bikes/500-bullet-big-head/" class="motorcycle-card">
-                    <img src="https://images.bikesgallery.com/500-bullet-big-head.jpg" alt="Royal Enfield 500 Bullet Big Head">
-                    <div class="card-content">
-                        <h2>500 Bullet "Big Head"</h2>
-                        <div class="card-tags">
-                            <span>Post-War</span>
-                            <span>Sport</span>
-                        </div>
-                        <p class="card-specs">Engine: 499 cc | Year(s): 1959-1961</p>
-                    </div>
-                </a>
-                
-                <a href="/Enfield/bikes/500-bullet-british/" class="motorcycle-card">
-                    <img src="https://images.bikesgallery.com/500-bullet-british.jpg" alt="Royal Enfield 500 Bullet (British)">
-                    <div class="card-content">
-                        <h2>500 Bullet (British)</h2>
-                        <div class="card-tags">
-                            <span>Post-War</span>
-                            <span>Iconic</span>
-                        </div>
-                        <p class="card-specs">Engine: 499 cc | Year(s): 1953-1962</p>
-                    </div>
-                </a>
-                
-                <a href="/Enfield/bikes/700-meteor/" class="motorcycle-card">
-                    <img src="https://images.bikesgallery.com/700-meteor.jpg" alt="Royal Enfield 700 Meteor">
-                    <div class="card-content">
-                        <h2>700 Meteor</h2>
-                        <div class="card-tags">
-                            <span>Roadster</span>
-                            <span>Twin</span>
-                        </div>
-                        <p class="card-specs">Engine: 692 cc | Year(s): 1953-1955</p>
-                    </div>
-                </a>
-                
-                <a href="/Enfield/bikes/bear-650/" class="motorcycle-card">
-                    <img src="https://images.bikesgallery.com/bear-650.jpg" alt="Royal Enfield Bear 650">
-                    <div class="card-content">
-                        <h2>Bear 650</h2>
-                        <div class="card-tags">
-                            <span>Scrambler</span>
-                            <span>ADV</span>
-                        </div>
-                        <p class="card-specs">Engine: 648 cc | Year(s): 2025-Present</p>
-                    </div>
-                </a>
-                
-                </div>
-        </section>
-    </main>
-
-</body>
-</html>
+<footer>
+    <p>&copy; <script>document.write(new Date().getFullYear())</script> Royal Enfield Catalog Project | Hosted on GitHub Pages</p>
+</footer>

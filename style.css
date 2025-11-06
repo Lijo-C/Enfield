@@ -1,215 +1,199 @@
-/*
- * MODERN STYLESHEET FOR ROYAL ENFIELD CATALOG
- */
-
-/* * SECTION 1: GLOBAL STYLES & FONT DEFINITIONS
- */
 :root {
-  --brand-red: #D22B2B;  /* A classic Royal Enfield red */
-  --dark-grey: #fafafa;
-  --mid-grey: #acacac;
-  --light-grey: #000000; /* Page background */
-  --white: #3f3c3c;
-  --shadow: 0 4px 12px rgba(252, 252, 252, 0.866);
-  --shadow-hover: 0 8px 20px rgba(179, 16, 16, 0.906);
-}
+    --primary-color: #7b0a0a; /* Bright Red Accent */
+    --secondary-color: #EEEEEE; /* Main Heading Text Color (White) */
+    --background-color: #121212; /* Dark Background */
+    --text-color: #F0F0F0; /* Light Body Text Color (Off-white) */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    /* --- ADDED FONT VARIABLES --- */
+    --font-heading: "New Rocker", cursive;
+    --font-body: "Roboto", sans-serif;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color: var(--light-grey);
-  color: var(--dark-grey);
-  line-height: 1.6;
+    /* --- USE THE BODY FONT --- */
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
+/* --- NEW RULE TO APPLY HEADING FONT --- */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
+    font-family: var(--font-heading);
+    font-weight: 400; /* New Rocker only has one weight */
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
-/* * SECTION 2: HEADER & NAVIGATION
- */
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: var(--white);
-  box-shadow: var(--shadow);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 5px solid #000000; 
 }
 
-header .logo {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--brand-red);
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    /* This will now use var(--font-heading) */
 }
 
-header input[type="search"] {
-  padding: 0.6rem 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-family: 'Roboto', sans-serif;
+header p {
+    margin: 5px 0 0;
+    font-style: italic;
+    opacity: 0.9;
+    /* This will now use var(--font-body) */
 }
 
-/* * SECTION 3: HERO SECTION
- */
-.hero {
-  position: relative;
-  height: 60vh; /* 60% of the viewport height */
-  display: grid;
-  place-items: center;
-  text-align: center;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-              url('https://images.unsplash.com/photo-1620399120616-01c13d3338cc') no-repeat center center/cover;
-  /* >>> IMPORTANT: 
-    Replace the 'url(...)' above with a high-quality photo you like. 
-    I've used a placeholder.
-  */
-}
-
-.hero-content {
-  color: var(--white);
-  padding: 1rem;
-}
-
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-}
-
-.hero p {
-  font-size: 1.25rem;
-  font-weight: 400;
-}
-
-/* * SECTION 4: CATALOG CONTAINER & GRID
- */
-.catalog-container {
-  max-width: 1400px;
-  margin: 2rem auto; /* Center the grid */
-  padding: 0 2rem;
-}
-
-.catalog-container h2 {
-  font-size: 2.2rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 3px solid var(--brand-red);
-  display: inline-block;
-  padding-bottom: 0.5rem;
-}
-
+/* --- Catalog Grid Styling --- */
 .catalog-grid {
-  display: grid;
-  /* This is the responsive magic!
-    It creates columns that are a minimum of 300px wide
-    and a maximum of 1fr (a fraction of the available space).
-    It will automatically create 4, 3, 2, or 1 column.
-  */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* * SECTION 5: MOTORCYCLE CARD STYLING
- */
-.motorcycle-card {
-  background-color: var(--white);
-  border-radius: 10px;
-  box-shadow: var(--shadow);
-  overflow: hidden; /* Keeps the image corners rounded */
-  display: flex;
-  flex-direction: column;
-  transition: all 0.3s ease-in-out;
+.bike-card {
+    background-color: #252525;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: block;
 }
 
-.motorcycle-card:hover {
-  transform: translateY(-8px); /* Lifts the card up */
-  box-shadow: var(--shadow-hover);
+.bike-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(204, 0, 0, 0.3);
 }
 
-.motorcycle-card img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover; /* Ensures image covers the area, may crop */
+.bike-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
 }
 
-.card-content {
-  padding: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1; /* This makes all cards grow to the same height */
+.card-details {
+    padding: 15px;
 }
 
-.card-content h2 {
-  font-size: 1.4rem;
-  color: var(--dark-grey);
-  margin-bottom: 0.5rem;
+.card-details h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: var(--secondary-color);
+    /* This will now use var(--font-heading) */
 }
 
-.card-tags {
-  margin-bottom: 1rem;
+.category, .engine-info, .year {
+    font-size: 0.9em;
+    color: #AAAAAA; 
+    margin: 3px 0;
+    /* These will now use var(--font-body) */
 }
 
-.card-tags span {
-  display: inline-block;
-  background-color: var(--light-grey);
-  color: var(--mid-grey);
-  padding: 0.25rem 0.6rem;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  margin-right: 5px;
-  margin-top: 5px;
+
+/* --- Detail Page Styling --- */
+.detail-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #252525;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
 }
 
-.card-specs {
-  color: var(--mid-grey);
-  font-size: 0.9rem;
-  font-weight: 500;
-  margin-top: auto; /* Pushes specs to the bottom of the card */
+.detail-header {
+    text-align: center;
+    border-bottom: 2px solid var(--primary-color);
+    margin-bottom: 30px;
+    padding-bottom: 10px;
 }
 
-/* * SECTION 6: RESPONSIVENESS FOR MOBILE
- */
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-  }
-  
-  .hero {
-    height: 40vh;
-  }
+.detail-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
 
-  .hero h1 {
-    font-size: 2rem;
-  }
-  
-  .hero p {
-    font-size: 1rem;
-  }
-  
-  .catalog-container {
-    padding: 0 1rem;
-  }
+.spec-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.spec-table th, .spec-table td {
+    padding: 12px 15px;
+    border: 1px solid #333; 
+    text-align: left;
+    /* This text will now use var(--font-body) */
+}
+
+.spec-table th {
+    background-color: #1a1a1a; 
+    font-weight: bold;
+    color: var(--secondary-color);
+    width: 30%;
+    /* This will also use var(--font-body) */
+    /* We can override it if we want */
+    /* font-family: var(--font-heading); */ 
+}
+
+.detail-section h3 {
+    color: var(--primary-color);
+    border-left: 4px solid var(--primary-color);
+    padding-left: 10px;
+    margin-top: 30px;
+    /* This will now use var(--font-heading) */
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-top: 1px solid #333; 
+    color: #AAAAAA; 
+    font-size: 0.8em;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+
+/* --- NEW 2-Column Detail Page Layout --- */
+.detail-layout-grid {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 30px;
+}
+
+.detail-main-content {
+    order: 1;
+}
+
+.detail-sidebar {
+    order: 2;
+}
+
+@media (max-width: 800px) {
+    .detail-layout-grid {
+        grid-template-columns: 1fr;
+    }
+    .detail-main-content {
+        order: 1;
+    }
+    .detail-sidebar {
+        order: 2;
+    }
 }
