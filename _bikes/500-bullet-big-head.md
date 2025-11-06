@@ -12,7 +12,7 @@ engine_details:
   type: Single Cylinder, 4-stroke, OHV, Air-Cooled
 history: A high-performance 500 Bullet built for the US flat-track market. It was
   nicknamed "Big Head" for its massive cylinder head with larger ports and valves.
-image:  images/500-bullet-big-head.jpg
+image:  500-bullet-big-head.jpg
 name: 500 Bullet "Big Head"
 slug: 500-bullet-big-head
 year: 1959-1961
