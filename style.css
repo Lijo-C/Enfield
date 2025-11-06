@@ -30,8 +30,10 @@ THIS IS THE UPDATED HEADER SECTION
 =========================================
 */
 header {
-    /* --- NEW --- Replace with your own image URL */
-    background-image: url('/images/hero-motorcycle.jpg');
+    /* --- NEW --- Using your local image path */
+    /* Assuming style.css is in the root folder with the 'images' folder */
+    background-image: url('images/hero-motorcycle.jpg');
+    
     background-size: cover;
     background-position: center;
     height: 45vh; /* 45% of viewport height - adjust as you like */
@@ -163,7 +165,6 @@ header p {
     color: var(--secondary-color);
     width: 30%;
     /* This will also use var(--font-body) */
-    /* We can override it if we want */
     /* font-family: var(--font-heading); */ 
 }
 
