@@ -24,13 +24,35 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 400; /* New Rocker only has one weight */
 }
 
+/*
+=========================================
+THIS IS THE UPDATED HEADER SECTION
+=========================================
+*/
 header {
-    background-color: var(--primary-color);
+    /* --- NEW --- Replace with your own image URL */
+    background-image: url('/images/hero-motorcycle.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 45vh; /* 45% of viewport height - adjust as you like */
+
+    /* --- NEW --- Flexbox to vertically center the text */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* --- NEW --- Adds a shadow to make text readable on the image */
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+
+    /* --- Your original styles --- */
     color: white;
     padding: 30px 20px;
     text-align: center;
-    border-bottom: 5px solid #000000; 
+    border-bottom: 5px solid #000000;
 }
+/* ======================================= */
+
 
 header h1 {
     margin: 0;
