@@ -1,3 +1,4 @@
+---
 # 8 HP V-Twin (WWI)
 
 - **slug:** 8hp-v-twin-wwi
@@ -16,3 +17,4 @@
 - **suspension_rear:** Rigid
 - **weight:** N/A
 - **history:** A larger, 8 HP V-twin used for heavy sidecar and ambulance work during WWI, notably by the Belgian Army.
+---
