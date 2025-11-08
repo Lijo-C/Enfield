@@ -32,7 +32,7 @@ THIS IS THE UPDATED HEADER SECTION
 header {
     /* --- NEW --- Using your local image path */
     /* Assuming style.css is in the root folder with the 'images' folder */
-    background-image: url('images/hero-motorcycle.jpg');
+    background-image: url('images/hero-motorcycle.png');
     
     background-size: cover;
     background-position: center;
