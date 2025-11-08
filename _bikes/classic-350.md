@@ -3,7 +3,7 @@ slug: classic-350
 name: Classic 350 (J-Series)
 year: 2021-Present
 category: Cruiser / Retro
-image: Royal_Enfield-2022-349.34-hunter-350_1.jpg
+image: Royal_Enfield-2021-349.34-classic-350_1.jpg
 engine_details:
   type: Single Cylinder, 4-stroke, Air-Oil Cooled
   displacement: 349.34 cc

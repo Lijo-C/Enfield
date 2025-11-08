@@ -3,7 +3,7 @@ slug: mini-bullet-200
 name: Mini Bullet 200
 year: 1980s
 category: Commuter / 2-Stroke
-image: Enfield_India-1980-22-mofa-moped_1.jpg
+image: Enfield_India-1980-197-mini-bullet-200_1.jpg
 engine_details:
   type: Single Cylinder, 2-Stroke, Air-Cooled
   displacement: 197 cc

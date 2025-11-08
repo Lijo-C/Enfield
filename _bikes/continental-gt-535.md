@@ -3,7 +3,7 @@ slug: continental-gt-535
 name: Continental GT 535 (UCE)
 year: 2013-2018
 category: Cafe Racer
-image: Royal_Enfield-2016-411-himalayan-411_1.jpg
+image: Royal_Enfield-2013-535-continental-gt-535_1.jpg
 engine_details:
   type: Single Cylinder, 4-stroke, OHV, Air-Cooled
   displacement: 535 cc

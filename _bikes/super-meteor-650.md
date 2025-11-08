@@ -3,7 +3,7 @@ slug: super-meteor-650
 name: Super Meteor 650
 year: 2023-Present
 category: Cruiser / Twin
-image: Royal_Enfield-2024-648-shotgun-650_1.jpg
+image: Royal_Enfield-2023-648-super-meteor-650_1.jpg
 engine_details:
   type: Parallel Twin, 4-stroke, SOHC, Air-Oil Cooled
   displacement: 648 cc

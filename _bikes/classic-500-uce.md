@@ -3,7 +3,7 @@ slug: classic-500-uce
 name: Classic 500 (UCE)
 year: 2009-2020
 category: Retro / Cruiser
-image: Royal_Enfield-2009-346-thunderbird-350-uce_1.jpg
+image: Royal_Enfield-2009-499-classic-500-uce_1.jpg
 engine_details:
   type: Single Cylinder, 4-stroke, OHV, Air-Cooled
   displacement: 499 cc

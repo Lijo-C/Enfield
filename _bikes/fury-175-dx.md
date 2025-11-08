@@ -3,7 +3,7 @@ slug: fury-175-dx
 name: Fury 175 DX
 year: 1984-1990s
 category: Standard / 2-Stroke
-image: Enfield_India-1989-499-bullet-500-ci_1.jpg
+image: Enfield_India-1984-163-fury-175-dx_1.jpg
 engine_details:
   type: Single Cylinder, 2-Stroke, Air-Cooled (Zundapp)
   displacement: 163 cc

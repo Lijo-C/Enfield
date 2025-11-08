@@ -3,7 +3,7 @@ slug: hunter-350
 name: Hunter 350
 year: 2022-Present
 category: Roadster
-image: Royal_Enfield-2022-411-scram-411_1.jpg
+image: Royal_Enfield-2022-349.34-hunter-350_1.jpg
 engine_details:
   type: Single Cylinder, 4-stroke, Air-Oil Cooled
   displacement: 349.34 cc

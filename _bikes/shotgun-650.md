@@ -3,7 +3,7 @@ slug: shotgun-650
 name: Shotgun 650
 year: 2024-Present
 category: Bobber / Roadster
-image: Royal_Enfield-2024-452-guerrilla-450_1.jpg
+image: Royal_Enfield-2024-648-shotgun-650_1.jpg
 engine_details:
   type: Parallel twin, 4 stroke, SOHC, Air-Oil Cooled
   displacement: 648 cc

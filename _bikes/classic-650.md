@@ -3,7 +3,7 @@ slug: classic-650
 name: Classic 650
 year: 2024-Present
 category: Cruiser / Retro
-image: Royal_Enfield-2025-648-bear-650_1.jpg
+image: Royal_Enfield-2024-648-classic-650_1.jpg
 engine_details:
   type: Inline twin cylinder, 4 stroke, SOHC
   displacement: 648 cc

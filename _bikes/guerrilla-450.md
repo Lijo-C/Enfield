@@ -3,7 +3,7 @@ slug: guerrilla-450
 name: Guerrilla 450
 year: 2024-Present
 category: Roadster
-image: Royal_Enfield-2024-648-classic-650_1.jpg
+image: Royal_Enfield-2024-452-guerrilla-450_1.jpg
 engine_details:
   type: Liquid cooled, Single cylinder, DOHC
   displacement: 452 cc

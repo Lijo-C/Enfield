@@ -3,7 +3,7 @@ slug: interceptor-800-prototype
 name: Interceptor 800 (Prototype)
 year: 1970
 category: Prototype / Twin
-image: Enfield_India-1980-197-mini-bullet-200_1.jpg
+image: Royal_Enfield-1970-778-interceptor-800-prototype_1.jpg
 engine_details:
   type: Parallel Twin, 4-stroke, OHV, Air-Cooled
   displacement: 778 cc

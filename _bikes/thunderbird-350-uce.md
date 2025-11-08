@@ -3,7 +3,7 @@ slug: thunderbird-350-uce
 name: Thunderbird 350 (UCE)
 year: 2009-2020
 category: Cruiser
-image: Royal_Enfield-2010-346-bullet-350-uce_1.jpg
+image: Royal_Enfield-2009-346-thunderbird-350-uce_1.jpg
 engine_details:
   type: Single Cylinder, 4-stroke, OHV, Air-Cooled (Twinspark)
   displacement: 346 cc

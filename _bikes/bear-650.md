@@ -3,7 +3,7 @@ slug: bear-650
 name: Bear 650
 year: 2025-Present
 category: Scrambler / ADV
-image: bear-650.jpg
+image: Royal_Enfield-2025-648-bear-650_1.jpg
 engine_details:
   type: Inline twin cylinder, 4 stroke, SOHC
   displacement: 648 cc

@@ -3,7 +3,7 @@ slug: bullet-350
 name: Bullet 350 (J-Series)
 year: 2023-Present
 category: Cruiser / Iconic
-image: Royal_Enfield-2023-648-super-meteor-650_1.jpg
+image: Royal_Enfield-2023-349-bullet-350_1.jpg
 engine_details:
   type: Single Cylinder, 4-stroke, Air-Oil Cooled
   displacement: 349 cc

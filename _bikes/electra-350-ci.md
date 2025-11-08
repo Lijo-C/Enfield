@@ -3,7 +3,7 @@ slug: electra-350-ci
 name: Electra 350 (Cast Iron)
 year: 2001-2005
 category: Standard / Iconic
-image: Enfield_India-2002-346-thunderbird-350-avl_1.jpg
+image: Enfield_India-2001-346-electra-350-ci_1.jpg
 engine_details:
   type: Single Cylinder, 4-stroke, OHV, Air-Cooled
   displacement: 346 cc

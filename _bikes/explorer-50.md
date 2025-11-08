@@ -3,7 +3,7 @@ slug: explorer-50
 name: Explorer 50
 year: 1980s
 category: Moped / 2-Stroke
-image: Enfield_India-1984-163-fury-175-dx_1.jpg
+image: Enfield_India-1980-49-explorer-50_1..jpg
 engine_details:
   type: Single Cylinder, 2-Stroke, Air-Cooled (Zundapp)
   displacement: 49 cc

@@ -3,7 +3,7 @@ slug: electra-x-500
 name: Electra X 500
 year: 2004-2008
 category: Standard / Lean-Burn
-image: Royal_Enfield-2009-499-classic-500-uce_1.jpg
+image: Enfield_India-2004-499-electra-x-500_1.jpg
 engine_details:
   type: Single Cylinder, 4-stroke, OHV, Air-Cooled (AVL)
   displacement: 499 cc

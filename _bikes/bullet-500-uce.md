@@ -3,7 +3,7 @@ slug: bullet-500-uce
 name: Bullet 500 (UCE)
 year: 2011-2020
 category: Cruiser / Iconic
-image: Royal_Enfield-2012-499-thunderbird-500-uce_1.jpg
+image: Royal_Enfield-2011-499-bullet-500-uce_1.jpg
 engine_details:
   type: Single Cylinder, 4-stroke, OHV, Air-Cooled
   displacement: 499 cc

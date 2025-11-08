@@ -3,7 +3,7 @@ slug: interceptor-750-s1a
 name: Interceptor 750 (Series 1A)
 year: 1967-1968
 category: Roadster / Twin
-image: Royal_Enfield-1969-736-interceptor-750-s2_1.jpg
+image: Royal_Enfield-1967-736-interceptor-750-s1a_1.jpg
 engine_details:
   type: Parallel Twin, 4-stroke, OHV, Air-Cooled
   displacement: 736 cc

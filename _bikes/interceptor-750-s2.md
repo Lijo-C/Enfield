@@ -3,7 +3,7 @@ slug: interceptor-750-s2
 name: Interceptor 750 (Series 2)
 year: 1969-1970
 category: Roadster / Twin
-image: Royal_Enfield-1970-736-rickman-interceptor_1.jpg
+image: Royal_Enfield-1969-736-interceptor-750-s2_1.jpg
 engine_details:
   type: Parallel Twin, 4-stroke, OHV, Air-Cooled
   displacement: 736 cc

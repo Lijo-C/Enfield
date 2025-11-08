@@ -3,7 +3,7 @@ slug: bullet-350-trials
 name: 350 Bullet Trials
 year: 1948-1956
 category: Post-War / Competition
-image: Royal_Enfield-1948-346-bullet-350-trials_1.jpg
+image: Royal_Enfield-1948-346-bullet-350-trials_1.png
 engine_details:
   type: Single Cylinder, 4-stroke, OHV, Air-Cooled
   displacement: 346 cc

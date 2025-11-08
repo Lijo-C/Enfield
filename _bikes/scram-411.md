@@ -3,7 +3,7 @@ slug: scram-411
 name: Scram 411
 year: 2022-2024
 category: Scrambler / Urban
-image: Royal_Enfield-2023-452-himalayan-450_1.jpg
+image: Royal_Enfield-2022-411-scram-411_1.jpg
 engine_details:
   type: Single Cylinder, 4-stroke, SOHC, Air/Oil-Cooled
   displacement: 411 cc

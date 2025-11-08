@@ -3,7 +3,7 @@ slug: continental-gt-650
 name: Continental GT 650
 year: 2018-Present
 category: Cafe Racer / Twin
-image: Royal_Enfield-2019-346-bullet-trials-350_1.jpg
+image: Royal_Enfield-2018-648-continental-gt-650_1.jpg
 engine_details:
   type: Parallel Twin, SOHC, Air/Oil Cooled
   displacement: 648 cc

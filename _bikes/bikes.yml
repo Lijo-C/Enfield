@@ -98,7 +98,7 @@
   name: Model 180 (WWI Sidecar)
   year: 1914-1918
   category: Pre-War / Military
-  image: Royal_Enfield-1914-770-model-180-wwi_1.jpg
+  image: Royal_Enfield-1914-770-model-180-wwi-sidecar_1.jpg
   engine_details:
     type: V-Twin, 4-stroke, Side-Valve (JAP Engine)
     displacement: 770 cc
@@ -547,7 +547,7 @@
   name: Model 201 (1928 2-Stroke)
   year: 1928
   category: Pre-War / 2-Stroke
-  image: Royal_Enfield-1928-225-model-201-1928-2s_1.jpg
+  image: Royal_Enfield-1928-225-model-201-1928-2s_1.png
   engine_details:
     type: Single Cylinder, 2-Stroke, Air-Cooled
     displacement: 225 cc
@@ -563,7 +563,7 @@
   name: Model 353 (1928 OHV)
   year: 1928
   category: Pre-War / Sport
-  image: Royal_Enfield-1928-346-model-353-1928-ohv_1.jpg
+  image: Royal_Enfield-1928-346-model-353-1928-ohv_1.png
   engine_details:
     type: Single Cylinder, 4-stroke, OHV, 2-port
     displacement: 346 cc
@@ -595,7 +595,7 @@
   name: Model 502 (1928 SV)
   year: 1928
   category: Pre-War / Single
-  image: Royal_Enfield-1928-488-model-502-1928-sv_1.jpg
+  image: Royal_Enfield-1928-488-model-502-1928-sv_1.png
   engine_details:
     type: Single Cylinder, 4-stroke, Side-Valve
     displacement: 488 cc
@@ -1990,7 +1990,7 @@
   name: 350 Bullet Trials
   year: 1948-1956
   category: Post-War / Competition
-  image: Royal_Enfield-1948-346-bullet-350-trials_1.jpg
+  image: Royal_Enfield-1948-346-bullet-350-trials_1.png
   engine_details:
     type: Single Cylinder, 4-stroke, OHV, Air-Cooled
     displacement: 346 cc
@@ -2006,7 +2006,7 @@
   name: Model RE 125
   year: 1948-1953
   category: Post-War / 2-Stroke
-  image: Royal_Enfield-1948-125-model-re-125_1.jpg
+  image: Royal_Enfield-1948-125-model-re-125_1.webp
   engine_details:
     type: Single Cylinder, 2-Stroke, Air-Cooled (Villiers)
     displacement: 125 cc
@@ -2594,27 +2594,11 @@
     suspension_rear: Swing arm with twin shocks
     weight: N/A
   history: A very rare, factory-built road racing version of the Interceptor. It featured a racing fairing, tuned engine, and was intended for production-class racing.
-- slug: himalayan-411
-  name: Himalayan 411
-  year: 2016-2023
-  category: Adventure / ADV
-  image: Royal_Enfield-1967-736-interceptor-750-s1a_1.jpg
-  engine_details:
-    type: Single Cylinder, 4-stroke, SOHC, Air/Oil-Cooled
-    displacement: 411 cc
-    power: 24.3 BHP @ 6500 rpm
-    torque: 32 Nm @ 4250 rpm
-  chassis_details:
-    frame: Half-duplex split cradle frame
-    suspension_front: Telescopic, 41mm forks
-    suspension_rear: Monoshock with linkage
-    weight: 199 kg (Kerb)
-  history: Royal_Enfield's first purpose-built adventure bike. The Himalayan 411 was a simple, rugged, and affordable machine designed to conquer the Himalayas.
 - slug: interceptor-750-s1a
   name: Interceptor 750 (Series 1A)
   year: 1967-1968
   category: Roadster / Twin
-  image: Royal_Enfield-1969-736-interceptor-750-s2_1.jpg
+  image: Royal_Enfield-1967-736-interceptor-750-s1a_1.jpg
   engine_details:
     type: Parallel Twin, 4-stroke, OHV, Air-Cooled
     displacement: 736 cc
@@ -2630,7 +2614,7 @@
   name: Interceptor 750 (Series 2)
   year: 1969-1970
   category: Roadster / Twin
-  image: Royal_Enfield-1970-736-rickman-interceptor_1.jpg
+  image: Royal_Enfield-1969-736-interceptor-750-s2_1.jpg
   engine_details:
     type: Parallel Twin, 4-stroke, OHV, Air-Cooled
     displacement: 736 cc
@@ -2646,7 +2630,7 @@
   name: Rickman Interceptor
   year: 1970-1972
   category: Cafe Racer / Twin
-  image: Royal_Enfield-1970-778-interceptor-800-prototype_1.jpg
+  image: Royal_Enfield-1970-736-rickman-interceptor_1.jpg
   engine_details:
     type: Parallel Twin, 4-stroke, OHV, Air-Cooled
     displacement: 736 cc
@@ -2662,7 +2646,7 @@
   name: Interceptor 800 (Prototype)
   year: 1970
   category: Prototype / Twin
-  image: Enfield_India-1980-197-mini-bullet-200_1.jpg
+  image: Royal_Enfield-1970-778-interceptor-800-prototype_1.jpg
   engine_details:
     type: Parallel Twin, 4-stroke, OHV, Air-Cooled
     displacement: 778 cc
@@ -2678,7 +2662,7 @@
   name: Mini Bullet 200
   year: 1980s
   category: Commuter / 2-Stroke
-  image: Enfield_India-1980-22-mofa-moped_1.jpg
+  image: Enfield_India-1980-197-mini-bullet-200_1.jpg
   engine_details:
     type: Single Cylinder, 2-Stroke, Air-Cooled
     displacement: 197 cc
@@ -2694,7 +2678,7 @@
   name: Mofa
   year: 1980s
   category: Moped
-  image: Enfield_India-1980-61.5-silver-plus_1.jpg
+  image: Enfield_India-1980-22-mofa-moped_1.jpg
   engine_details:
     type: Single Cylinder, 2-Stroke, Air-Cooled
     displacement: 22 cc
@@ -2710,7 +2694,7 @@
   name: Silver Plus
   year: 1980s
   category: Commuter / 2-Stroke
-  image: Enfield_India-1980-49-explorer-50_1.jpg
+  image: Enfield_India-1980-61.5-silver-plus_1.jpg
   engine_details:
     type: Single Cylinder, 2-Stroke, Air-Cooled (Zundapp)
     displacement: 61.5 cc
@@ -2726,7 +2710,7 @@
   name: Explorer 50
   year: 1980s
   category: Moped / 2-Stroke
-  image: Enfield_India-1984-163-fury-175-dx_1.jpg
+  image: Enfield_India-1980-49-explorer-50_1..jpg
   engine_details:
     type: Single Cylinder, 2-Stroke, Air-Cooled (Zundapp)
     displacement: 49 cc
@@ -2742,7 +2726,7 @@
   name: Fury 175 DX
   year: 1984-1990s
   category: Standard / 2-Stroke
-  image: Enfield_India-1989-499-bullet-500-ci_1.jpg
+  image: Enfield_India-1984-163-fury-175-dx_1.jpg
   engine_details:
     type: Single Cylinder, 2-Stroke, Air-Cooled (Zundapp)
     displacement: 163 cc
@@ -2758,7 +2742,7 @@
   name: Bullet 500 (Cast Iron)
   year: 1989-2007
   category: Iconic / Cruiser
-  image: Enfield_India-1993-325-taurus-diesel_1.jpg
+  image: Enfield_India-1989-499-bullet-500-ci_1.jpg
   engine_details:
     type: Single Cylinder, 4-stroke, OHV, Air-Cooled
     displacement: 499 cc
@@ -2774,7 +2758,7 @@
   name: Enfield Taurus Diesel
   year: 1993-2000
   category: Iconic / Diesel
-  image: Enfield_India-1997-499-lightning-500_1.jpg
+  image: Enfield_India-1993-325-taurus-diesel_1.jpg
   engine_details:
     type: Single Cylinder, 4-stroke, Air-Cooled, Diesel
     displacement: 325 cc
@@ -2790,7 +2774,7 @@
   name: Lightning 500
   year: 1997-2003
   category: Cruiser / Cast-Iron
-  image: Enfield_India-2000-499-machismo-500-avl_1.jpg
+  image: Enfield_India-1997-499-lightning-500_1.jpg
   engine_details:
     type: Single Cylinder, 4-stroke, OHV, Air-Cooled
     displacement: 499 cc
@@ -2806,7 +2790,7 @@
   name: Machismo 500 (AVL)
   year: 2000-2009
   category: Cruiser / Lean-Burn
-  image: Enfield_India-2001-346-electra-350-ci_1.jpg
+  image: Enfield_India-2000-499-machismo-500-avl_1.jpg
   engine_details:
     type: Single Cylinder, 4-stroke, Air-Cooled, "Lean-Burn"
     displacement: 499 cc
@@ -2822,7 +2806,7 @@
   name: Electra 350 (Cast Iron)
   year: 2001-2005
   category: Standard / Iconic
-  image: Enfield_India-2002-346-thunderbird-350-avl_1.jpg
+  image: Enfield_India-2001-346-electra-350-ci_1.jpg
   engine_details:
     type: Single Cylinder, 4-stroke, OHV, Air-Cooled
     displacement: 346 cc
@@ -2838,7 +2822,7 @@
   name: Thunderbird 350 (AVL)
   year: 2002-2009
   category: Cruiser / Lean-Burn
-  image: Enfield_India-2004-499-electra-x-500_1.jpg
+  image: Enfield_India-2002-346-thunderbird-350-avl_1.jpg
   engine_details:
     type: Single Cylinder, 4-stroke, Air-Cooled, "Lean-Burn"
     displacement: 346 cc
@@ -2854,7 +2838,7 @@
   name: Electra X 500
   year: 2004-2008
   category: Standard / Lean-Burn
-  image: Royal_Enfield-2009-499-classic-500-uce_1.jpg
+  image: Enfield_India-2004-499-electra-x-500_1.jpg
   engine_details:
     type: Single Cylinder, 4-stroke, OHV, Air-Cooled (AVL)
     displacement: 499 cc
@@ -2870,7 +2854,7 @@
   name: Classic 500 (UCE)
   year: 2009-2020
   category: Retro / Cruiser
-  image: Royal_Enfield-2009-346-thunderbird-350-uce_1.jpg
+  image: Royal_Enfield-2009-499-classic-500-uce_1.jpg
   engine_details:
     type: Single Cylinder, 4-stroke, OHV, Air-Cooled
     displacement: 499 cc
@@ -2886,7 +2870,7 @@
   name: Thunderbird 350 (UCE)
   year: 2009-2020
   category: Cruiser
-  image: Royal_Enfield-2010-346-bullet-350-uce_1.jpg
+  image: Royal_Enfield-2009-346-thunderbird-350-uce_1.jpg
   engine_details:
     type: Single Cylinder, 4-stroke, OHV, Air-Cooled (Twinspark)
     displacement: 346 cc
@@ -2902,7 +2886,7 @@
   name: Bullet 350 (UCE)
   year: 2010-2022
   category: Cruiser / Iconic
-  image: Royal_Enfield-2011-499-bullet-500-uce_1.jpg
+  image: Royal_Enfield-2010-346-bullet-350-uce_1.jpg
   engine_details:
     type: Single Cylinder, 4-stroke, OHV, Air-Cooled
     displacement: 346 cc
@@ -2918,7 +2902,7 @@
   name: Bullet 500 (UCE)
   year: 2011-2020
   category: Cruiser / Iconic
-  image: Royal_Enfield-2012-499-thunderbird-500-uce_1.jpg
+  image: Royal_Enfield-2011-499-bullet-500-uce_1.jpg
   engine_details:
     type: Single Cylinder, 4-stroke, OHV, Air-Cooled
     displacement: 499 cc
@@ -2934,7 +2918,7 @@
   name: Thunderbird 500 (UCE)
   year: 2012-2020
   category: Cruiser
-  image: Royal_Enfield-2013-535-continental-gt-535_1.jpg
+  image: Royal_Enfield-2012-499-thunderbird-500-uce_1.jpg
   engine_details:
     type: Single Cylinder, 4-stroke, OHV, Air-Cooled
     displacement: 499 cc
@@ -2950,7 +2934,7 @@
   name: Continental GT 535 (UCE)
   year: 2013-2018
   category: Cafe Racer
-  image: Royal_Enfield-2016-411-himalayan-411_1.jpg
+  image: Royal_Enfield-2013-535-continental-gt-535_1.jpg
   engine_details:
     type: Single Cylinder, 4-stroke, OHV, Air-Cooled
     displacement: 535 cc
@@ -2966,7 +2950,7 @@
   name: Himalayan 411
   year: 2016-2023
   category: Adventure / ADV
-  image: Royal_Enfield-2018-648-interceptor-650_1.jpg
+  image: Royal_Enfield-2016-411-himalayan-411_1.jpg
   engine_details:
     type: Single Cylinder, 4-stroke, SOHC, Air/Oil-Cooled
     displacement: 411 cc
@@ -2982,7 +2966,7 @@
   name: Interceptor 650
   year: 2018-Present
   category: Roadster / Twin
-  image: Royal_Enfield-2018-648-continental-gt-650_1.jpg
+  image: Royal_Enfield-2018-648-interceptor-650_1.jpg
   engine_details:
     type: Parallel Twin, SOHC, Air/Oil Cooled
     displacement: 648 cc
@@ -2998,7 +2982,7 @@
   name: Continental GT 650
   year: 2018-Present
   category: Cafe Racer / Twin
-  image: Royal_Enfield-2019-346-bullet-trials-350_1.jpg
+  image: Royal_Enfield-2018-648-continental-gt-650_1.jpg
   engine_details:
     type: Parallel Twin, SOHC, Air/Oil Cooled
     displacement: 648 cc
@@ -3014,7 +2998,7 @@
   name: Bullet Trials 350
   year: 2019
   category: Scrambler / Retro
-  image: Royal_Enfield-2019-499-bullet-trials-500_1.jpg
+  image: Royal_Enfield-2019-346-bullet-trials-350_1.jpg
   engine_details:
     type: Single Cylinder, 4-stroke, OHV, Air-Cooled
     displacement: 346 cc
@@ -3030,7 +3014,7 @@
   name: Bullet Trials 500
   year: 2019
   category: Scrambler / Retro
-  image: Royal_Enfield-2020-349-meteor-350_1.jpg
+  image: Royal_Enfield-2019-499-bullet-trials-500_1.jpg
   engine_details:
     type: Single Cylinder, 4-stroke, OHV, Air-Cooled
     displacement: 499 cc
@@ -3046,7 +3030,7 @@
   name: Meteor 350
   year: 2020-Present
   category: Cruiser
-  image: Royal_Enfield-2021-349.34-classic-350_1.jpg
+  image: Royal_Enfield-2020-349-meteor-350_1.jpg
   engine_details:
     type: Single Cylinder, 4 Stroke, Air-Oil Cooled
     displacement: 349 cc
@@ -3062,7 +3046,7 @@
   name: Classic 350 (J-Series)
   year: 2021-Present
   category: Cruiser / Retro
-  image: Royal_Enfield-2022-349.34-hunter-350_1.jpg
+  image: Royal_Enfield-2021-349.34-classic-350_1.jpg
   engine_details:
     type: Single Cylinder, 4-stroke, Air-Oil Cooled
     displacement: 349.34 cc
@@ -3078,7 +3062,7 @@
   name: Hunter 350
   year: 2022-Present
   category: Roadster
-  image: Royal_Enfield-2022-411-scram-411_1.jpg
+  image: Royal_Enfield-2022-349.34-hunter-350_1.jpg
   engine_details:
     type: Single Cylinder, 4-stroke, Air-Oil Cooled
     displacement: 349.34 cc
@@ -3094,7 +3078,7 @@
   name: Scram 411
   year: 2022-2024
   category: Scrambler / Urban
-  image: Royal_Enfield-2023-452-himalayan-450_1.jpg
+  image: Royal_Enfield-2022-411-scram-411_1.jpg
   engine_details:
     type: Single Cylinder, 4-stroke, SOHC, Air/Oil-Cooled
     displacement: 411 cc
@@ -3110,7 +3094,7 @@
   name: Himalayan 450
   year: 2023-Present
   category: Adventure / ADV
-  image: Royal_Enfield-2023-349-bullet-350_1.jpg
+  image: Royal_Enfield-2023-452-himalayan-450_1.jpg
   engine_details:
     type: Single Cylinder, Liquid Cooled, DOHC
     displacement: 452 cc
@@ -3126,7 +3110,7 @@
   name: Bullet 350 (J-Series)
   year: 2023-Present
   category: Cruiser / Iconic
-  image: Royal_Enfield-2023-648-super-meteor-650_1.jpg
+  image: Royal_Enfield-2023-349-bullet-350_1.jpg
   engine_details:
     type: Single Cylinder, 4-stroke, Air-Oil Cooled
     displacement: 349 cc
@@ -3142,7 +3126,7 @@
   name: Super Meteor 650
   year: 2023-Present
   category: Cruiser / Twin
-  image: Royal_Enfield-2024-648-shotgun-650_1.jpg
+  image: Royal_Enfield-2023-648-super-meteor-650_1.jpg
   engine_details:
     type: Parallel Twin, 4-stroke, SOHC, Air-Oil Cooled
     displacement: 648 cc
@@ -3158,7 +3142,7 @@
   name: Shotgun 650
   year: 2024-Present
   category: Bobber / Roadster
-  image: Royal_Enfield-2024-452-guerrilla-450_1.jpg
+  image: Royal_Enfield-2024-648-shotgun-650_1.jpg
   engine_details:
     type: Parallel twin, 4 stroke, SOHC, Air-Oil Cooled
     displacement: 648 cc
@@ -3174,7 +3158,7 @@
   name: Guerrilla 450
   year: 2024-Present
   category: Roadster
-  image: Royal_Enfield-2024-648-classic-650_1.jpg
+  image: Royal_Enfield-2024-452-guerrilla-450_1.jpg
   engine_details:
     type: Liquid cooled, Single cylinder, DOHC
     displacement: 452 cc
@@ -3190,7 +3174,7 @@
   name: Classic 650
   year: 2024-Present
   category: Cruiser / Retro
-  image: Royal_Enfield-2025-648-bear-650_1.jpg
+  image: Royal_Enfield-2024-648-classic-650_1.jpg
   engine_details:
     type: Inline twin cylinder, 4 stroke, SOHC
     displacement: 648 cc
@@ -3206,7 +3190,7 @@
   name: Bear 650
   year: 2025-Present
   category: Scrambler / ADV
-  image: bear-650.jpg
+  image: Royal_Enfield-2025-648-bear-650_1.jpg
   engine_details:
     type: Inline twin cylinder, 4 stroke, SOHC
     displacement: 648 cc

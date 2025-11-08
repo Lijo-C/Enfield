@@ -3,7 +3,7 @@ slug: bullet-350-uce
 name: Bullet 350 (UCE)
 year: 2010-2022
 category: Cruiser / Iconic
-image: Royal_Enfield-2011-499-bullet-500-uce_1.jpg
+image: Royal_Enfield-2010-346-bullet-350-uce_1.jpg
 engine_details:
   type: Single Cylinder, 4-stroke, OHV, Air-Cooled
   displacement: 346 cc

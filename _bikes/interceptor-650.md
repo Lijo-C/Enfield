@@ -3,7 +3,7 @@ slug: interceptor-650
 name: Interceptor 650
 year: 2018-Present
 category: Roadster / Twin
-image: Royal_Enfield-2018-648-continental-gt-650_1.jpg
+image: Royal_Enfield-2018-648-interceptor-650_1.jpg
 engine_details:
   type: Parallel Twin, SOHC, Air/Oil Cooled
   displacement: 648 cc

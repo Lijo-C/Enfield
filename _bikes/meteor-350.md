@@ -3,7 +3,7 @@ slug: meteor-350
 name: Meteor 350
 year: 2020-Present
 category: Cruiser
-image: Royal_Enfield-2021-349.34-classic-350_1.jpg
+image: Royal_Enfield-2020-349-meteor-350_1.jpg
 engine_details:
   type: Single Cylinder, 4 Stroke, Air-Oil Cooled
   displacement: 349 cc

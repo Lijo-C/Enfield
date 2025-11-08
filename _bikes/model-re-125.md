@@ -3,7 +3,7 @@ slug: model-re-125
 name: Model RE 125
 year: 1948-1953
 category: Post-War / 2-Stroke
-image: Royal_Enfield-1948-125-model-re-125_1.jpg
+image: Royal_Enfield-1948-125-model-re-125_1.webp
 engine_details:
   type: Single Cylinder, 2-Stroke, Air-Cooled (Villiers)
   displacement: 125 cc

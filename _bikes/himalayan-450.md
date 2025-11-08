@@ -3,7 +3,7 @@ slug: himalayan-450
 name: Himalayan 450
 year: 2023-Present
 category: Adventure / ADV
-image: Royal_Enfield-2023-349-bullet-350_1.jpg
+image: Royal_Enfield-2023-452-himalayan-450_1.jpg
 engine_details:
   type: Single Cylinder, Liquid Cooled, DOHC
   displacement: 452 cc

@@ -3,7 +3,7 @@ slug: machismo-500-avl
 name: Machismo 500 (AVL)
 year: 2000-2009
 category: Cruiser / Lean-Burn
-image: Enfield_India-2001-346-electra-350-ci_1.jpg
+image: Enfield_India-2000-499-machismo-500-avl_1.jpg
 engine_details:
   type: Single Cylinder, 4-stroke, Air-Cooled, "Lean-Burn"
   displacement: 499 cc

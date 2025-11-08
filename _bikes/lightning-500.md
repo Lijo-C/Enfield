@@ -3,7 +3,7 @@ slug: lightning-500
 name: Lightning 500
 year: 1997-2003
 category: Cruiser / Cast-Iron
-image: Enfield_India-2000-499-machismo-500-avl_1.jpg
+image: Enfield_India-1997-499-lightning-500_1.jpg
 engine_details:
   type: Single Cylinder, 4-stroke, OHV, Air-Cooled
   displacement: 499 cc

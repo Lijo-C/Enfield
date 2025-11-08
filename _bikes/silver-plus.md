@@ -3,7 +3,7 @@ slug: silver-plus
 name: Silver Plus
 year: 1980s
 category: Commuter / 2-Stroke
-image: Enfield_India-1980-49-explorer-50_1.jpg
+image: Enfield_India-1980-61.5-silver-plus_1.jpg
 engine_details:
   type: Single Cylinder, 2-Stroke, Air-Cooled (Zundapp)
   displacement: 61.5 cc

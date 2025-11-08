@@ -3,7 +3,7 @@ slug: taurus-diesel
 name: Enfield Taurus Diesel
 year: 1993-2000
 category: Iconic / Diesel
-image: Enfield_India-1997-499-lightning-500_1.jpg
+image: Enfield_India-1993-325-taurus-diesel_1.jpg
 engine_details:
   type: Single Cylinder, 4-stroke, Air-Cooled, Diesel
   displacement: 325 cc

@@ -3,7 +3,7 @@ slug: himalayan-411
 name: Himalayan 411
 year: 2016-2023
 category: Adventure / ADV
-image: Royal_Enfield-2018-648-interceptor-650_1.jpg
+image: Royal_Enfield-2016-411-himalayan-411_1.jpg
 engine_details:
   type: Single Cylinder, 4-stroke, SOHC, Air/Oil-Cooled
   displacement: 411 cc

@@ -3,7 +3,7 @@ slug: thunderbird-500-uce
 name: Thunderbird 500 (UCE)
 year: 2012-2020
 category: Cruiser
-image: Royal_Enfield-2013-535-continental-gt-535_1.jpg
+image: Royal_Enfield-2012-499-thunderbird-500-uce_1.jpg
 engine_details:
   type: Single Cylinder, 4-stroke, OHV, Air-Cooled
   displacement: 499 cc

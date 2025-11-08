@@ -3,7 +3,7 @@ slug: bullet-trials-350
 name: Bullet Trials 350
 year: 2019
 category: Scrambler / Retro
-image: Royal_Enfield-2019-499-bullet-trials-500_1.jpg
+image: Royal_Enfield-2019-346-bullet-trials-350_1.jpg
 engine_details:
   type: Single Cylinder, 4-stroke, OHV, Air-Cooled
   displacement: 346 cc

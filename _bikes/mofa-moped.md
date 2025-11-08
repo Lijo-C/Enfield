@@ -3,7 +3,7 @@ slug: mofa-moped
 name: Mofa
 year: 1980s
 category: Moped
-image: Enfield_India-1980-61.5-silver-plus_1.jpg
+image: Enfield_India-1980-22-mofa-moped_1.jpg
 engine_details:
   type: Single Cylinder, 2-Stroke, Air-Cooled
   displacement: 22 cc

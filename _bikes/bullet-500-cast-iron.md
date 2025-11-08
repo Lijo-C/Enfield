@@ -3,7 +3,7 @@ slug: bullet-500-cast-iron
 name: Bullet 500 (Cast Iron)
 year: 1989-2007
 category: Iconic / Cruiser
-image: Enfield_India-1993-325-taurus-diesel_1.jpg
+image: Enfield_India-1989-499-bullet-500-ci_1.jpg
 engine_details:
   type: Single Cylinder, 4-stroke, OHV, Air-Cooled
   displacement: 499 cc
