@@ -3,7 +3,7 @@ slug: quadricycle
 name: Enfield Quadricycle
 year: 1898-1900
 category: Historical / Quadricycle
-image: Royal Enfield-1898-269-quadricycle_1.jpg
+image: /images/Royal Enfield-1898-269-quadricycle_1.jpg
 engine_details:
   type: Single Cylinder, 4-stroke (De Dion-Bouton)
   displacement: 269 cc
