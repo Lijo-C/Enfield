@@ -3,73 +3,72 @@
     --secondary-color: #EEEEEE; /* Main Heading Text Color (White) */
     --background-color: #121212; /* Dark Background */
     --text-color: #F0F0F0; /* Light Body Text Color (Off-white) */
-
-    /* --- ADDED FONT VARIABLES --- */
     --font-heading: "New Rocker", cursive;
     --font-body: "Roboto", sans-serif;
 }
 
 body {
-    /* --- USE THE BODY FONT --- */
     font-family: var(--font-body);
     margin: 0;
     padding: 0;
     background-color: var(--background-color);
     color: var(--text-color);
+    
+    /* --- NEW --- For Page Transition */
+    transition: opacity 0.3s ease-out;
 }
 
-/* --- NEW RULE TO APPLY HEADING FONT --- */
+/* --- NEW --- Class added by JS for fade-out */
+body.fade-out {
+    opacity: 0;
+}
+
+body, a {
+    cursor: none;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    font-weight: 400; /* New Rocker only has one weight */
+    font-weight: 400; 
 }
 
 /*
 =========================================
-THIS IS THE UPDATED HEADER SECTION
+HEADER SECTION (FOR KEN BURNS)
 =========================================
 */
 header {
-    /* --- NEW --- Using your local image path */
-    /* Assuming style.css is in the root folder with the 'images' folder */
-    background-image: url('images/hero-motorcycle.png');
-    
-    background-size: cover;
-    background-position: center;
-    height: 45vh; /* 45% of viewport height - adjust as you like */
-
-    /* --- NEW --- Flexbox to vertically center the text */
+    height: 45vh; 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    /* --- NEW --- Adds a shadow to make text readable on the image */
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
-
-    /* --- Your original styles --- */
     color: white;
     padding: 30px 20px;
     text-align: center;
     border-bottom: 5px solid #000000;
+    position: relative; 
+    z-index: 1;       
+    overflow: hidden; 
 }
-/* ======================================= */
-
 
 header h1 {
     margin: 0;
     font-size: 2.5em;
-    /* This will now use var(--font-heading) */
 }
 
 header p {
     margin: 5px 0 0;
     font-style: italic;
     opacity: 0.9;
-    /* This will now use var(--font-body) */
 }
 
-/* --- Catalog Grid Styling --- */
+/*
+=========================================
+CATALOG GRID
+=========================================
+*/
 .catalog-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -86,13 +85,18 @@ header p {
     overflow: hidden;
     text-decoration: none;
     color: var(--text-color);
-    transition: transform 0.2s, box-shadow 0.2s;
     display: block;
+    transition: transform 0.3s ease, 
+                box-shadow 0.3s ease, 
+                border-color 0.3s ease;
+    opacity: 0; 
+    animation: fadeInUp 0.5s ease-out forwards;
 }
 
 .bike-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(204, 0, 0, 0.3);
+    transform: translateY(-8px); 
+    border-color: var(--primary-color);
+    box-shadow: 0 0 25px rgba(123, 10, 10, 0.5); 
 }
 
 .bike-card img {
@@ -100,6 +104,11 @@ header p {
     height: 200px;
     object-fit: cover;
     display: block;
+    transition: transform 0.3s ease-out;
+}
+
+.bike-card:hover img {
+    transform: scale(1.05);
 }
 
 .card-details {
@@ -110,25 +119,25 @@ header p {
     margin-top: 0;
     font-size: 1.5em;
     color: var(--secondary-color);
-    /* This will now use var(--font-heading) */
 }
 
 .category, .engine-info, .year {
     font-size: 0.9em;
     color: #AAAAAA; 
     margin: 3px 0;
-    /* These will now use var(--font-body) */
 }
 
 
-/* --- Detail Page Styling --- */
+/*
+=========================================
+DETAIL PAGE
+=========================================
+*/
 .detail-container {
     max-width: 900px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #252525;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
-    border-radius: 8px;
+    /* Removed background-color for glassmorphism to work */
 }
 
 .detail-header {
@@ -156,16 +165,14 @@ header p {
     padding: 12px 15px;
     border: 1px solid #333; 
     text-align: left;
-    /* This text will now use var(--font-body) */
 }
 
 .spec-table th {
-    background-color: #1a1a1a; 
+    /* --- MODIFIED --- Removed background for glass effect */
+    background-color: transparent; 
     font-weight: bold;
     color: var(--secondary-color);
     width: 30%;
-    /* This will also use var(--font-body) */
-    /* font-family: var(--font-heading); */ 
 }
 
 .detail-section h3 {
@@ -173,7 +180,12 @@ header p {
     border-left: 4px solid var(--primary-color);
     padding-left: 10px;
     margin-top: 30px;
-    /* This will now use var(--font-heading) */
+}
+
+/* --- MODIFIED --- Moved margin-top for glass sections */
+.detail-sidebar .detail-section h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
 }
 
 footer {
@@ -191,10 +203,10 @@ footer {
     text-decoration: none;
     color: var(--primary-color);
     font-weight: bold;
+    position: relative; 
+    transition: all 0.2s ease-out;
 }
 
-
-/* --- NEW 2-Column Detail Page Layout --- */
 .detail-layout-grid {
     display: grid;
     grid-template-columns: 3fr 2fr;
@@ -219,4 +231,135 @@ footer {
     .detail-sidebar {
         order: 2;
     }
+}
+
+
+/*
+=========================================
+ALL NEW ANIMATIONS & EFFECTS
+=========================================
+*/
+
+/* --- 1. KEN BURNS & HEADER TEXT --- */
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/hero-motorcycle.png');
+    background-size: cover;
+    background-position: center;
+    z-index: -1; 
+    animation: kenBurns 20s infinite;
+}
+@keyframes kenBurns {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+header h1, header p {
+    animation: fadeInDown 1s ease-out;
+}
+@keyframes fadeInDown {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* --- 2. STAGGERED GRID FADE-IN --- */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.catalog-grid > .bike-card:nth-child(1) { animation-delay: 0.1s; }
+.catalog-grid > .bike-card:nth-child(2) { animation-delay: 0.2s; }
+.catalog-grid > .bike-card:nth-child(3) { animation-delay: 0.3s; }
+.catalog-grid > .bike-card:nth-child(4) { animation-delay: 0.4s; }
+.catalog-grid > .bike-card:nth-child(5) { animation-delay: 0.5s; }
+.catalog-grid > .bike-card:nth-child(6) { animation-delay: 0.6s; }
+.catalog-grid > .bike-card:nth-child(7) { animation-delay: 0.7s; }
+.catalog-grid > .bike-card:nth-child(8) { animation-delay: 0.8s; }
+.catalog-grid > .bike-card:nth-child(9) { animation-delay: 0.9s; }
+.catalog-grid > .bike-card:nth-child(10) { animation-delay: 1.0s; }
+.catalog-grid > .bike-card:nth-child(11) { animation-delay: 1.1s; }
+.catalog-grid > .bike-card:nth-child(12) { animation-delay: 1.2s; }
+
+
+/* --- 3. CUSTOM CURSOR --- */
+.cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none; 
+    transform: translate(-50%, -50%);
+}
+.cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--primary-color);
+    border-radius: 50%;
+    z-index: 9998;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease-out;
+}
+
+/* --- 4. DETAIL PAGE ANIMATIONS --- */
+.detail-header,
+.detail-layout-grid,
+.back-link {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+.back-link { animation-delay: 0.1s; }
+.detail-header { animation-delay: 0.2s; }
+.detail-layout-grid { animation-delay: 0.3s; }
+
+/* --- 5. CUSTOM SCROLLBAR --- */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--background-color); }
+::-webkit-scrollbar-thumb {
+    background-color: #444; 
+    border-radius: 20px;
+    border: 2px solid var(--background-color); 
+}
+::-webkit-scrollbar-thumb:hover { background-color: var(--primary-color); }
+
+/* --- 6. ANIMATED BACK LINK --- */
+.back-link span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.2s ease-out;
+}
+.back-link:hover { padding-left: 20px; }
+.back-link:hover span {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* =========================================
+NEW: GLASSMORPHISM FOR DETAIL SIDEBAR 
+=========================================
+*/
+.detail-sidebar .detail-section {
+    background: rgba(37, 37, 37, 0.5); /* Semi-transparent */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 30px; /* Use the margin from the h3 */
+    
+    /* Override other .detail-section styles if any */
+    border-left: none; /* Remove the simple border */
+    color: var(--text-color); /* Reset color */
 }

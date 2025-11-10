@@ -10,7 +10,8 @@ layout: default
     
     {% for bike in site.bikes %}
     <a href="{{ bike.url | relative_url }}" class="bike-card">
-        <img src="{{ site.baseurl }}/images/{{ bike.image }}" alt="Royal Enfield {{ bike.name }}" aria-label="Image of Royal Enfield {{ bike.name }}">
+        
+        <img src="{{ site.baseurl }}/images/{{ bike.image }}" alt="Royal Enfield {{ bike.name }}" aria-label="Image of Royal Enfield {{ bike.name }}" loading="lazy">
         <div class="card-details">
             <h2>{{ bike.name }}</h2>
             <p class="category">{{ bike.category }}</p>
