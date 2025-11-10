@@ -53,15 +53,16 @@ allLinks.forEach(link => {
 
         setTimeout(() => {
             window.location.href = href;
-        }, 300); 
+        }, 300); // This MUST match the transition duration in style.css
     });
 });
 
 
-// --- 3. NEW: CATEGORY FILTERING LOGIC ---
+// --- 3. NEW & FIXED: YEAR FILTERING LOGIC ---
 const filterNav = document.querySelector('.filter-nav');
 const filterButtons = document.querySelectorAll('.filter-btn');
 const bikeCards = document.querySelectorAll('.bike-card');
+const transitionDuration = 300; // Must match CSS transition time
 
 if (filterNav) {
     filterNav.addEventListener('click', (e) => {
@@ -69,22 +70,38 @@ if (filterNav) {
         if (!e.target.matches('.filter-btn')) return;
 
         const clickedBtn = e.target;
-        const filterCategory = clickedBtn.dataset.category;
+        const filterYear = clickedBtn.dataset.year; // Changed from category
 
         // Update active button
         filterButtons.forEach(btn => btn.classList.remove('active'));
         clickedBtn.classList.add('active');
 
-        // Show/hide cards
+        // Show/hide cards with correct spacing
         bikeCards.forEach(card => {
-            const cardCategory = card.dataset.category;
+            const cardYear = card.dataset.year; // Changed from category
+            const shouldShow = (filterYear === 'all' || cardYear === filterYear);
 
-            if (filterCategory === 'all' || cardCategory === filterCategory) {
-                // Show card
-                card.classList.remove('is-hidden');
+            if (shouldShow) {
+                // --- SHOW CARD ---
+                // 1. Remove 'is-gone' to make it enter the flow
+                card.classList.remove('is-gone');
+                
+                // 2. Wait a tiny moment (1 frame) for 'display' to apply
+                setTimeout(() => {
+                    // 3. Remove 'is-hidden' to trigger fade-in
+                    card.classList.remove('is-hidden');
+                }, 10);
+
             } else {
-                // Hide card
+                // --- HIDE CARD ---
+                // 1. Add 'is-hidden' to trigger fade-out
                 card.classList.add('is-hidden');
+                
+                // 2. Wait for transition to finish
+                setTimeout(() => {
+                    // 3. Add 'is-gone' to remove from flow
+                    card.classList.add('is-gone');
+                }, transitionDuration); 
             }
         });
     });

@@ -7,11 +7,11 @@ layout: default
 </header>
 
 <nav class="filter-nav">
-    <button class="filter-btn active" data-category="all">Show All</button>
+    <button class="filter-btn active" data-year="all">Show All</button>
     
-    {% assign categories = site.bikes | map: 'category' | uniq %}
-    {% for category in categories %}
-        <button class="filter-btn" data-category="{{ category | slugify }}">{{ category }}</button>
+    {% assign years = site.bikes | map: 'year' | uniq | sort %}
+    {% for year in years %}
+        <button class="filter-btn" data-year="{{ year | slugify }}">{{ year }}</button>
     {% endfor %}
 </nav>
 <main class="catalog-grid">
@@ -20,7 +20,7 @@ layout: default
     <a href="{{ bike.url | relative_url }}" 
        class="bike-card" 
        data-tilt 
-       data-category="{{ bike.category | slugify }}">
+       data-year="{{ bike.year | slugify }}">
         
         <img src="{{ site.baseurl }}/images/{{ bike.image }}" alt="Royal Enfield {{ bike.name }}" aria-label="Image of Royal Enfield {{ bike.name }}" loading="lazy">
         

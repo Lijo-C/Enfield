@@ -7,7 +7,6 @@
     --font-body: "Roboto", sans-serif;
 }
 
-/* --- MODIFIED: SIMPLE STATIC BACKGROUND --- */
 body {
     font-family: var(--font-body);
     margin: 0;
@@ -15,8 +14,7 @@ body {
     color: var(--text-color);
     transition: opacity 0.3s ease-out;
     
-    /* --- YOUR NEW BACKGROUND --- */
-    background-image: url('images/your-background-image.png');
+    background-image: url('images/bg.png');
     background-color: var(--background-color); /* Fallback color */
     background-size: cover;
     background-position: center center;
@@ -31,7 +29,6 @@ body.fade-out {
 body, a, button {
     cursor: none;
 }
-/* ... (The rest of your CSS file remains exactly the same as the last working version) ... */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-weight: 400; 
@@ -73,7 +70,7 @@ header h1, header p {
 }
 
 /* =========================================
-NEW: FILTER NAVIGATION
+FILTER NAVIGATION
 ========================================= */
 .filter-nav {
     display: flex;
@@ -126,27 +123,28 @@ CATALOG GRID
     display: block;
     opacity: 0; 
     animation: fadeInUp 0.5s ease-out forwards;
+    
+    /* --- MODIFIED: Simplified transitions --- */
     transition: transform 0.3s ease, 
                 box-shadow 0.3s ease, 
                 border-color 0.3s ease,
-                opacity 0.3s ease-out,
-                max-height 0.3s ease-out,
-                margin 0.3s ease-out,
-                padding 0.3s ease-out;
+                opacity 0.3s ease-out; /* This is the key one */
+                
     will-change: transform;
 }
 
-/* NEW: Filtered-out state */
+/* --- MODIFIED: This class just handles the visual fade/scale --- */
 .bike-card.is-hidden {
     opacity: 0;
     transform: scale(0.8);
     pointer-events: none;
-    max-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    margin-bottom: -30px; /* Counteracts the grid gap */
-    border: none;
 }
+
+/* --- NEW: This class removes the card from the layout --- */
+.bike-card.is-gone {
+    display: none;
+}
+
 
 .bike-card:hover {
     transform: translateY(-8px); 
@@ -302,7 +300,7 @@ ALL ANIMATIONS & EFFECTS
 .cursor-follower {
     position: fixed;
     top: -15px; /* Centered on the dot */
-    left: -15px;
+    left: -1container.scrollIntoView({ behavior: 'smooth' });-15px;
     width: 30px;
     height: 30px;
     background-color: var(--primary-color);
@@ -364,4 +362,3 @@ ALL ANIMATIONS & EFFECTS
     border-left: none; 
     color: var(--text-color); 
 }
-
