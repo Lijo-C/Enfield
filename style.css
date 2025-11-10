@@ -21,7 +21,7 @@ body {
     background-attachment: fixed; /* This makes the image stay still on scroll */
 }
 
-/* Class added by JS for fade-out */
+/* Class added by JS for  fade-out */
 body.fade-out {
     opacity: 0;
 }
