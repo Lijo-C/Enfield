@@ -21,7 +21,7 @@ body {
     background-attachment: fixed; /* This makes the image stay still on scroll */
 }
 
-/* Class added by JS for  fade-out */
+/* Class added by JS for fade-out */
 body.fade-out {
     opacity: 0;
 }
@@ -70,35 +70,8 @@ header h1, header p {
 }
 
 /* =========================================
-FILTER NAVIGATION
+FILTER NAVIGATION (REMOVED)
 ========================================= */
-.filter-nav {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    padding: 30px 20px 0;
-}
-.filter-btn {
-    font-family: var(--font-heading);
-    font-size: 1.1em;
-    background-color: #252525;
-    color: var(--secondary-color);
-    border: 1px solid #333;
-    border-radius: 4px;
-    padding: 8px 15px;
-    transition: all 0.2s ease-out;
-}
-.filter-btn:hover {
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-}
-.filter-btn.active {
-    background-color: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 15px rgba(123, 10, 10, 0.5);
-}
 
 
 /* =========================================
@@ -108,7 +81,7 @@ CATALOG GRID
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    padding: 30px 20px 50px; /* Reduced top padding */
+    padding: 50px 20px; /* Reset padding */
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -124,26 +97,16 @@ CATALOG GRID
     opacity: 0; 
     animation: fadeInUp 0.5s ease-out forwards;
     
-    /* --- MODIFIED: Simplified transitions --- */
+    /* Simplified transitions */
     transition: transform 0.3s ease, 
                 box-shadow 0.3s ease, 
                 border-color 0.3s ease,
-                opacity 0.3s ease-out; /* This is the key one */
+                opacity 0.3s ease-out;
                 
     will-change: transform;
 }
 
-/* --- MODIFIED: This class just handles the visual fade/scale --- */
-.bike-card.is-hidden {
-    opacity: 0;
-    transform: scale(0.8);
-    pointer-events: none;
-}
-
-/* --- NEW: This class removes the card from the layout --- */
-.bike-card.is-gone {
-    display: none;
-}
+/* FILTERING STYLES (REMOVED) */
 
 
 .bike-card:hover {
@@ -300,7 +263,7 @@ ALL ANIMATIONS & EFFECTS
 .cursor-follower {
     position: fixed;
     top: -15px; /* Centered on the dot */
-    left: -1container.scrollIntoView({ behavior: 'smooth' });-15px;
+    left: -15px;
     width: 30px;
     height: 30px;
     background-color: var(--primary-color);

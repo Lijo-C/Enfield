@@ -3,24 +3,15 @@ layout: default
 ---
 <header>
     <h1>Royal Enfield</h1>
-    <h2>**Made like a Gun**</h2>
+    <h2>Made like a Gun</h2>
 </header>
 
-<nav class="filter-nav">
-    <button class="filter-btn active" data-year="all">Show All</button>
-    
-    {% assign years = site.bikes | map: 'year' | uniq | sort %}
-    {% for year in years %}
-        <button class="filter-btn" data-year="{{ year | slugify }}">{{ year }}</button>
-    {% endfor %}
-</nav>
 <main class="catalog-grid">
     
     {% for bike in site.bikes %}
     <a href="{{ bike.url | relative_url }}" 
        class="bike-card" 
-       data-tilt 
-       data-year="{{ bike.year | slugify }}">
+       data-tilt>
         
         <img src="{{ site.baseurl }}/images/{{ bike.image }}" alt="Royal Enfield {{ bike.name }}" aria-label="Image of Royal Enfield {{ bike.name }}" loading="lazy">
         
@@ -33,7 +24,6 @@ layout: default
     </a>
     {% endfor %}
 </main>
-
 
 <footer>
     <p>&copy; <script>document.write(new Date().getFullYear())</script> Royal Enfield Catalog Project </p>
