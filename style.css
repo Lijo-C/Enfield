@@ -7,15 +7,55 @@
     --font-body: "Roboto", sans-serif;
 }
 
+/* --- MODIFIED FOR ANIMATED BACKGROUND --- */
 body {
     font-family: var(--font-body);
     margin: 0;
     padding: 0;
-    background-color: var(--background-color);
     color: var(--text-color);
     transition: opacity 0.3s ease-out;
+    
+    /* Solid fallback color */
+    background-color: var(--background-color); 
+    
+    /* --- NEW --- */
+    /* These are needed to contain the ::before element */
+    position: relative;
+    z-index: 1;
+    overflow: hidden; /* Clips the zooming background */
 }
 
+/* --- NEW: ANIMATED BODY BACKGROUND --- */
+/* We apply the background to a pseudo-element
+   so we can animate it without affecting the content
+*/
+body::before {
+    content: '';
+    /* Use 'fixed' so it covers the whole viewport */
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* 1. Your custom background image */
+    background-image: url('images/bg.png');
+    background-size: cover;
+    background-position: center;
+    
+    /* 2. OPTIONAL: A subtle dark overlay */
+    /* This helps text pop and enhances the mood. */
+    box-shadow: inset 0 0 0 2000px rgba(10, 10, 10, 0.4);
+    
+    /* 3. The animation */
+    animation: bodyKenBurns 40s linear infinite;
+    
+    /* 4. Put it behind all content */
+    z-index: -1;
+}
+
+
+/* Class added by JS for fade-out */
 body.fade-out {
     opacity: 0;
 }
@@ -23,7 +63,7 @@ body.fade-out {
 body, a, button {
     cursor: none;
 }
-
+/* ... (The rest of your CSS file remains exactly the same) ... */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-weight: 400; 
@@ -118,8 +158,6 @@ CATALOG GRID
     display: block;
     opacity: 0; 
     animation: fadeInUp 0.5s ease-out forwards;
-    
-    /* MODIFIED: Added more transitions for filtering */
     transition: transform 0.3s ease, 
                 box-shadow 0.3s ease, 
                 border-color 0.3s ease,
@@ -127,8 +165,6 @@ CATALOG GRID
                 max-height 0.3s ease-out,
                 margin 0.3s ease-out,
                 padding 0.3s ease-out;
-                
-    /* NEW: For 3D Tilt */
     will-change: transform;
 }
 
@@ -257,7 +293,7 @@ footer {
 ALL ANIMATIONS & EFFECTS
 ========================================= */
 
-/* --- 1. KEN BURNS --- */
+/* --- 1. KEN BURNS (HEADER) --- */
 @keyframes kenBurns {
     0% { transform: scale(1); opacity: 0.8; }
     50% { transform: scale(1.1); opacity: 1; }
@@ -288,13 +324,9 @@ ALL ANIMATIONS & EFFECTS
     left: -20px;
     width: 40px; /* Size of your cursor image */
     height: 40px; /* Size of your cursor image */
-    
-    /* --- NEW: USE YOUR IMAGE --- */
-    /* Make sure you have an image at this path! */
-    background-image: url('images/cursor.cur');
+    background-image: url('images/cursor.png');
     background-size: contain;
     background-repeat: no-repeat;
-    
     z-index: 9999;
     pointer-events: none; 
     transition: transform 0.1s ease-out; /* Faster follow */
@@ -309,8 +341,6 @@ ALL ANIMATIONS & EFFECTS
     border-radius: 50%;
     z-index: 9998;
     pointer-events: none;
-    
-    /* --- NEW: HOVER EFFECT --- */
     transform-origin: center center;
     transform: translate(-50%, -50%) scale(0); /* Start hidden */
     opacity: 0.3;
@@ -365,4 +395,17 @@ ALL ANIMATIONS & EFFECTS
     margin-top: 30px; 
     border-left: none; 
     color: var(--text-color); 
+}
+
+/* --- 8. NEW: BODY BACKGROUND ANIMATION --- */
+@keyframes bodyKenBurns {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15); /* Zoom in 15% */
+    }
+    100% {
+        transform: scale(1); /* Zoom back out */
+    }
 }
