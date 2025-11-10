@@ -7,7 +7,7 @@
     --font-body: "Roboto", sans-serif;
 }
 
-/* --- MODIFIED: SCROLLING FIXED --- */
+/* --- MODIFIED: SCROLLING FIXED (FOR REAL) --- */
 body {
     font-family: var(--font-body);
     margin: 0;
@@ -18,10 +18,8 @@ body {
     /* Solid fallback color */
     background-color: var(--background-color); 
     
-    /* These are needed to contain the ::before element */
-    position: relative;
-    z-index: 1;
-    /* overflow: hidden;  <-- THIS LINE WAS REMOVED */
+    /* position: relative;  <-- THIS WAS THE PROBLEM. REMOVED. */
+    /* z-index: 1;          <-- REMOVED. */
 }
 
 /* --- ANIMATED BODY BACKGROUND --- */
@@ -53,7 +51,7 @@ body.fade-out {
 body, a, button {
     cursor: none;
 }
-/* ... (The rest of your CSS file remains exactly the same) ... */
+
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-weight: 400; 
