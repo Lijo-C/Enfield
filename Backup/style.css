@@ -1,0 +1,222 @@
+:root {
+    --primary-color: #7b0a0a; /* Bright Red Accent */
+    --secondary-color: #EEEEEE; /* Main Heading Text Color (White) */
+    --background-color: #121212; /* Dark Background */
+    --text-color: #F0F0F0; /* Light Body Text Color (Off-white) */
+
+    /* --- ADDED FONT VARIABLES --- */
+    --font-heading: "New Rocker", cursive;
+    --font-body: "Roboto", sans-serif;
+}
+
+body {
+    /* --- USE THE BODY FONT --- */
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* --- NEW RULE TO APPLY HEADING FONT --- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 400; /* New Rocker only has one weight */
+}
+
+/*
+=========================================
+THIS IS THE UPDATED HEADER SECTION
+=========================================
+*/
+header {
+    /* --- NEW --- Using your local image path */
+    /* Assuming style.css is in the root folder with the 'images' folder */
+    background-image: url('images/hero-motorcycle.png');
+    
+    background-size: cover;
+    background-position: center;
+    height: 45vh; /* 45% of viewport height - adjust as you like */
+
+    /* --- NEW --- Flexbox to vertically center the text */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* --- NEW --- Adds a shadow to make text readable on the image */
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+
+    /* --- Your original styles --- */
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 5px solid #000000;
+}
+/* ======================================= */
+
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    /* This will now use var(--font-heading) */
+}
+
+header p {
+    margin: 5px 0 0;
+    font-style: italic;
+    opacity: 0.9;
+    /* This will now use var(--font-body) */
+}
+
+/* --- Catalog Grid Styling --- */
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.bike-card {
+    background-color: #252525;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: block;
+}
+
+.bike-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(204, 0, 0, 0.3);
+}
+
+.bike-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.card-details {
+    padding: 15px;
+}
+
+.card-details h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: var(--secondary-color);
+    /* This will now use var(--font-heading) */
+}
+
+.category, .engine-info, .year {
+    font-size: 0.9em;
+    color: #AAAAAA; 
+    margin: 3px 0;
+    /* These will now use var(--font-body) */
+}
+
+
+/* --- Detail Page Styling --- */
+.detail-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #252525;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+.detail-header {
+    text-align: center;
+    border-bottom: 2px solid var(--primary-color);
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+}
+
+.detail-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.spec-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.spec-table th, .spec-table td {
+    padding: 12px 15px;
+    border: 1px solid #333; 
+    text-align: left;
+    /* This text will now use var(--font-body) */
+}
+
+.spec-table th {
+    background-color: #1a1a1a; 
+    font-weight: bold;
+    color: var(--secondary-color);
+    width: 30%;
+    /* This will also use var(--font-body) */
+    /* font-family: var(--font-heading); */ 
+}
+
+.detail-section h3 {
+    color: var(--primary-color);
+    border-left: 4px solid var(--primary-color);
+    padding-left: 10px;
+    margin-top: 30px;
+    /* This will now use var(--font-heading) */
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-top: 1px solid #333; 
+    color: #AAAAAA; 
+    font-size: 0.8em;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+
+/* --- NEW 2-Column Detail Page Layout --- */
+.detail-layout-grid {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 30px;
+}
+
+.detail-main-content {
+    order: 1;
+}
+
+.detail-sidebar {
+    order: 2;
+}
+
+@media (max-width: 800px) {
+    .detail-layout-grid {
+        grid-template-columns: 1fr;
+    }
+    .detail-main-content {
+        order: 1;
+    }
+    .detail-sidebar {
+        order: 2;
+    }
+}

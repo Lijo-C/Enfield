@@ -1,52 +1,91 @@
 // main.js
 
-// --- 1. CUSTOM CURSOR LOGIC ---
+// --- 1. CURSOR & HOVER LOGIC ---
 const cursorDot = document.querySelector('.cursor-dot');
 const cursorFollower = document.querySelector('.cursor-follower');
+const allLinks = document.querySelectorAll('a, button, .bike-card'); // Elements that trigger hover
 
+// Update cursor position
 window.addEventListener('mousemove', (e) => {
-    // Get mouse X and Y position
     const posX = e.clientX;
     const posY = e.clientY;
 
-    // Make the dot appear exactly at the cursor's position
-    cursorDot.style.left = `${posX}px`;
-    cursorDot.style.top = `${posY}px`;
+    // Use transform for smoother animation on both
+    cursorDot.style.transform = `translate(${posX}px, ${posY}px)`;
+    cursorFollower.style.transform = `translate(${posX}px, ${posY}px)`;
+});
 
-    // Make the follower "follow" the cursor
-    cursorFollower.style.transform = `translate(${posX - 15}px, ${posY - 15}px)`;
+// Add hover effect
+allLinks.forEach(link => {
+    link.addEventListener('mouseenter', () => {
+        cursorFollower.classList.add('is-hovering');
+    });
+    link.addEventListener('mouseleave', () => {
+        cursorFollower.classList.remove('is-hovering');
+    });
 });
 
 
-// --- 2. NEW: PAGE TRANSITION LOGIC ---
-
-// Find all links on the page
-const allLinks = document.querySelectorAll('a');
-
+// --- 2. PAGE TRANSITION LOGIC ---
 allLinks.forEach(link => {
+    // We only want this for actual <a> tags
+    if (link.tagName !== 'A') return;
+
     link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
 
-        // Check for common cases to IGNORE the transition
         if (
-            !href ||                     // No href attribute
-            href.startsWith('#') ||      // Anchor links
-            href.startsWith('mailto:') || // Mail links
-            href.startsWith('tel:') ||   // Tel links
-            link.target === '_blank' ||  // Opens in new tab
-            e.ctrlKey || e.metaKey       // User is intentionally opening in new tab
+            !href ||                     
+            href.startsWith('#') ||      
+            href.startsWith('mailto:') || 
+            href.startsWith('tel:') ||   
+            link.target === '_blank' ||  
+            e.ctrlKey || e.metaKey       
         ) {
             return; // Don't do the transition
         }
 
-        // If it's a valid internal link, start transition
-        e.preventDefault(); // Stop the browser from navigating immediately
+        e.preventDefault(); 
         
-        document.body.classList.add('fade-out'); // Apply the fade-out class
+        // Remove hover effect during transition
+        cursorFollower.classList.remove('is-hovering');
+        document.body.classList.add('fade-out'); 
 
-        // Wait for the animation to finish, then navigate
         setTimeout(() => {
             window.location.href = href;
-        }, 300); // This MUST match the transition duration in style.css
+        }, 300); 
     });
 });
+
+
+// --- 3. NEW: CATEGORY FILTERING LOGIC ---
+const filterNav = document.querySelector('.filter-nav');
+const filterButtons = document.querySelectorAll('.filter-btn');
+const bikeCards = document.querySelectorAll('.bike-card');
+
+if (filterNav) {
+    filterNav.addEventListener('click', (e) => {
+        // Only run if a button was clicked
+        if (!e.target.matches('.filter-btn')) return;
+
+        const clickedBtn = e.target;
+        const filterCategory = clickedBtn.dataset.category;
+
+        // Update active button
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        clickedBtn.classList.add('active');
+
+        // Show/hide cards
+        bikeCards.forEach(card => {
+            const cardCategory = card.dataset.category;
+
+            if (filterCategory === 'all' || cardCategory === filterCategory) {
+                // Show card
+                card.classList.remove('is-hidden');
+            } else {
+                // Hide card
+                card.classList.add('is-hidden');
+            }
+        });
+    });
+}
