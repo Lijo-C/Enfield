@@ -330,7 +330,7 @@ ALL ANIMATIONS & EFFECTS
     /* -webkit-backdrop-filter: blur(10px); (REMOVED) */
     border-radius: 8px;
     padding: 20px;
-    margin-top: 20px; 
+    margin-top: 40px; 
     /* border-left: none; (REMOVED - let h3 handle it) */
     color: var(--text-color); 
 }
