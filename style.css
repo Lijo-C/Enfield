@@ -14,7 +14,7 @@ body {
     color: var(--text-color);
     transition: opacity 0.3s ease-out;
     
-    background-image: url('images/bg.png');
+    background-image: url('images/your-background-image.png');
     background-color: var(--background-color); /* Fallback color */
     background-size: cover;
     background-position: center center;
@@ -142,7 +142,7 @@ DETAIL PAGE
     padding-bottom: 10px;
 }
 
-/* --- NEW: IMAGE ZOOM ON HOVER --- */
+/* --- IMAGE ZOOM ON HOVER --- */
 .detail-image {
     width: 100%;
     max-height: 400px;
@@ -207,7 +207,7 @@ footer {
 .detail-main-content { order: 1; }
 
 
-/* --- NEW: STICKY SIDEBAR --- */
+/* --- STICKY SIDEBAR --- */
 .detail-sidebar {
     order: 2;
     position: sticky; /* Makes it stick! */
@@ -262,7 +262,7 @@ ALL ANIMATIONS & EFFECTS
     left: -20px;
     width: 40px; /* Size of your cursor image */
     height: 40px; /* Size of your cursor image */
-    background-image: url('images/cursor1.png');
+    background-image: url('images/cursor.png');
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 9999;
@@ -323,14 +323,14 @@ ALL ANIMATIONS & EFFECTS
     transform: translateX(0);
 }
 
-/* --- 7. GLASSMORPHISM --- */
+/* --- 7. MODIFIED: SOLID SIDEBAR --- */
 .detail-sidebar .detail-section {
-    background: rgba(37, 37, 37, 0.5); 
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); 
+    background: #252525; /* Switched to a solid background */
+    /* backdrop-filter: blur(10px); (REMOVED) */
+    /* -webkit-backdrop-filter: blur(10px); (REMOVED) */
     border-radius: 8px;
     padding: 20px;
     margin-top: 30px; 
-    border-left: none; 
+    /* border-left: none; (REMOVED - let h3 handle it) */
     color: var(--text-color); 
 }
