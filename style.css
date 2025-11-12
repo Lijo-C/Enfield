@@ -262,7 +262,7 @@ ALL ANIMATIONS & EFFECTS
     left: -20px;
     width: 40px; /* Size of your cursor image */
     height: 40px; /* Size of your cursor image */
-    background-image: url('images/cursor.png');
+    background-image: url('images/cursor1.png');
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 9999;
