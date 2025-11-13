@@ -14,7 +14,7 @@ body {
     color: var(--text-color);
     transition: opacity 0.3s ease-out;
     
-    background-image: url('images/your-background-image.png');
+    background-image: url('images/bg.png');
     background-color: var(--background-color); /* Fallback color */
     background-size: cover;
     background-position: center center;
@@ -262,7 +262,7 @@ ALL ANIMATIONS & EFFECTS
     left: -20px;
     width: 40px; /* Size of your cursor image */
     height: 40px; /* Size of your cursor image */
-    background-image: url('images/cursor.png');
+    background-image: url('images/cursor1.png');
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 9999;
