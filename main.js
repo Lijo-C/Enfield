@@ -36,7 +36,7 @@ allLinks.forEach(link => {
 
         if (
             !href ||                     
-            href.startsWith('#') ||      
+            href.startsWith('#') ||      // This line safely ignores the scroll-to-top button
             href.startsWith('mailto:') || 
             href.startsWith('tel:') ||   
             link.target === '_blank' ||  
@@ -58,4 +58,25 @@ allLinks.forEach(link => {
 });
 
 
-// --- 3. FILTERING LOGIC REMOVED ---
+// --- 3. NEW: SCROLL TO TOP LOGIC ---
+const scrollTopBtn = document.getElementById('scrollTopButton');
+
+if (scrollTopBtn) {
+    // Show/hide button on scroll
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollTopBtn.classList.add('is-visible');
+        } else {
+            scrollTopBtn.classList.remove('is-visible');
+        }
+    });
+
+    // Smooth scroll to top on click
+    scrollTopBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
