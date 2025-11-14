@@ -14,7 +14,6 @@ body {
     color: var(--text-color);
     transition: opacity 0.3s ease-out;
     
-    /* === YOUR IMAGE === */
     background-image: url('images/bg.png'); 
     background-color: var(--background-color); /* Fallback color */
     background-size: cover;
@@ -39,7 +38,9 @@ h1, h2, h3, h4, h5, h6 {
 HEADER
 ========================================= */
 header {
-    height: 45vh; 
+    /* --- MODIFIED: Reduced from 45vh --- */
+    height: 30vh; 
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -133,7 +134,10 @@ DETAIL PAGE
 ========================================= */
 .detail-container {
     max-width: 900px;
-    margin: 50px auto;
+    
+    /* --- MODIFIED: Reduced top/bottom margin from 50px --- */
+    margin: 30px auto 50px; /* 30px top, auto left/right, 50px bottom */
+    
     padding: 20px;
 }
 .detail-header {
@@ -266,7 +270,6 @@ ALL ANIMATIONS & EFFECTS
     width: 40px; 
     height: 40px; 
     
-    /* === YOUR IMAGE === */
     background-image: url('images/cursor1.png'); 
     
     background-size: contain;
