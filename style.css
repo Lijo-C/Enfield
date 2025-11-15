@@ -38,7 +38,6 @@ h1, h2, h3, h4, h5, h6 {
 HEADER
 ========================================= */
 header {
-    /* --- MODIFIED: Reduced from 45vh --- */
     height: 30vh; 
     
     display: flex;
@@ -76,8 +75,13 @@ CATALOG GRID
 ========================================= */
 .catalog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    
+    /* --- MODIFIED: Reduced min-width to allow for 5+ columns --- */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    
+    /* --- MODIFIED: Reduced gap for a tighter fit --- */
+    gap: 20px; 
+    
     padding: 50px 20px; 
     max-width: 1200px;
     margin: 0 auto;
@@ -134,10 +138,7 @@ DETAIL PAGE
 ========================================= */
 .detail-container {
     max-width: 1200px;
-    
-    /* --- MODIFIED: Reduced top/bottom margin from 50px --- */
-    margin: 10px auto 50px; /* 30px top, auto left/right, 50px bottom */
-    
+    margin: 10px auto 50px; 
     padding: 10px;
 }
 .detail-header {
