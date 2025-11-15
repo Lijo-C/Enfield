@@ -76,12 +76,10 @@ CATALOG GRID
 .catalog-grid {
     display: grid;
     
-    /* This allows for 5 columns on wider screens */
+    /* --- MODIFIED: Set min-width to allow for 5 columns --- */
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     
-    /* Tighter gap for more columns */
-    gap: 20px; 
-    
+    gap: 30px;
     padding: 50px 20px; 
     max-width: 1200px;
     margin: 0 auto;
@@ -113,8 +111,10 @@ CATALOG GRID
 .bike-card img {
     width: 100%;
     
-    /* --- MODIFIED: Reduced height for 5-column layout --- */
-    height: 160px; 
+    /* --- MODIFIED: Reduced height to maintain 3:2 proportion --- */
+    /* (Original was 300px width / 200px height) */
+    /* New min-width is ~200px, so 200 * (2/3) = 133px */
+    height: 133px; 
     
     object-fit: cover;
     display: block;
