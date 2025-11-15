@@ -133,10 +133,10 @@ CATALOG GRID
 DETAIL PAGE
 ========================================= */
 .detail-container {
-    max-width: 900px;
+    max-width: 1200px;
     
     /* --- MODIFIED: Reduced top/bottom margin from 50px --- */
-    margin: 10px 10px 50px; /* 30px top, auto left/right, 50px bottom */
+    margin: 10px auto 50px; /* 30px top, auto left/right, 50px bottom */
     
     padding: 10px;
 }
