@@ -245,6 +245,9 @@ Royal Enfield 1939 570 wd l 570 sv
 
 Royal Enfield 1939 125 flying flea
 
+
+
+
 Royal Enfield 1946 346 model g 350
 
 Royal Enfield 1946 499 model j 500 sv
@@ -258,6 +261,8 @@ Royal Enfield 1948 346 bullet 350 trials
 Royal Enfield 1948 125 model re 125
 
 Royal Enfield 1949 495 sports twin 500
+
+
 
 Royal Enfield 1953 692 700 meteor
 
@@ -303,6 +308,9 @@ Royal Enfield 1959 499 fury 500
 
 Royal Enfield 1959 148 prince 150
 
+
+
+
 Royal Enfield 1960 173 sherpa 175
 
 Enfield India 1960 173 crusader 175 india
@@ -329,15 +337,20 @@ Royal Enfield 1964 736 interceptor 750 tt
 
 Royal Enfield 1964 736 interceptor 750 gp
 
-Royal Enfield 2016 411 himalayan 411
+Royal Enfield 2016 411 himalayan 411-0-0-0
 
 Royal Enfield 1967 736 interceptor 750 s1a
 
 Royal Enfield 1969 736 interceptor 750 s2
 
+
+
+
 Royal Enfield 1970 736 rickman interceptor
 
 Royal Enfield 1970 778 interceptor 800 prototype
+
+
 
 Enfield India 1980 197 mini bullet 200
 
@@ -351,9 +364,14 @@ Enfield India 1984 163 fury 175 dx
 
 Enfield India 1989 499 bullet 500 ci
 
+
+
+
 Enfield India 1993 325 taurus diesel
 
 Enfield India 1997 499 lightning 500
+
+
 
 Enfield India 2000 499 machismo 500 avl
 
