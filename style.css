@@ -85,7 +85,7 @@ CATALOG GRID
 
 .bike-card {
     background-color: #252525;
-    border: 10px solid #959595;
+    border: 2px solid #959595;
     border-radius: 8px;
     overflow: hidden;
     text-decoration: none;
@@ -138,7 +138,7 @@ DETAIL PAGE
     /* --- MODIFIED: Reduced top/bottom margin from 50px --- */
     margin: 10px auto 50px; /* 30px top, auto left/right, 50px bottom */
     
-    padding: 20px;
+    padding: 10px;
 }
 .detail-header {
     text-align: center;
