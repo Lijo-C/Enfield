@@ -129,8 +129,8 @@ CATALOG GRID
 }
 .card-details h2 {
     margin-top: 0;
-    font-size: 1em;
-    color: var(--secondary-color);
+    font-size: 1.1em;
+    color: v#de0d0d;
 }
 .category, .engine-info, .year {
     font-size: 0.9em;
