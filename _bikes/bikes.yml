@@ -575,22 +575,6 @@
     suspension_rear: Rigid (sprung seat)
     weight: N/A
   history: A 350cc OHV sports model from 1928, featuring a two-port cylinder head for twin exhaust pipes.
-- slug: model-488-ohv-1928
-  name: Model 488 OHV
-  year: 1928
-  category: Pre-War / Sport
-  image: Royal_Enfield-1928-488-model-488-ohv-1928_1.jpg
-  engine_details:
-    type: Single Cylinder, 4-stroke, OHV, 2-port
-    displacement: 488 cc
-    power: N/A
-    torque: N/A
-  chassis_details:
-    frame: Rigid frame
-    suspension_front: Girder forks
-    suspension_rear: Rigid (sprung seat)
-    weight: N/A
-  history: A new 488cc OHV engine launched at the 1928 Olympia Show. This was a modern, high-performance single with a two-port cylinder head.
 - slug: model-502-1928-sv
   name: Model 502 (1928 SV)
   year: 1928
@@ -735,22 +719,6 @@
     suspension_rear: Rigid (sprung seat)
     weight: N/A
   history: A 350cc-class side-valve single from the 1930 catalog, sitting alongside the Model C and G as a reliable workhorse.
-- slug: model-350-ohv-1930
-  name: 350 OHV (1930)
-  year: 1930-1932
-  category: Pre-War / Sport
-  image: Royal_Enfield-1930-346-model-350-ohv-1930_1.jpg
-  engine_details:
-    type: Single Cylinder, 4-stroke, OHV
-    displacement: 346 cc
-    power: N/A
-    torque: N/A
-  chassis_details:
-    frame: Rigid frame
-    suspension_front: Girder forks
-    suspension_rear: Rigid (sprung seat)
-    weight: N/A
-  history: The 350cc OHV sports model from the 1930s range. It featured a new engine with dry-sump lubrication for improved performance.
 - slug: model-g-346-ohv
   name: Model G (346cc OHV)
   year: 1930
@@ -783,22 +751,6 @@
     suspension_rear: Rigid (sprung seat)
     weight: N/A
   history: The top-of-the-line heavyweight model of the early 1930s, designed for power and for pulling a sidecar. It was the precursor to the even larger Model KX.
-- slug: model-k-976-v-twin-1930
-  name: Model K (976 V-Twin)
-  year: 1930-1936
-  category: Pre-War / V-Twin
-  image: Royal_Enfield-1930-976-model-k-976-v-twin-1930_1.jpg
-  engine_details:
-    type: V-Twin, 4-stroke, Side-Valve
-    displacement: 976 cc
-    power: N/A
-    torque: N/A
-  chassis_details:
-    frame: Heavy-duty rigid frame
-    suspension_front: Girder forks
-    suspension_rear: Rigid (sprung seat)
-    weight: N/A
-  history: The top-of-the-line heavyweight from the 1930 "eleven model range." This 976cc V-twin was designed for power and for pulling a sidecar.
 - slug: model-l-500-sv
   name: Model L (500 SV)
   year: 1930
@@ -831,22 +783,6 @@
     suspension_rear: Rigid (sprung seat)
     weight: N/A
   history: A 500cc-class side-valve single from the 1930 range, designed for steady power and reliability.
-- slug: model-500-sv-1930
-  name: 500 Side-Valve (1930)
-  year: 1930-1932
-  category: Pre-War / Single
-  image: Royal_Enfield-1930-488-model-500-sv-1930_1.jpg
-  engine_details:
-    type: Single Cylinder, 4-stroke, Side-Valve
-    displacement: 488 cc
-    power: N/A
-    torque: N/A
-  chassis_details:
-    frame: Rigid frame
-    suspension_front: Girder forks
-    suspension_rear: Rigid (sprung seat)
-    weight: N/A
-  history: A 500cc side-valve model from the 1930s catalog, built as a reliable workhorse with dry-sump lubrication.
 - slug: model-e-488-ohv
   name: Model E (488cc OHV)
   year: 1930
