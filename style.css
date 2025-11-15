@@ -125,11 +125,11 @@ CATALOG GRID
     transform: scale(1.05);
 }
 .card-details {
-    padding: 15px;
+    padding: 10px;
 }
 .card-details h2 {
     margin-top: 0;
-    font-size: 1.5em;
+    font-size: 1em;
     color: var(--secondary-color);
 }
 .category, .engine-info, .year {
