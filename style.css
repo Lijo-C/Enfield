@@ -209,7 +209,7 @@ footer {
     display: inline-block;
     margin-bottom: 20px;
     text-decoration: none;
-    color: var(--primary-color);
+    color: var(--secondary-color);
     font-weight: bold;
     position: relative; 
     transition: all 0.2s ease-out;
