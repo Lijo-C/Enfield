@@ -1,5 +1,5 @@
 ---
-slug: sg650-concept
+slug: Shotgun-650-Concept
 name: SG650 Concept
 year: 2026
 category: Cruiser / Bobber style motorcycle

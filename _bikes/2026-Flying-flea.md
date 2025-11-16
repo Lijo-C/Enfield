@@ -1,5 +1,5 @@
 ---
-slug: Flying Flea
+slug: Flying-flea
 name: Royal Enfield Flying Flea
 year: 2026
 category: Electric motorcycle / Urban mobility with scrambler styling
