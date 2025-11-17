@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Enfield Lovers</title>
+    
+    <meta http-equiv="refresh" content="3; url=https://lijo-c.github.io/Enfield/">
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-family: sans-serif;
+            text-align: center;
+
+            /* 🖼️ BACKGROUND IMAGE SETTINGS */
+            /* The 'linear-gradient' part adds a dark tint so text is readable */
+            /* Make sure 'bg.jpg' matches your image filename exactly */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('1.png');
+            
+            /* This makes the image cover the whole screen */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            /* Made the box slightly see-through for a modern look */
+            background: rgba(45, 45, 45, 0.088);
+            backdrop-filter: blur(5px); /* Blurs the background behind the box */
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* LOGO STYLES */
+        .logo {
+            width: 220px; 
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        h1 { margin: 0 0 10px 0; font-size: 24px; letter-spacing: 1px; }
+        p { color: #ddd; margin-bottom: 20px; }
+        
+        /* SPINNER ANIMATION */
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top: 4px solid #ff3b30; /* Red accent */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        a { color: #ff3b30; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="logo.png" alt="Enfield Logo" class="logo">
+        
+        <h1>Enfield Lovers</h1>
+        <p>Revving up the engine...</p>
+        
+        <div class="loader"></div>
+        
+        <p style="font-size: 12px; margin-top: 20px; color: #bbb;">
+            Redirecting to main site...<br>
+            <a href="https://lijo-c.github.io/Enfield/">Click here if it takes too long</a>
+        </p>
+    </div>
+
+</body>
+</html>
