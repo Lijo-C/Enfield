@@ -66,10 +66,14 @@ if (bikeCards.length > 0 && decadeContainer) {
     const yearsMap = new Map(); // Stores Decade -> [Years]
 
     bikeCards.forEach(card => {
-        // Clean the year string (handle "1920-1922" by taking just 1920)
         let yearRaw = card.getAttribute('data-year').toString();
         let year = parseInt(yearRaw.match(/\d{4}/)[0]); 
-        let decade = Math.floor(year / 10) * 10; // e.g., 1924 -> 1920
+        
+        // === NEW LOGIC: Merge 1890s and 1900s ===
+        let decade = Math.floor(year / 10) * 10; 
+        if (decade < 1910) {
+            decade = 1900; // Force everything before 1910 into the 1900 bucket
+        }
 
         if (!yearsMap.has(decade)) {
             yearsMap.set(decade, new Set());
@@ -96,7 +100,14 @@ if (bikeCards.length > 0 && decadeContainer) {
     sortedDecades.forEach(decade => {
         const btn = document.createElement('button');
         btn.className = 'filter-btn';
-        btn.textContent = `${decade}s`;
+        
+        // === CUSTOM LABEL FOR 1900s ===
+        if (decade === 1900) {
+            btn.textContent = "1890s-1900s";
+        } else {
+            btn.textContent = `${decade}s`;
+        }
+
         btn.onclick = () => filterByDecade(decade, btn);
         decadeContainer.appendChild(btn);
     });
@@ -133,13 +144,19 @@ if (bikeCards.length > 0 && decadeContainer) {
         yearContainer.innerHTML = ''; // Clear old
         const yearsInDecade = Array.from(yearsMap.get(decade)).sort();
 
-        // Only show sub-row if there's more than 1 year to filter by
         if (yearsInDecade.length > 0) {
             
-            // "All 1920s" button
+            // "All [Decade]" button
             const allDecadeBtn = document.createElement('button');
             allDecadeBtn.className = 'filter-btn active';
-            allDecadeBtn.textContent = `All ${decade}s`;
+            
+            // Custom label for the sub-row 'All' button too
+            if (decade === 1900) {
+                allDecadeBtn.textContent = "All 1890s-1900s";
+            } else {
+                allDecadeBtn.textContent = `All ${decade}s`;
+            }
+            
             allDecadeBtn.onclick = () => {
                 setActiveBtn(yearContainer, allDecadeBtn);
                 filterGrid(card => parseInt(card.dataset.cleanDecade) === decade);
