@@ -55,7 +55,7 @@ if (scrollTopBtn) {
 }
 
 
-// --- 4. NEW: ADVANCED DATE FILTERING SYSTEM ---
+// --- 4. ADVANCED DATE FILTERING SYSTEM (Grouped 1890-1900) ---
 const bikeCards = document.querySelectorAll('.bike-card');
 const decadeContainer = document.getElementById('decade-filters');
 const yearContainer = document.getElementById('year-filters');
@@ -63,16 +63,16 @@ const yearContainer = document.getElementById('year-filters');
 if (bikeCards.length > 0 && decadeContainer) {
     
     // A. EXTRACT DATA
-    const yearsMap = new Map(); // Stores Decade -> [Years]
+    const yearsMap = new Map(); 
 
     bikeCards.forEach(card => {
         let yearRaw = card.getAttribute('data-year').toString();
         let year = parseInt(yearRaw.match(/\d{4}/)[0]); 
         
-        // === NEW LOGIC: Merge 1890s and 1900s ===
+        // === MERGE 1890s and 1900s ===
         let decade = Math.floor(year / 10) * 10; 
         if (decade < 1910) {
-            decade = 1900; // Force everything before 1910 into the 1900 bucket
+            decade = 1900; 
         }
 
         if (!yearsMap.has(decade)) {
@@ -80,28 +80,24 @@ if (bikeCards.length > 0 && decadeContainer) {
         }
         yearsMap.get(decade).add(year);
         
-        // Store clean decade/year on card for filtering
         card.dataset.cleanDecade = decade;
         card.dataset.cleanYear = year;
     });
 
-    // Sort Decades
     const sortedDecades = Array.from(yearsMap.keys()).sort((a, b) => a - b);
 
     // B. BUILD DECADE BUTTONS
-    // Create "Show All"
     const allBtn = document.createElement('button');
     allBtn.className = 'filter-btn active';
     allBtn.textContent = 'All Time';
     allBtn.onclick = () => resetFilter(allBtn);
     decadeContainer.appendChild(allBtn);
 
-    // Create specific decades
     sortedDecades.forEach(decade => {
         const btn = document.createElement('button');
         btn.className = 'filter-btn';
         
-        // === CUSTOM LABEL FOR 1900s ===
+        // Custom Label
         if (decade === 1900) {
             btn.textContent = "1890s-1900s";
         } else {
@@ -116,11 +112,9 @@ if (bikeCards.length > 0 && decadeContainer) {
     function filterGrid(matchFunction) {
         bikeCards.forEach(card => {
             if (matchFunction(card)) {
-                // Show
                 card.classList.remove('is-gone');
                 setTimeout(() => card.classList.remove('is-hidden'), 10);
             } else {
-                // Hide
                 card.classList.add('is-hidden');
                 setTimeout(() => card.classList.add('is-gone'), 300);
             }
@@ -129,28 +123,22 @@ if (bikeCards.length > 0 && decadeContainer) {
 
     function resetFilter(clickedBtn) {
         setActiveBtn(decadeContainer, clickedBtn);
-        yearContainer.classList.remove('is-active'); // Hide sub-row
-        yearContainer.innerHTML = ''; // Clear sub-row
-        filterGrid(() => true); // Show all
+        yearContainer.classList.remove('is-active'); 
+        yearContainer.innerHTML = ''; 
+        filterGrid(() => true); 
     }
 
     function filterByDecade(decade, clickedBtn) {
         setActiveBtn(decadeContainer, clickedBtn);
-        
-        // 1. Filter Grid immediately to show full decade
         filterGrid(card => parseInt(card.dataset.cleanDecade) === decade);
 
-        // 2. Build Sub-Year Buttons
-        yearContainer.innerHTML = ''; // Clear old
+        yearContainer.innerHTML = ''; 
         const yearsInDecade = Array.from(yearsMap.get(decade)).sort();
 
         if (yearsInDecade.length > 0) {
-            
-            // "All [Decade]" button
             const allDecadeBtn = document.createElement('button');
             allDecadeBtn.className = 'filter-btn active';
             
-            // Custom label for the sub-row 'All' button too
             if (decade === 1900) {
                 allDecadeBtn.textContent = "All 1890s-1900s";
             } else {
@@ -163,7 +151,6 @@ if (bikeCards.length > 0 && decadeContainer) {
             };
             yearContainer.appendChild(allDecadeBtn);
 
-            // Specific years
             yearsInDecade.forEach(year => {
                 const yBtn = document.createElement('button');
                 yBtn.className = 'filter-btn';
@@ -175,7 +162,7 @@ if (bikeCards.length > 0 && decadeContainer) {
                 yearContainer.appendChild(yBtn);
             });
 
-            yearContainer.classList.add('is-active'); // Slide down
+            yearContainer.classList.add('is-active'); 
         }
     }
 
