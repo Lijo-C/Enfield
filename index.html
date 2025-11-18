@@ -7,12 +7,20 @@ layout: default
     <h3>A Royal Enfield Lovers Catalog</h3>
 </header>
 
+<section class="filter-container">
+    <div id="decade-filters" class="decade-nav">
+        </div>
+
+    <div id="year-filters" class="year-nav">
+        </div>
+</section>
 <main class="catalog-grid">
     
     {% for bike in site.bikes %}
     <a href="{{ bike.url | relative_url }}" 
        class="bike-card" 
-       data-tilt>
+       data-tilt
+       data-year="{{ bike.year }}">
         
         <img src="{{ site.baseurl }}/images/{{ bike.image }}" alt="Royal Enfield {{ bike.name }}" aria-label="Image of Royal Enfield {{ bike.name }}" loading="lazy">
         

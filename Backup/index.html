@@ -1,0 +1,31 @@
+---
+layout: default
+---
+<header>
+    <h1>Royal Enfield</h1>
+    <h2>Made like a Gun</h2>
+    <h3>A Royal Enfield Lovers Catalog</h3>
+</header>
+
+<main class="catalog-grid">
+    
+    {% for bike in site.bikes %}
+    <a href="{{ bike.url | relative_url }}" 
+       class="bike-card" 
+       data-tilt>
+        
+        <img src="{{ site.baseurl }}/images/{{ bike.image }}" alt="Royal Enfield {{ bike.name }}" aria-label="Image of Royal Enfield {{ bike.name }}" loading="lazy">
+        
+        <div class="card-details">
+            <h2>{{ bike.name }}</h2>
+            <p class="category">{{ bike.category }}</p>
+            <p class="engine-info">Engine: {{ bike.engine_details.displacement }}</p>
+            <p class="year">Year(s): {{ bike.year }}</p>
+        </div>
+    </a>
+    {% endfor %}
+</main>
+
+<footer>
+    <p>&copy; <script>document.write(new Date().getFullYear())</script> A Royal Enfield Lovers Catalog </p>
+</footer>
