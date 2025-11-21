@@ -1,6 +1,12 @@
 ---
 layout: default
 ---
+
+<section class="filter-container">
+    <div id="decade-filters" class="decade-nav"></div>
+    <div id="year-filters" class="year-nav"></div>
+</section>
+
 <header>
     <h1>Royal Enfield</h1>
     <h2>Made like a Gun</h2>
@@ -14,11 +20,7 @@ layout: default
     </div>
     <hr class="search-separator">
 </section>
-<section class="filter-container">
-    <div id="decade-filters" class="decade-nav"></div>
-    
-    <div id="year-filters" class="year-nav"></div>
-</section>
+
 <main class="catalog-grid">
     
     {% for bike in site.bikes %}

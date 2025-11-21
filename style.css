@@ -32,135 +32,26 @@ body, a, button { cursor: none; }
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
 
 /* =========================================
-   HEADER (Hero Image)
-========================================= */
-header {
-    height: 30vh; 
-    display: flex;
-    flex-direction: column;
-    
-    /* --- MODIFIED: Align to Bottom --- */
-    justify-content: flex-end; 
-    align-items: center;
-    
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 20px; 
-    text-align: center;
-    border-bottom: 5px solid #000000;
-    position: relative; 
-    z-index: 1;       
-    overflow: hidden; 
-}
-header::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-image: url('images/hero-motorcycle.png');
-    background-size: cover;
-    background-position: center;
-    z-index: -1; 
-    animation: kenBurns 20s infinite;
-}
-header h1 { 
-    animation: fadeInDown 1s ease-out; 
-    font-size: 3.5rem;
-    margin: 0; 
-    line-height: 1;
-}
-header h2 {
-    animation: fadeInDown 1.2s ease-out;
-    font-size: 1.5rem;
-    margin: 0;
-    color: var(--primary-color);
-    margin-bottom: 5px;
-}
-header h3 {
-    animation: fadeInDown 1.4s ease-out;
-    font-size: 1rem;
-    margin: 0;
-    opacity: 0.8;
-    margin-bottom: 10px; /* Small space from bottom edge */
-}
-
-/* =========================================
-   NEW: SEARCH SECTION (Below Hero)
-========================================= */
-.search-section {
-    width: 100%;
-    padding: 20px 0 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: transparent; /* Transparent background */
-    position: relative;
-    z-index: 5;
-}
-
-.search-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 400px;
-}
-
-.search-input {
-    /* --- MODIFIED: Black Input, Transparent BG --- */
-    background: #000000; 
-    border: 1px solid #333;
-    border-radius: 30px;
-    color: white;
-    font-family: var(--font-body);
-    font-size: 1rem;
-    padding: 12px 20px 12px 45px; 
-    width: 100%;
-    transition: all 0.3s ease;
-}
-
-.search-input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 15px rgba(123, 10, 10, 0.3);
-}
-
-.search-icon {
-    position: absolute;
-    left: 15px; 
-    top: 50%; 
-    transform: translateY(-50%);
-    color: #888;
-    pointer-events: none;
-    font-size: 1.2em;
-}
-
-/* The Separator Line */
-.search-separator {
-    width: 50%;
-    height: 2px;
-    background: var(--primary-color); /* Red line */
-    margin-top: 20px;
-    border: none;
-    opacity: 0.7;
-}
-
-/* =========================================
-   STICKY FILTER MENU (Top of Page)
+   MENU BAR (Now at Top)
 ========================================= */
 .filter-container {
     width: 100%;
     background-color: rgba(20, 20, 20, 0.95); 
     border-bottom: 1px solid #333;
-    padding: 10px 0;
+    padding: 15px 0;
     
+    /* Sticky Top */
     position: sticky; 
     top: 0;
-    z-index: 100;
+    z-index: 1000; /* Highest priority */
     backdrop-filter: blur(10px);
     
-    /* Crucial for the absolute positioning of the sub-menu */
-    position: sticky;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; 
 }
 
-/* Decade Row */
 .decade-nav {
     display: flex;
     justify-content: center; 
@@ -170,11 +61,10 @@ header h3 {
     width: 100%;
 }
 
-/* --- MODIFIED: ABSOLUTE POSITIONING FOR SUB-MENU --- */
-/* This makes it float OVER the grid without pushing it down */
+/* Dropdown Years */
 .year-nav {
     position: absolute;
-    top: 100%; /* Push it exactly below the bar */
+    top: 100%; /* Floats directly below the bar */
     left: 0;
     width: 100%;
     
@@ -183,11 +73,11 @@ header h3 {
     flex-wrap: wrap;
     gap: 10px;
     
-    background-color: rgba(20, 20, 20, 0.98); /* Dark background for readability */
+    background-color: rgba(20, 20, 20, 0.98); 
     border-bottom: 1px solid #333;
     
     height: auto;
-    max-height: 0; /* Start hidden */
+    max-height: 0; 
     opacity: 0;
     padding: 0 20px;
     overflow: hidden;
@@ -198,7 +88,7 @@ header h3 {
 }
 
 .year-nav.is-active {
-    max-height: 200px; /* Allow it to expand */
+    max-height: 200px; 
     opacity: 1;
     padding: 15px 20px;
 }
@@ -235,7 +125,6 @@ header h3 {
     transform: translateY(1px); 
 }
 
-/* Sub-menu buttons */
 .year-nav .filter-btn {
     font-size: 0.9rem;
     padding: 6px 15px;
@@ -252,6 +141,118 @@ header h3 {
     color: black;
     border-color: white;
     box-shadow: 0 0 10px white;
+}
+
+/* =========================================
+   HEADER (Hero Image)
+========================================= */
+header {
+    height: 30vh; 
+    display: flex;
+    flex-direction: column;
+    
+    /* Bottom Alignment */
+    justify-content: flex-end; 
+    align-items: center;
+    
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+    padding: 20px; 
+    text-align: center;
+    border-bottom: 5px solid #000000;
+    position: relative; 
+    z-index: 1;       
+    overflow: hidden; 
+}
+header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('images/hero-motorcycle.png');
+    background-size: cover;
+    background-position: center;
+    z-index: -1; 
+    animation: kenBurns 20s infinite;
+}
+
+/* --- MODIFIED HEADINGS (White & Tight) --- */
+header h1 { 
+    animation: fadeInDown 1s ease-out; 
+    font-size: 3.5rem;
+    color: white; /* Pure White */
+    margin: 0; 
+    line-height: 1;
+}
+header h2 {
+    animation: fadeInDown 1.2s ease-out;
+    font-size: 1.5rem;
+    color: white; /* Pure White */
+    margin: 0;
+    margin-bottom: 5px; /* Tiny gap */
+}
+header h3 {
+    animation: fadeInDown 1.4s ease-out;
+    font-size: 1rem;
+    color: white; /* Pure White */
+    margin: 0;
+    opacity: 0.9;
+    margin-bottom: 15px; /* Padding from bottom edge */
+}
+
+/* =========================================
+   SEARCH SECTION (Below Hero)
+========================================= */
+.search-section {
+    width: 100%;
+    padding: 30px 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: transparent; 
+    position: relative;
+    z-index: 5;
+}
+
+.search-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+.search-input {
+    background: #000000; /* Black background */
+    border: 1px solid #333;
+    border-radius: 30px;
+    color: white;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    padding: 12px 20px 12px 45px; 
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(123, 10, 10, 0.3);
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px; 
+    top: 50%; 
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none;
+    font-size: 1.2em;
+}
+
+.search-separator {
+    width: 50%;
+    height: 2px;
+    background: var(--primary-color); 
+    margin-top: 25px;
+    border: none;
+    opacity: 0.7;
 }
 
 /* =========================================
@@ -295,7 +296,7 @@ header h3 {
 
 .bike-card img { 
     width: 100%; 
-    height: auto;
+    height: auto !important;
     flex: 1; 
     min-height: 0; 
     object-fit: cover; 
@@ -304,12 +305,7 @@ header h3 {
 }
 .bike-card:hover img { transform: scale(1.05); }
 
-.card-details { 
-    padding: 12px; 
-    flex-shrink: 0; 
-    background-color: #252525;
-    z-index: 1; 
-}
+.card-details { padding: 12px; flex-shrink: 0; background-color: #252525; z-index: 1; }
 .card-details h2 { margin-top: 0; margin-bottom: 5px; font-size: 1.1em; color: var(--secondary-color); }
 .category, .engine-info, .year { font-size: 0.8em; color: #AAAAAA; margin: 2px 0; }
 
