@@ -1,6 +1,23 @@
 ---
 layout: default
 ---
+
+<section class="filter-container">
+    
+    <div class="top-bar-layout">
+        
+        <div id="decade-filters" class="decade-nav"></div>
+        
+        <div class="search-wrapper">
+            <span class="search-icon">&#128269;</span>
+            <input type="text" id="searchInput" class="search-input" placeholder="Search...">
+        </div>
+        
+    </div>
+    
+    <div id="year-filters" class="year-nav"></div>
+</section>
+
 <header>
     <h1>Royal Enfield</h1>
     <h2>Made like a Gun</h2>
@@ -12,7 +29,8 @@ layout: default
     {% for bike in site.bikes %}
     <a href="{{ bike.url | relative_url }}" 
        class="bike-card" 
-       data-tilt>
+       data-tilt
+       data-year="{{ bike.year }}">
         
         <img src="{{ site.baseurl }}/images/{{ bike.image }}" alt="Royal Enfield {{ bike.name }}" aria-label="Image of Royal Enfield {{ bike.name }}" loading="lazy">
         
