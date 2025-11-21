@@ -107,7 +107,7 @@ header h1, header p { animation: fadeInDown 1s ease-out; }
     padding-bottom: 10px;
 }
 
-/* 3D GLASS RECTANGLE BUTTONS */
+/* 3D GLASS BUTTONS */
 .filter-btn {
     font-family: var(--font-heading);
     font-size: 1rem;
@@ -197,22 +197,19 @@ header h1, header p { animation: fadeInDown 1s ease-out; }
 }
 
 /* =========================================
-   CATALOG GRID (4-Column Full Width)
+   CATALOG GRID
 ========================================= */
 .catalog-grid {
     display: grid;
     gap: 30px;
-    
-    /* --- MODIFIED: Full Width with Small Margin --- */
     padding: 50px 2%; 
-    max-width: none; /* Removed specific width limit */
+    max-width: none; 
     margin: 0;
-    
-    /* Responsive Logic */
+    /* Responsive: At least 250px wide, creating ~4 cols on desktop */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
-/* On large screens, force 4 columns */
+/* Large screens: Enforce 4 columns */
 @media (min-width: 1200px) {
     .catalog-grid {
         grid-template-columns: repeat(4, 1fr);
@@ -239,8 +236,9 @@ header h1, header p { animation: fadeInDown 1s ease-out; }
 .bike-card img { 
     width: 100%; 
     
-    /* --- MODIFIED: Height for 4-column layout --- */
-    height: 220px; 
+    /* --- MODIFIED: 4:3 Aspect Ratio --- */
+    height: auto; 
+    aspect-ratio: 4 / 3;
     
     object-fit: cover; 
     display: block; 
