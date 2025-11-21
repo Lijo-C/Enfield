@@ -14,6 +14,7 @@ body {
     color: var(--text-color);
     transition: opacity 0.3s ease-out;
     
+    /* Background settings */
     background-image: url('images/bg.png'); 
     background-color: var(--background-color);
     background-size: cover;
@@ -53,7 +54,7 @@ header::before {
 }
 header h1, header p { animation: fadeInDown 1s ease-out; }
 
-/* MENU BAR (Horizontal) */
+/* MENU BAR (Horizontal Filters Only) */
 .filter-container {
     width: 100%;
     background-color: rgba(20, 20, 20, 0.95); 
@@ -64,40 +65,10 @@ header h1, header p { animation: fadeInDown 1s ease-out; }
     top: 0;
     z-index: 100;
     backdrop-filter: blur(10px);
-    display: flex; /* Align search and decades */
+    display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-}
-
-/* --- NEW: SEARCH INPUT STYLE --- */
-.search-wrapper {
-    position: relative;
-    margin-bottom: 5px;
-}
-.search-input {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid #555;
-    color: white;
-    font-family: var(--font-body);
-    font-size: 1rem;
-    padding: 5px 10px 5px 30px; /* Space for icon */
-    width: 250px;
-    transition: all 0.3s ease;
-}
-.search-input:focus {
-    outline: none;
-    border-bottom-color: var(--primary-color);
-    width: 300px; /* Expands on focus */
-}
-.search-icon {
-    position: absolute;
-    left: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #888;
-    pointer-events: none;
+    gap: 5px;
 }
 
 /* Decade Row */
@@ -140,7 +111,7 @@ header h1, header p { animation: fadeInDown 1s ease-out; }
     padding-top: 10px;
 }
 
-/* Buttons */
+/* Menu Buttons */
 .filter-btn {
     font-family: var(--font-heading);
     background-color: transparent; 
@@ -165,7 +136,7 @@ header h1, header p { animation: fadeInDown 1s ease-out; }
 .year-nav .filter-btn { font-size: 0.9rem; color: #888; }
 .year-nav .filter-btn.active { color: white; border-bottom: 2px solid white; }
 
-/* CATALOG GRID */
+/* CATALOG GRID (5 Columns) */
 .catalog-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

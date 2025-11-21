@@ -56,11 +56,10 @@ if (scrollTopBtn) {
     });
 }
 
-// --- 4. ADVANCED FILTERING (DATE + SEARCH) ---
+// --- 4. ADVANCED FILTERING (MENU + MERGED 1900s) ---
 const bikeCards = document.querySelectorAll('.bike-card');
 const decadeContainer = document.getElementById('decade-filters');
 const yearContainer = document.getElementById('year-filters');
-const searchInput = document.getElementById('searchInput');
 
 if (bikeCards.length > 0 && decadeContainer) {
     
@@ -70,6 +69,8 @@ if (bikeCards.length > 0 && decadeContainer) {
     bikeCards.forEach(card => {
         let yearRaw = card.getAttribute('data-year').toString();
         let year = parseInt(yearRaw.match(/\d{4}/)[0]); 
+        
+        // Merge 1890s and 1900s
         let decade = Math.floor(year / 10) * 10; 
         if (decade < 1910) { decade = 1900; }
 
@@ -78,9 +79,6 @@ if (bikeCards.length > 0 && decadeContainer) {
         
         card.dataset.cleanDecade = decade;
         card.dataset.cleanYear = year;
-        
-        // Store search text (Name + Category + Engine)
-        card.dataset.searchText = card.innerText.toLowerCase();
     });
 
     const sortedDecades = Array.from(yearsMap.keys()).sort((a, b) => a - b);
@@ -118,13 +116,11 @@ if (bikeCards.length > 0 && decadeContainer) {
         if (clickedBtn) setActiveBtn(decadeContainer, clickedBtn);
         yearContainer.classList.remove('is-active'); 
         yearContainer.innerHTML = ''; 
-        searchInput.value = ''; // Clear search on reset
         filterGrid(() => true); 
     }
 
     function filterByDecade(decade, clickedBtn) {
         setActiveBtn(decadeContainer, clickedBtn);
-        searchInput.value = ''; // Clear search when clicking buttons
         filterGrid(card => parseInt(card.dataset.cleanDecade) === decade);
 
         yearContainer.innerHTML = ''; 
@@ -154,22 +150,6 @@ if (bikeCards.length > 0 && decadeContainer) {
             });
             yearContainer.classList.add('is-active'); 
         }
-    }
-
-    // D. SEARCH LOGIC
-    if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            
-            // Reset button states visually (optional)
-            const allDecadeBtns = decadeContainer.querySelectorAll('.filter-btn');
-            allDecadeBtns.forEach(b => b.classList.remove('active'));
-            
-            filterGrid(card => {
-                // Simple logic: Does the card text contain the search term?
-                return card.dataset.searchText.includes(term);
-            });
-        });
     }
 
     function setActiveBtn(container, activeBtn) {
