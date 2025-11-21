@@ -1,6 +1,6 @@
-/* === 1. GLOBAL RESET (Crucial for layout) === */
+/* === 1. GLOBAL RESET === */
 * {
-    box-sizing: border-box; /* Keeps padding inside width */
+    box-sizing: border-box;
 }
 
 :root {
@@ -19,13 +19,12 @@ body {
     color: var(--text-color);
     transition: opacity 0.3s ease-out;
     
-    /* Background settings */
     background-image: url('images/bg.png'); 
     background-color: var(--background-color);
     background-size: cover;
     background-position: center center;
     background-attachment: fixed; 
-    overflow-x: hidden; /* Prevent accidental horizontal scroll */
+    overflow-x: hidden; 
 }
 
 body.fade-out { opacity: 0; }
@@ -69,114 +68,110 @@ header h1, header p { animation: fadeInDown 1s ease-out; }
     border-top: 1px solid #333;
     border-bottom: 1px solid #333;
     padding: 15px 0;
-    
     position: sticky; 
     top: 0;
     z-index: 100;
     backdrop-filter: blur(10px);
-    
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 15px; /* More space for 3D buttons */
 }
 
-/* --- 1. DECADE ROW --- */
+/* Decade/Era Row */
 .decade-nav {
     display: flex;
-    justify-content: flex-start; /* Safer for scrolling */
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    gap: 12px; 
+    justify-content: center; /* Center them since there are fewer now */
+    flex-wrap: wrap;         /* Allow wrapping if needed on tiny screens */
+    gap: 15px; 
     padding: 5px 20px;
     width: 100%;
-    
-    /* Hide scrollbars */
-    scrollbar-width: none; 
-    -ms-overflow-style: none;  
-    /* Momentum scrolling on mobile */
-    -webkit-overflow-scrolling: touch;
 }
-.decade-nav::-webkit-scrollbar { display: none; }
 
-/* --- 2. YEAR ROW --- */
+/* Year Row (Hidden initially) */
 .year-nav {
     display: flex;
-    justify-content: flex-start; /* Safer for scrolling */
-    flex-wrap: nowrap;
-    overflow-x: auto;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 10px;
-    
     height: 0; 
     opacity: 0;
     margin-top: 0;
     padding: 0 20px;
     transition: all 0.3s ease-out;
     width: 100%;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
 }
-.year-nav::-webkit-scrollbar { display: none; }
-
 .year-nav.is-active {
-    height: 50px; 
+    height: auto; 
     opacity: 1;
-    margin-top: 5px;
+    margin-top: 10px;
     border-top: 1px solid #333; 
     padding-top: 15px;
+    padding-bottom: 10px;
 }
 
-/* --- 3. BUTTON STYLE (Glass Pills) --- */
+/* --- NEW: 3D GLASS RECTANGLE BUTTONS --- */
 .filter-btn {
     font-family: var(--font-heading);
     font-size: 1rem;
     letter-spacing: 1px;
+    color: #DDD;
     
-    background-color: rgba(255, 255, 255, 0.05); 
-    color: #CCCCCC;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px; 
+    /* 3D Glass Effect */
+    background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+    border-top: 1px solid rgba(255,255,255,0.4); /* Highlight top edge */
+    border-left: 1px solid rgba(255,255,255,0.2);
+    border-right: 1px solid rgba(0,0,0,0.5);
+    border-bottom: 1px solid rgba(0,0,0,0.5); /* Shadow bottom edge */
     
-    padding: 8px 20px;
+    border-radius: 8px; /* Rounded Rectangle */
+    padding: 10px 20px;
+    
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3); /* Drop shadow */
     cursor: pointer;
     transition: all 0.2s ease-out;
     white-space: nowrap; 
-    flex-shrink: 0; 
 }
 
 .filter-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: var(--primary-color);
-    color: white;
     transform: translateY(-2px);
+    background: linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+    box-shadow: 0 6px 10px rgba(0,0,0,0.5), 0 0 10px rgba(255,255,255,0.1); /* Glow */
+    color: white;
 }
 
 .filter-btn.active {
-    background-color: var(--primary-color);
+    background: var(--primary-color); /* Solid red active */
+    border-color: #ff4d4d; /* Lighter red border */
     color: white;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 15px rgba(123, 10, 10, 0.6); 
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 0 15px var(--primary-color); /* Inner shadow + Outer Glow */
+    transform: translateY(1px); /* Press down effect */
 }
 
-/* Sub-years styling */
+/* Sub-years (Simpler style) */
 .year-nav .filter-btn {
     font-size: 0.9rem;
-    padding: 5px 15px;
-    background-color: transparent;
-    border-color: #444;
+    padding: 6px 15px;
+    background: transparent;
+    border: 1px solid #444;
+    box-shadow: none;
+}
+.year-nav .filter-btn:hover {
+    border-color: white;
+    background: rgba(255,255,255,0.1);
 }
 .year-nav .filter-btn.active {
-    background-color: white;
-    color: black; 
+    background: white;
+    color: black;
     border-color: white;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px white;
 }
 
-/* --- 4. SEARCH BAR (Fixed Width) --- */
+/* SEARCH BAR */
 .search-wrapper {
     width: 100%;
-    max-width: 400px; /* Limit width so it doesn't stretch too far */
+    max-width: 400px; 
     position: relative;
     margin-top: 5px;
     padding: 0 20px;
@@ -185,26 +180,23 @@ header h1, header p { animation: fadeInDown 1s ease-out; }
     display: flex;
     justify-content: center;
 }
-
 .search-input {
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid #444;
-    border-radius: 30px; 
+    border-radius: 8px; /* Matches buttons */
     color: white;
     font-family: var(--font-body);
     font-size: 0.9rem;
-    padding: 8px 20px 8px 40px; 
-    width: 100%; /* Fills wrapper */
+    padding: 10px 20px 10px 40px; 
+    width: 100%;
     transition: all 0.3s ease;
 }
-
 .search-input:focus {
     outline: none;
     border-color: var(--primary-color);
     background: rgba(0, 0, 0, 0.6);
     box-shadow: 0 0 10px rgba(123, 10, 10, 0.2);
 }
-
 .search-icon {
     position: absolute;
     left: 35px; 

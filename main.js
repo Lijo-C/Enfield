@@ -7,7 +7,7 @@ window.addEventListener('pageshow', (event) => {
     if (cursorFollower) cursorFollower.classList.remove('is-hovering');
 });
 
-// --- 1. CURSOR & HOVER ---
+// --- 1. CURSOR & HOVER LOGIC ---
 const cursorDot = document.querySelector('.cursor-dot');
 const cursorFollower = document.querySelector('.cursor-follower');
 const allLinks = document.querySelectorAll('a, button, .bike-card');
@@ -28,7 +28,7 @@ allLinks.forEach(link => {
     });
 });
 
-// --- 2. PAGE TRANSITIONS ---
+// --- 2. PAGE TRANSITION LOGIC ---
 allLinks.forEach(link => {
     if (link.tagName !== 'A') return;
     link.addEventListener('click', (e) => {
@@ -43,7 +43,7 @@ allLinks.forEach(link => {
     });
 });
 
-// --- 3. SCROLL TO TOP ---
+// --- 3. SCROLL TO TOP LOGIC ---
 const scrollTopBtn = document.getElementById('scrollTopButton');
 if (scrollTopBtn) {
     window.addEventListener('scroll', () => {
@@ -56,7 +56,7 @@ if (scrollTopBtn) {
     });
 }
 
-// --- 4. ADVANCED FILTERING + SEARCH ---
+// --- 4. ADVANCED FILTERING (30-YEAR GROUPS + SEARCH) ---
 const bikeCards = document.querySelectorAll('.bike-card');
 const decadeContainer = document.getElementById('decade-filters');
 const yearContainer = document.getElementById('year-filters');
@@ -64,39 +64,55 @@ const searchInput = document.getElementById('searchInput');
 
 if (bikeCards.length > 0 && decadeContainer) {
     
-    // A. EXTRACT DATA
-    const yearsMap = new Map(); 
+    // A. EXTRACT AND GROUP DATA
+    const eraMap = new Map(); // Stores Era String -> [Years]
 
     bikeCards.forEach(card => {
         let yearRaw = card.getAttribute('data-year').toString();
         let year = parseInt(yearRaw.match(/\d{4}/)[0]); 
         
-        let decade = Math.floor(year / 10) * 10; 
-        if (decade < 1910) { decade = 1900; }
-
-        if (!yearsMap.has(decade)) { yearsMap.set(decade, new Set()); }
-        yearsMap.get(decade).add(year);
+        let eraLabel = "";
         
-        card.dataset.cleanDecade = decade;
+        // LOGIC: Grouping 30 Years
+        if (year < 1910) {
+            eraLabel = "1890s-1900s";
+        } else {
+            // 1910, 1940, 1970...
+            let startYear = 1910 + Math.floor((year - 1910) / 30) * 30;
+            let endYear = startYear + 29;
+            eraLabel = `${startYear}-${endYear}`;
+        }
+
+        if (!eraMap.has(eraLabel)) {
+            eraMap.set(eraLabel, new Set());
+        }
+        eraMap.get(eraLabel).add(year);
+        
+        // Store data on card
+        card.dataset.era = eraLabel;
         card.dataset.cleanYear = year;
         card.dataset.searchText = card.innerText.toLowerCase();
     });
 
-    const sortedDecades = Array.from(yearsMap.keys()).sort((a, b) => a - b);
+    // Sort Eras (Manual sort to keep order right)
+    const sortedEras = Array.from(eraMap.keys()).sort((a, b) => {
+        let numA = parseInt(a.match(/\d{4}/)[0]);
+        let numB = parseInt(b.match(/\d{4}/)[0]);
+        return numA - numB;
+    });
 
-    // B. BUILD DECADE BUTTONS
+    // B. BUILD ERA BUTTONS
     const allBtn = document.createElement('button');
     allBtn.className = 'filter-btn active';
     allBtn.textContent = 'All Time';
     allBtn.onclick = () => resetFilter(allBtn);
     decadeContainer.appendChild(allBtn);
 
-    sortedDecades.forEach(decade => {
+    sortedEras.forEach(era => {
         const btn = document.createElement('button');
         btn.className = 'filter-btn';
-        if (decade === 1900) { btn.textContent = "1890s-1900s"; } 
-        else { btn.textContent = `${decade}s`; }
-        btn.onclick = () => filterByDecade(decade, btn);
+        btn.textContent = era;
+        btn.onclick = () => filterByEra(era, btn);
         decadeContainer.appendChild(btn);
     });
 
@@ -121,27 +137,29 @@ if (bikeCards.length > 0 && decadeContainer) {
         filterGrid(() => true); 
     }
 
-    function filterByDecade(decade, clickedBtn) {
+    function filterByEra(era, clickedBtn) {
         setActiveBtn(decadeContainer, clickedBtn);
         if(searchInput) searchInput.value = ''; 
-        filterGrid(card => parseInt(card.dataset.cleanDecade) === decade);
+        
+        // Show cards in this era
+        filterGrid(card => card.dataset.era === era);
 
+        // Build Sub-Year Buttons
         yearContainer.innerHTML = ''; 
-        const yearsInDecade = Array.from(yearsMap.get(decade)).sort();
+        const yearsInEra = Array.from(eraMap.get(era)).sort();
 
-        if (yearsInDecade.length > 0) {
-            const allDecadeBtn = document.createElement('button');
-            allDecadeBtn.className = 'filter-btn active';
-            if (decade === 1900) { allDecadeBtn.textContent = "All 1890s-1900s"; } 
-            else { allDecadeBtn.textContent = `All ${decade}s`; }
+        if (yearsInEra.length > 0) {
+            const allEraBtn = document.createElement('button');
+            allEraBtn.className = 'filter-btn active';
+            allEraBtn.textContent = `All ${era}`;
             
-            allDecadeBtn.onclick = () => {
-                setActiveBtn(yearContainer, allDecadeBtn);
-                filterGrid(card => parseInt(card.dataset.cleanDecade) === decade);
+            allEraBtn.onclick = () => {
+                setActiveBtn(yearContainer, allEraBtn);
+                filterGrid(card => card.dataset.era === era);
             };
-            yearContainer.appendChild(allDecadeBtn);
+            yearContainer.appendChild(allEraBtn);
 
-            yearsInDecade.forEach(year => {
+            yearsInEra.forEach(year => {
                 const yBtn = document.createElement('button');
                 yBtn.className = 'filter-btn';
                 yBtn.textContent = year;
@@ -155,14 +173,12 @@ if (bikeCards.length > 0 && decadeContainer) {
         }
     }
 
-    // D. SEARCH LOGIC (Restored)
+    // D. SEARCH LOGIC
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase();
-            
-            // Visual reset of decade buttons
-            const allDecadeBtns = decadeContainer.querySelectorAll('.filter-btn');
-            allDecadeBtns.forEach(b => b.classList.remove('active'));
+            const allEraBtns = decadeContainer.querySelectorAll('.filter-btn');
+            allEraBtns.forEach(b => b.classList.remove('active')); // Deactivate era buttons
             
             filterGrid(card => {
                 return card.dataset.searchText.includes(term);
