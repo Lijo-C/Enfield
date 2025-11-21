@@ -32,71 +32,119 @@ body, a, button { cursor: none; }
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
 
 /* =========================================
-   MENU BAR (Slimmer Version)
+   MENU BAR (Integrated Search)
 ========================================= */
 .filter-container {
     width: 100%;
     background-color: rgba(20, 20, 20, 0.95); 
     border-bottom: 1px solid #333;
-    
-    /* --- MODIFIED: Reduced Padding --- */
-    padding: 5px 0; 
+    padding: 10px 20px; /* Added side padding */
     
     position: sticky; 
     top: 0;
     z-index: 1000;
     backdrop-filter: blur(10px);
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px; /* Reduced gap */
 }
 
+/* This row holds the Buttons AND the Search Bar */
+.top-bar-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 15px;
+    width: 100%;
+    max-width: 1400px; /* Prevent stretching too wide */
+    margin: 0 auto;
+    overflow-x: auto; /* Allow scrolling if screen is tiny */
+    
+    /* Hide scrollbars */
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+}
+.top-bar-layout::-webkit-scrollbar { display: none; }
+
+/* The container for the JS buttons */
 .decade-nav {
     display: flex;
-    justify-content: center; 
-    flex-wrap: wrap;         
-    gap: 15px; 
-    padding: 5px 20px;
-    width: 100%;
+    flex-wrap: nowrap;
+    gap: 10px;
+    flex-shrink: 0; /* Don't squash buttons */
 }
 
+/* --- MODIFIED: RED GLASS SEARCH INPUT --- */
+.search-wrapper {
+    position: relative;
+    flex-shrink: 0;
+    width: 200px; /* Match button width roughly */
+}
+
+.search-input {
+    /* Match the .filter-btn style exactly */
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    letter-spacing: 1px;
+    
+    /* The "Active" Red Glass Effect */
+    background: var(--primary-color); 
+    border: 1px solid #ff4d4d;
+    color: white;
+    border-radius: 8px; /* Same rounded corners */
+    
+    padding: 10px 15px 10px 35px; /* Space for icon */
+    width: 100%;
+    
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 0 15px var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-input:focus {
+    outline: none;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 0 25px red;
+    transform: translateY(-1px);
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    pointer-events: none;
+    font-size: 1rem;
+}
+
+/* Dropdown Years */
 .year-nav {
     position: absolute;
     top: 100%; 
     left: 0;
     width: 100%;
-    
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
-    
     background-color: rgba(20, 20, 20, 0.98); 
     border-bottom: 1px solid #333;
-    
     height: auto;
     max-height: 0; 
     opacity: 0;
     padding: 0 20px;
     overflow: hidden;
-    
     transition: all 0.3s ease-out;
     z-index: 90;
     box-shadow: 0 10px 20px rgba(0,0,0,0.5);
 }
-
-.year-nav.is-active {
-    max-height: 200px; 
-    opacity: 1;
-    padding: 15px 20px;
-}
+.year-nav.is-active { max-height: 200px; opacity: 1; padding: 15px 20px; }
 
 /* 3D GLASS BUTTONS */
 .filter-btn {
     font-family: var(--font-heading);
-    font-size: 0.9rem; /* Slightly smaller text for slim bar */
+    font-size: 1rem;
     letter-spacing: 1px;
     color: #DDD;
     background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
@@ -105,14 +153,12 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
     border-right: 1px solid rgba(0,0,0,0.5);
     border-bottom: 1px solid rgba(0,0,0,0.5);
     border-radius: 8px; 
-    
-    /* --- MODIFIED: Smaller padding --- */
-    padding: 6px 15px;
-    
+    padding: 10px 20px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.3); 
     cursor: pointer;
     transition: all 0.2s ease-out;
     white-space: nowrap; 
+    flex-shrink: 0;
 }
 .filter-btn:hover {
     transform: translateY(-2px);
@@ -129,8 +175,8 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
 }
 
 .year-nav .filter-btn {
-    font-size: 0.85rem;
-    padding: 5px 12px;
+    font-size: 0.9rem;
+    padding: 6px 15px;
     background: transparent;
     border: 1px solid #444;
     box-shadow: none;
@@ -147,10 +193,12 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
 }
 
 /* =========================================
-   HEADER
+   HEADER (Hero Image - INCREASED SIZE)
 ========================================= */
 header {
-    height: 30vh; 
+    /* --- MODIFIED: Increased Height --- */
+    height: 60vh; 
+    
     display: flex;
     flex-direction: column;
     justify-content: flex-end; 
@@ -197,75 +245,15 @@ header h3 {
 }
 
 /* =========================================
-   SEARCH SECTION (Slimmer)
-========================================= */
-.search-section {
-    width: 100%;
-    
-    /* --- MODIFIED: Reduced Padding --- */
-    padding: 10px 0 5px;
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: transparent; 
-    position: relative;
-    z-index: 5;
-}
-
-.search-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 400px;
-}
-
-.search-input {
-    background: #000000; 
-    border: 1px solid #333;
-    border-radius: 30px;
-    color: white;
-    font-family: var(--font-body);
-    font-size: 1rem;
-    padding: 10px 20px 10px 45px; 
-    width: 100%;
-    transition: all 0.3s ease;
-}
-
-.search-input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 15px rgba(123, 10, 10, 0.3);
-}
-
-.search-icon {
-    position: absolute;
-    left: 15px; 
-    top: 50%; 
-    transform: translateY(-50%);
-    color: #888;
-    pointer-events: none;
-    font-size: 1.2em;
-}
-
-.search-separator {
-    width: 50%;
-    height: 2px;
-    background: var(--primary-color); 
-    
-    /* --- MODIFIED: Reduced Margin --- */
-    margin-top: 15px;
-    
-    border: none;
-    opacity: 0.7;
-}
-
-/* =========================================
-   CATALOG GRID
+   CATALOG GRID (Reduced Gap)
 ========================================= */
 .catalog-grid {
     display: grid;
     gap: 30px;
-    padding: 50px 2%; 
+    
+    /* --- MODIFIED: Reduced Top Padding --- */
+    padding: 20px 2% 50px; 
+    
     max-width: none; 
     margin: 0;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -284,11 +272,9 @@ header h3 {
     overflow: hidden;
     text-decoration: none;
     color: var(--text-color);
-    
     display: flex; 
     flex-direction: column; 
     aspect-ratio: 4 / 3;    
-    
     opacity: 0; 
     animation: fadeInUp 0.5s ease-out forwards;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease-out;

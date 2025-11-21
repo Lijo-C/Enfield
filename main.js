@@ -56,7 +56,7 @@ if (scrollTopBtn) {
     });
 }
 
-// --- 4. ADVANCED FILTERING (CUSTOM 25-YEAR INTERVALS) ---
+// --- 4. ADVANCED FILTERING ---
 const bikeCards = document.querySelectorAll('.bike-card');
 const decadeContainer = document.getElementById('decade-filters');
 const yearContainer = document.getElementById('year-filters');
@@ -64,7 +64,7 @@ const searchInput = document.getElementById('searchInput');
 
 if (bikeCards.length > 0 && decadeContainer) {
     
-    // A. EXTRACT AND GROUP DATA
+    // A. EXTRACT DATA
     const eraMap = new Map(); 
 
     bikeCards.forEach(card => {
@@ -72,13 +72,9 @@ if (bikeCards.length > 0 && decadeContainer) {
         let year = parseInt(yearRaw.match(/\d{4}/)[0]); 
         
         let eraLabel = "";
-        
-        // === NEW LOGIC: 1890-1900, then 25-year chunks starting 1901 ===
         if (year <= 1900) {
             eraLabel = "1890 - 1900";
         } else {
-            // Calculate chunk based on 1901 start
-            // 1901-1925, 1926-1950, etc.
             let offset = year - 1901;
             let chunkIndex = Math.floor(offset / 25);
             let startYear = 1901 + (chunkIndex * 25);
@@ -91,20 +87,18 @@ if (bikeCards.length > 0 && decadeContainer) {
         }
         eraMap.get(eraLabel).add(year);
         
-        // Store data on card
         card.dataset.era = eraLabel;
         card.dataset.cleanYear = year;
         card.dataset.searchText = card.innerText.toLowerCase();
     });
 
-    // Sort Eras using the first year in the label
     const sortedEras = Array.from(eraMap.keys()).sort((a, b) => {
         let numA = parseInt(a.match(/\d{4}/)[0]);
         let numB = parseInt(b.match(/\d{4}/)[0]);
         return numA - numB;
     });
 
-    // B. BUILD ERA BUTTONS
+    // B. BUILD BUTTONS
     const allBtn = document.createElement('button');
     allBtn.className = 'filter-btn active';
     allBtn.textContent = 'All Time';
@@ -119,7 +113,7 @@ if (bikeCards.length > 0 && decadeContainer) {
         decadeContainer.appendChild(btn);
     });
 
-    // C. FILTER FUNCTIONS
+    // C. FILTER
     function filterGrid(matchFunction) {
         bikeCards.forEach(card => {
             if (matchFunction(card)) {
@@ -143,10 +137,8 @@ if (bikeCards.length > 0 && decadeContainer) {
     function filterByEra(era, clickedBtn) {
         setActiveBtn(decadeContainer, clickedBtn);
         if(searchInput) searchInput.value = ''; 
-        
         filterGrid(card => card.dataset.era === era);
 
-        // Build Sub-Year Buttons
         yearContainer.innerHTML = ''; 
         const yearsInEra = Array.from(eraMap.get(era)).sort();
 
@@ -175,7 +167,7 @@ if (bikeCards.length > 0 && decadeContainer) {
         }
     }
 
-    // D. SEARCH LOGIC
+    // D. SEARCH
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase();
