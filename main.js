@@ -1,18 +1,11 @@
 // main.js
 
 // --- 0. BACK BUTTON FIX (BF CACHE) ---
-// This ensures the page is always visible when you hit "Back"
 window.addEventListener('pageshow', (event) => {
-    // Remove the fade-out class so the page is visible
     document.body.classList.remove('fade-out');
-    
-    // Also reset the cursor hover state just in case
     const cursorFollower = document.querySelector('.cursor-follower');
-    if (cursorFollower) {
-        cursorFollower.classList.remove('is-hovering');
-    }
+    if (cursorFollower) cursorFollower.classList.remove('is-hovering');
 });
-
 
 // --- 1. CURSOR & HOVER LOGIC ---
 const cursorDot = document.querySelector('.cursor-dot');
@@ -38,33 +31,15 @@ allLinks.forEach(link => {
 // --- 2. PAGE TRANSITION LOGIC ---
 allLinks.forEach(link => {
     if (link.tagName !== 'A') return;
-    
     link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
-        
-        // Don't transition for these types of links
-        if (!href || 
-            href.startsWith('#') || 
-            href.startsWith('mailto:') || 
-            href.startsWith('tel:') || 
-            link.target === '_blank' || 
-            e.ctrlKey || 
-            e.metaKey ||
-            // Also ignore Fancybox image links so they open immediately
-            link.hasAttribute('data-fancybox')) {
+        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || link.target === '_blank' || e.ctrlKey || e.metaKey || link.hasAttribute('data-fancybox')) {
             return;
         }
-
         e.preventDefault();
-        
-        // Start the fade out
         cursorFollower.classList.remove('is-hovering');
         document.body.classList.add('fade-out');
-        
-        // Wait for animation then go
-        setTimeout(() => {
-            window.location.href = href;
-        }, 300);
+        setTimeout(() => { window.location.href = href; }, 300);
     });
 });
 
@@ -72,11 +47,8 @@ allLinks.forEach(link => {
 const scrollTopBtn = document.getElementById('scrollTopButton');
 if (scrollTopBtn) {
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            scrollTopBtn.classList.add('is-visible');
-        } else {
-            scrollTopBtn.classList.remove('is-visible');
-        }
+        if (window.scrollY > 300) { scrollTopBtn.classList.add('is-visible'); } 
+        else { scrollTopBtn.classList.remove('is-visible'); }
     });
     scrollTopBtn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -84,11 +56,11 @@ if (scrollTopBtn) {
     });
 }
 
-
-// --- 4. ADVANCED DATE FILTERING SYSTEM (Grouped 1890-1900) ---
+// --- 4. ADVANCED FILTERING (DATE + SEARCH) ---
 const bikeCards = document.querySelectorAll('.bike-card');
 const decadeContainer = document.getElementById('decade-filters');
 const yearContainer = document.getElementById('year-filters');
+const searchInput = document.getElementById('searchInput');
 
 if (bikeCards.length > 0 && decadeContainer) {
     
@@ -98,20 +70,17 @@ if (bikeCards.length > 0 && decadeContainer) {
     bikeCards.forEach(card => {
         let yearRaw = card.getAttribute('data-year').toString();
         let year = parseInt(yearRaw.match(/\d{4}/)[0]); 
-        
-        // === MERGE 1890s and 1900s ===
         let decade = Math.floor(year / 10) * 10; 
-        if (decade < 1910) {
-            decade = 1900; 
-        }
+        if (decade < 1910) { decade = 1900; }
 
-        if (!yearsMap.has(decade)) {
-            yearsMap.set(decade, new Set());
-        }
+        if (!yearsMap.has(decade)) { yearsMap.set(decade, new Set()); }
         yearsMap.get(decade).add(year);
         
         card.dataset.cleanDecade = decade;
         card.dataset.cleanYear = year;
+        
+        // Store search text (Name + Category + Engine)
+        card.dataset.searchText = card.innerText.toLowerCase();
     });
 
     const sortedDecades = Array.from(yearsMap.keys()).sort((a, b) => a - b);
@@ -126,14 +95,8 @@ if (bikeCards.length > 0 && decadeContainer) {
     sortedDecades.forEach(decade => {
         const btn = document.createElement('button');
         btn.className = 'filter-btn';
-        
-        // Custom Label
-        if (decade === 1900) {
-            btn.textContent = "1890s-1900s";
-        } else {
-            btn.textContent = `${decade}s`;
-        }
-
+        if (decade === 1900) { btn.textContent = "1890s-1900s"; } 
+        else { btn.textContent = `${decade}s`; }
         btn.onclick = () => filterByDecade(decade, btn);
         decadeContainer.appendChild(btn);
     });
@@ -152,14 +115,16 @@ if (bikeCards.length > 0 && decadeContainer) {
     }
 
     function resetFilter(clickedBtn) {
-        setActiveBtn(decadeContainer, clickedBtn);
+        if (clickedBtn) setActiveBtn(decadeContainer, clickedBtn);
         yearContainer.classList.remove('is-active'); 
         yearContainer.innerHTML = ''; 
+        searchInput.value = ''; // Clear search on reset
         filterGrid(() => true); 
     }
 
     function filterByDecade(decade, clickedBtn) {
         setActiveBtn(decadeContainer, clickedBtn);
+        searchInput.value = ''; // Clear search when clicking buttons
         filterGrid(card => parseInt(card.dataset.cleanDecade) === decade);
 
         yearContainer.innerHTML = ''; 
@@ -168,12 +133,8 @@ if (bikeCards.length > 0 && decadeContainer) {
         if (yearsInDecade.length > 0) {
             const allDecadeBtn = document.createElement('button');
             allDecadeBtn.className = 'filter-btn active';
-            
-            if (decade === 1900) {
-                allDecadeBtn.textContent = "All 1890s-1900s";
-            } else {
-                allDecadeBtn.textContent = `All ${decade}s`;
-            }
+            if (decade === 1900) { allDecadeBtn.textContent = "All 1890s-1900s"; } 
+            else { allDecadeBtn.textContent = `All ${decade}s`; }
             
             allDecadeBtn.onclick = () => {
                 setActiveBtn(yearContainer, allDecadeBtn);
@@ -191,9 +152,24 @@ if (bikeCards.length > 0 && decadeContainer) {
                 };
                 yearContainer.appendChild(yBtn);
             });
-
             yearContainer.classList.add('is-active'); 
         }
+    }
+
+    // D. SEARCH LOGIC
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            
+            // Reset button states visually (optional)
+            const allDecadeBtns = decadeContainer.querySelectorAll('.filter-btn');
+            allDecadeBtns.forEach(b => b.classList.remove('active'));
+            
+            filterGrid(card => {
+                // Simple logic: Does the card text contain the search term?
+                return card.dataset.searchText.includes(term);
+            });
+        });
     }
 
     function setActiveBtn(container, activeBtn) {
