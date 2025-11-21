@@ -1,5 +1,19 @@
 // main.js
 
+// --- 0. BACK BUTTON FIX (BF CACHE) ---
+// This ensures the page is always visible when you hit "Back"
+window.addEventListener('pageshow', (event) => {
+    // Remove the fade-out class so the page is visible
+    document.body.classList.remove('fade-out');
+    
+    // Also reset the cursor hover state just in case
+    const cursorFollower = document.querySelector('.cursor-follower');
+    if (cursorFollower) {
+        cursorFollower.classList.remove('is-hovering');
+    }
+});
+
+
 // --- 1. CURSOR & HOVER LOGIC ---
 const cursorDot = document.querySelector('.cursor-dot');
 const cursorFollower = document.querySelector('.cursor-follower');
@@ -24,14 +38,30 @@ allLinks.forEach(link => {
 // --- 2. PAGE TRANSITION LOGIC ---
 allLinks.forEach(link => {
     if (link.tagName !== 'A') return;
+    
     link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
-        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || link.target === '_blank' || e.ctrlKey || e.metaKey) {
+        
+        // Don't transition for these types of links
+        if (!href || 
+            href.startsWith('#') || 
+            href.startsWith('mailto:') || 
+            href.startsWith('tel:') || 
+            link.target === '_blank' || 
+            e.ctrlKey || 
+            e.metaKey ||
+            // Also ignore Fancybox image links so they open immediately
+            link.hasAttribute('data-fancybox')) {
             return;
         }
+
         e.preventDefault();
+        
+        // Start the fade out
         cursorFollower.classList.remove('is-hovering');
         document.body.classList.add('fade-out');
+        
+        // Wait for animation then go
         setTimeout(() => {
             window.location.href = href;
         }, 300);
