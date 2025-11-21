@@ -56,7 +56,7 @@ if (scrollTopBtn) {
     });
 }
 
-// --- 4. ADVANCED FILTERING (30-YEAR GROUPS + SEARCH) ---
+// --- 4. ADVANCED FILTERING (CUSTOM 25-YEAR INTERVALS) ---
 const bikeCards = document.querySelectorAll('.bike-card');
 const decadeContainer = document.getElementById('decade-filters');
 const yearContainer = document.getElementById('year-filters');
@@ -65,7 +65,7 @@ const searchInput = document.getElementById('searchInput');
 if (bikeCards.length > 0 && decadeContainer) {
     
     // A. EXTRACT AND GROUP DATA
-    const eraMap = new Map(); // Stores Era String -> [Years]
+    const eraMap = new Map(); 
 
     bikeCards.forEach(card => {
         let yearRaw = card.getAttribute('data-year').toString();
@@ -73,14 +73,17 @@ if (bikeCards.length > 0 && decadeContainer) {
         
         let eraLabel = "";
         
-        // LOGIC: Grouping 30 Years
-        if (year < 1910) {
-            eraLabel = "1890s-1900s";
+        // === NEW LOGIC: 1890-1900, then 25-year chunks starting 1901 ===
+        if (year <= 1900) {
+            eraLabel = "1890 - 1900";
         } else {
-            // 1910, 1940, 1970...
-            let startYear = 1910 + Math.floor((year - 1910) / 30) * 30;
-            let endYear = startYear + 29;
-            eraLabel = `${startYear}-${endYear}`;
+            // Calculate chunk based on 1901 start
+            // 1901-1925, 1926-1950, etc.
+            let offset = year - 1901;
+            let chunkIndex = Math.floor(offset / 25);
+            let startYear = 1901 + (chunkIndex * 25);
+            let endYear = startYear + 24;
+            eraLabel = `${startYear} - ${endYear}`;
         }
 
         if (!eraMap.has(eraLabel)) {
@@ -94,7 +97,7 @@ if (bikeCards.length > 0 && decadeContainer) {
         card.dataset.searchText = card.innerText.toLowerCase();
     });
 
-    // Sort Eras (Manual sort to keep order right)
+    // Sort Eras using the first year in the label
     const sortedEras = Array.from(eraMap.keys()).sort((a, b) => {
         let numA = parseInt(a.match(/\d{4}/)[0]);
         let numB = parseInt(b.match(/\d{4}/)[0]);
@@ -141,7 +144,6 @@ if (bikeCards.length > 0 && decadeContainer) {
         setActiveBtn(decadeContainer, clickedBtn);
         if(searchInput) searchInput.value = ''; 
         
-        // Show cards in this era
         filterGrid(card => card.dataset.era === era);
 
         // Build Sub-Year Buttons
@@ -178,7 +180,7 @@ if (bikeCards.length > 0 && decadeContainer) {
         searchInput.addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase();
             const allEraBtns = decadeContainer.querySelectorAll('.filter-btn');
-            allEraBtns.forEach(b => b.classList.remove('active')); // Deactivate era buttons
+            allEraBtns.forEach(b => b.classList.remove('active')); 
             
             filterGrid(card => {
                 return card.dataset.searchText.includes(term);

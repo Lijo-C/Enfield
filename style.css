@@ -59,9 +59,7 @@ header::before {
 }
 header h1, header p { animation: fadeInDown 1s ease-out; }
 
-/* =========================================
-   MENU BAR (Fixed Layout)
-========================================= */
+/* MENU BAR */
 .filter-container {
     width: 100%;
     background-color: rgba(20, 20, 20, 0.95); 
@@ -75,20 +73,18 @@ header h1, header p { animation: fadeInDown 1s ease-out; }
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px; /* More space for 3D buttons */
+    gap: 15px; 
 }
 
-/* Decade/Era Row */
 .decade-nav {
     display: flex;
-    justify-content: center; /* Center them since there are fewer now */
-    flex-wrap: wrap;         /* Allow wrapping if needed on tiny screens */
+    justify-content: center; 
+    flex-wrap: wrap;         
     gap: 15px; 
     padding: 5px 20px;
     width: 100%;
 }
 
-/* Year Row (Hidden initially) */
 .year-nav {
     display: flex;
     justify-content: center;
@@ -111,45 +107,38 @@ header h1, header p { animation: fadeInDown 1s ease-out; }
     padding-bottom: 10px;
 }
 
-/* --- NEW: 3D GLASS RECTANGLE BUTTONS --- */
+/* 3D GLASS RECTANGLE BUTTONS */
 .filter-btn {
     font-family: var(--font-heading);
     font-size: 1rem;
     letter-spacing: 1px;
     color: #DDD;
-    
-    /* 3D Glass Effect */
     background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-    border-top: 1px solid rgba(255,255,255,0.4); /* Highlight top edge */
+    border-top: 1px solid rgba(255,255,255,0.4);
     border-left: 1px solid rgba(255,255,255,0.2);
     border-right: 1px solid rgba(0,0,0,0.5);
-    border-bottom: 1px solid rgba(0,0,0,0.5); /* Shadow bottom edge */
-    
-    border-radius: 8px; /* Rounded Rectangle */
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+    border-radius: 8px; 
     padding: 10px 20px;
-    
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3); /* Drop shadow */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3); 
     cursor: pointer;
     transition: all 0.2s ease-out;
     white-space: nowrap; 
 }
-
 .filter-btn:hover {
     transform: translateY(-2px);
     background: linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
-    box-shadow: 0 6px 10px rgba(0,0,0,0.5), 0 0 10px rgba(255,255,255,0.1); /* Glow */
+    box-shadow: 0 6px 10px rgba(0,0,0,0.5), 0 0 10px rgba(255,255,255,0.1); 
     color: white;
 }
-
 .filter-btn.active {
-    background: var(--primary-color); /* Solid red active */
-    border-color: #ff4d4d; /* Lighter red border */
+    background: var(--primary-color); 
+    border-color: #ff4d4d; 
     color: white;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 0 15px var(--primary-color); /* Inner shadow + Outer Glow */
-    transform: translateY(1px); /* Press down effect */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 0 15px var(--primary-color); 
+    transform: translateY(1px); 
 }
 
-/* Sub-years (Simpler style) */
 .year-nav .filter-btn {
     font-size: 0.9rem;
     padding: 6px 15px;
@@ -183,7 +172,7 @@ header h1, header p { animation: fadeInDown 1s ease-out; }
 .search-input {
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid #444;
-    border-radius: 8px; /* Matches buttons */
+    border-radius: 8px; 
     color: white;
     font-family: var(--font-body);
     font-size: 0.9rem;
@@ -208,16 +197,28 @@ header h1, header p { animation: fadeInDown 1s ease-out; }
 }
 
 /* =========================================
-   CATALOG GRID
+   CATALOG GRID (4-Column Full Width)
 ========================================= */
 .catalog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 30px;
-    padding: 50px 20px; 
-    max-width: 1200px;
-    margin: 0 auto;
+    
+    /* --- MODIFIED: Full Width with Small Margin --- */
+    padding: 50px 2%; 
+    max-width: none; /* Removed specific width limit */
+    margin: 0;
+    
+    /* Responsive Logic */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
+
+/* On large screens, force 4 columns */
+@media (min-width: 1200px) {
+    .catalog-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
 .bike-card {
     background-color: #252525;
     border: 2px solid #959595;
@@ -234,7 +235,17 @@ header h1, header p { animation: fadeInDown 1s ease-out; }
 .bike-card.is-hidden { opacity: 0; transform: scale(0.9); pointer-events: none; }
 .bike-card.is-gone { display: none; }
 .bike-card:hover { transform: translateY(-8px); border-color: var(--primary-color); box-shadow: 0 0 25px rgba(123, 10, 10, 0.5); }
-.bike-card img { width: 100%; height: 133px; object-fit: cover; display: block; transition: transform 0.3s ease-out; }
+
+.bike-card img { 
+    width: 100%; 
+    
+    /* --- MODIFIED: Height for 4-column layout --- */
+    height: 220px; 
+    
+    object-fit: cover; 
+    display: block; 
+    transition: transform 0.3s ease-out; 
+}
 .bike-card:hover img { transform: scale(1.05); }
 
 .card-details { padding: 15px; }
