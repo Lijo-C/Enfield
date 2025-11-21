@@ -32,14 +32,12 @@ body, a, button { cursor: none; }
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
 
 /* =========================================
-   MENU BAR (Full Width Layout)
+   MENU BAR (Slim & Full Width Search)
 ========================================= */
 .filter-container {
     width: 100%;
     background-color: rgba(20, 20, 20, 0.95); 
     border-bottom: 1px solid #333;
-    
-    /* Tight padding to keep height low */
     padding: 5px 0; 
     
     position: sticky; 
@@ -52,78 +50,72 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
 .top-bar-layout {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Spread items out */
-    flex-wrap: nowrap;
+    justify-content: center; 
+    flex-wrap: wrap;         
     
     width: 100%;
     gap: 10px;
-    padding: 0 20px; /* Give edges some breathing room */
+    padding: 0 15px;
 }
 
-/* Button Container (Grows to fill space) */
+/* Button Container */
 .decade-nav {
     display: flex;
-    flex: 1;         /* --- MODIFIED: Take up all remaining space --- */
-    flex-wrap: nowrap;
-    gap: 10px;
-    overflow-x: auto; /* Still scrollable on tiny mobile screens */
-    
-    /* Hide scrollbars */
-    scrollbar-width: none; 
-    -ms-overflow-style: none;
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 8px;        
 }
-.decade-nav::-webkit-scrollbar { display: none; }
 
-/* --- MODIFIED: WIDER SEARCH --- */
+/* --- MODIFIED: WIDE BUT SLIM SEARCH --- */
 .search-wrapper {
     position: relative;
-    flex-shrink: 0;
     
-    /* Dynamic Width: 25% of the bar */
-    width: 25%; 
-    min-width: 200px; /* But don't get too small */
+    /* This makes it fill the remaining space */
+    flex-grow: 1; 
+    max-width: 300px; /* But cap it so it's not too wide */
+    min-width: 150px; /* Ensure it doesn't vanish on mobile */
     
     margin-left: 5px;
 }
 
 .search-input {
     font-family: var(--font-heading);
-    font-size: 1rem;
+    font-size: 0.9rem; 
     letter-spacing: 1px;
     
-    /* Active Red Glass Style */
     background: var(--primary-color); 
     border: 1px solid #ff4d4d;
     color: white;
-    border-radius: 8px; 
+    border-radius: 6px; 
     
-    padding: 10px 15px 10px 35px; 
+    /* --- MODIFIED: Reduced Padding for Slim Height --- */
+    padding: 6px 10px 6px 30px; 
+    
     width: 100%;
-    
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
     transition: all 0.3s ease;
 }
 
 .search-input::placeholder {
     color: rgba(255, 255, 255, 0.7);
     font-family: var(--font-body); 
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 .search-input:focus {
     outline: none;
-    box-shadow: 0 0 15px var(--primary-color), inset 0 0 10px rgba(0,0,0,0.3);
+    box-shadow: 0 0 10px var(--primary-color), inset 0 0 5px rgba(0,0,0,0.3);
     transform: translateY(-1px);
 }
 
 .search-icon {
     position: absolute;
-    left: 12px;
+    left: 8px;
     top: 50%;
     transform: translateY(-50%);
     color: white;
     pointer-events: none;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 /* Dropdown Years */
@@ -135,7 +127,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
     background-color: rgba(20, 20, 20, 0.98); 
     border-bottom: 1px solid #333;
     height: auto;
@@ -147,37 +139,34 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
     z-index: 90;
     box-shadow: 0 10px 20px rgba(0,0,0,0.5);
 }
-.year-nav.is-active { max-height: 200px; opacity: 1; padding: 15px 20px; }
+.year-nav.is-active { max-height: 200px; opacity: 1; padding: 10px 20px; }
 
-/* --- MODIFIED: STRETCHY BUTTONS --- */
+/* COMPACT 3D GLASS BUTTONS */
 .filter-btn {
     font-family: var(--font-heading);
-    font-size: 0.9rem;
-    letter-spacing: 1px;
+    font-size: 0.85rem; 
+    letter-spacing: 0.5px;
     color: #DDD;
+    
     background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
     border-top: 1px solid rgba(255,255,255,0.4);
     border-left: 1px solid rgba(255,255,255,0.2);
     border-right: 1px solid rgba(0,0,0,0.5);
     border-bottom: 1px solid rgba(0,0,0,0.5);
-    border-radius: 8px; 
+    border-radius: 6px; 
     
-    padding: 10px 5px; /* Less side padding, flex handles width */
+    padding: 6px 12px;
     
-    /* Grow to fill space evenly */
-    flex: 1; 
-    text-align: center;
-    
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3); 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3); 
     cursor: pointer;
     transition: all 0.2s ease-out;
     white-space: nowrap; 
 }
 
 .filter-btn:hover {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     background: linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
-    box-shadow: 0 6px 10px rgba(0,0,0,0.5), 0 0 10px rgba(255,255,255,0.1); 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5), 0 0 8px rgba(255,255,255,0.1); 
     color: white;
 }
 
@@ -185,15 +174,13 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
     background: var(--primary-color); 
     border-color: #ff4d4d; 
     color: white;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 0 15px var(--primary-color); 
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5), 0 0 10px var(--primary-color); 
     transform: translateY(1px); 
 }
 
-/* Sub-menu buttons (Keep small) */
 .year-nav .filter-btn {
-    flex: initial; /* Don't stretch these */
-    font-size: 0.9rem;
-    padding: 6px 15px;
+    font-size: 0.8rem;
+    padding: 4px 10px;
     background: transparent;
     border: 1px solid #444;
     box-shadow: none;
@@ -206,7 +193,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
     background: white;
     color: black;
     border-color: white;
-    box-shadow: 0 0 10px white;
+    box-shadow: 0 0 8px white;
 }
 
 /* =========================================
@@ -260,7 +247,7 @@ header h3 {
 }
 
 /* =========================================
-   CATALOG GRID
+   CATALOG GRID (4 Columns 4:3)
 ========================================= */
 .catalog-grid {
     display: grid;
