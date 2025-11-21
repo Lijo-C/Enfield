@@ -197,7 +197,7 @@ header h1, header p { animation: fadeInDown 1s ease-out; }
 }
 
 /* =========================================
-   CATALOG GRID
+   CATALOG GRID (4 Columns, 4:3 Entire Card)
 ========================================= */
 .catalog-grid {
     display: grid;
@@ -205,12 +205,10 @@ header h1, header p { animation: fadeInDown 1s ease-out; }
     padding: 50px 2%; 
     max-width: none; 
     margin: 0;
-    /* Responsive: At least 250px wide, creating ~4 cols on desktop */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
-/* Large screens: Enforce 4 columns */
-@media (min-width: 1200px) {
+@media (min-width: 1100px) {
     .catalog-grid {
         grid-template-columns: repeat(4, 1fr);
     }
@@ -223,12 +221,18 @@ header h1, header p { animation: fadeInDown 1s ease-out; }
     overflow: hidden;
     text-decoration: none;
     color: var(--text-color);
-    display: block;
+    
+    /* --- MODIFIED: FLEXBOX + ASPECT RATIO --- */
+    display: flex; 
+    flex-direction: column; /* Stack image on top of text */
+    aspect-ratio: 4 / 3;    /* Force the whole card to be 4:3 */
+    
     opacity: 0; 
     animation: fadeInUp 0.5s ease-out forwards;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease-out;
     will-change: transform;
 }
+
 .bike-card.is-hidden { opacity: 0; transform: scale(0.9); pointer-events: none; }
 .bike-card.is-gone { display: none; }
 .bike-card:hover { transform: translateY(-8px); border-color: var(--primary-color); box-shadow: 0 0 25px rgba(123, 10, 10, 0.5); }
@@ -236,19 +240,26 @@ header h1, header p { animation: fadeInDown 1s ease-out; }
 .bike-card img { 
     width: 100%; 
     
-    /* --- MODIFIED: 4:3 Aspect Ratio --- */
-    height: auto; 
-    aspect-ratio: 4 / 3;
-    
+    /* --- MODIFIED: FILL REMAINING SPACE --- */
+    height: auto;
+    flex: 1; /* Grow to fill space */
+    min-height: 0; /* Crucial for flex containers */
     object-fit: cover; 
+    
     display: block; 
     transition: transform 0.3s ease-out; 
 }
 .bike-card:hover img { transform: scale(1.05); }
 
-.card-details { padding: 15px; }
-.card-details h2 { margin-top: 0; font-size: 1.1em; color: var(--secondary-color); }
-.category, .engine-info, .year { font-size: 0.8em; color: #AAAAAA; margin: 3px 0; }
+.card-details { 
+    padding: 12px; /* Reduced slightly for tighter fit */
+    flex-shrink: 0; /* Prevent text from squashing */
+    background-color: #252525;
+    z-index: 1; /* Keep text on top */
+}
+
+.card-details h2 { margin-top: 0; margin-bottom: 5px; font-size: 1.1em; color: var(--secondary-color); }
+.category, .engine-info, .year { font-size: 0.8em; color: #AAAAAA; margin: 2px 0; }
 
 /* DETAIL PAGE */
 .detail-container { max-width: 1200px; margin: 10px auto 50px; padding: 10px; }
