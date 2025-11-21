@@ -1,13 +1,13 @@
 // main.js
 
-// --- 0. BACK BUTTON FIX (BF CACHE) ---
+// --- 0. BACK BUTTON FIX ---
 window.addEventListener('pageshow', (event) => {
     document.body.classList.remove('fade-out');
     const cursorFollower = document.querySelector('.cursor-follower');
     if (cursorFollower) cursorFollower.classList.remove('is-hovering');
 });
 
-// --- 1. CURSOR & HOVER LOGIC ---
+// --- 1. CURSOR & HOVER ---
 const cursorDot = document.querySelector('.cursor-dot');
 const cursorFollower = document.querySelector('.cursor-follower');
 const allLinks = document.querySelectorAll('a, button, .bike-card');
@@ -28,7 +28,7 @@ allLinks.forEach(link => {
     });
 });
 
-// --- 2. PAGE TRANSITION LOGIC ---
+// --- 2. PAGE TRANSITIONS ---
 allLinks.forEach(link => {
     if (link.tagName !== 'A') return;
     link.addEventListener('click', (e) => {
@@ -43,7 +43,7 @@ allLinks.forEach(link => {
     });
 });
 
-// --- 3. SCROLL TO TOP LOGIC ---
+// --- 3. SCROLL TO TOP ---
 const scrollTopBtn = document.getElementById('scrollTopButton');
 if (scrollTopBtn) {
     window.addEventListener('scroll', () => {
@@ -56,10 +56,11 @@ if (scrollTopBtn) {
     });
 }
 
-// --- 4. ADVANCED FILTERING (MENU + MERGED 1900s) ---
+// --- 4. ADVANCED FILTERING + SEARCH ---
 const bikeCards = document.querySelectorAll('.bike-card');
 const decadeContainer = document.getElementById('decade-filters');
 const yearContainer = document.getElementById('year-filters');
+const searchInput = document.getElementById('searchInput');
 
 if (bikeCards.length > 0 && decadeContainer) {
     
@@ -70,7 +71,6 @@ if (bikeCards.length > 0 && decadeContainer) {
         let yearRaw = card.getAttribute('data-year').toString();
         let year = parseInt(yearRaw.match(/\d{4}/)[0]); 
         
-        // Merge 1890s and 1900s
         let decade = Math.floor(year / 10) * 10; 
         if (decade < 1910) { decade = 1900; }
 
@@ -79,6 +79,7 @@ if (bikeCards.length > 0 && decadeContainer) {
         
         card.dataset.cleanDecade = decade;
         card.dataset.cleanYear = year;
+        card.dataset.searchText = card.innerText.toLowerCase();
     });
 
     const sortedDecades = Array.from(yearsMap.keys()).sort((a, b) => a - b);
@@ -116,11 +117,13 @@ if (bikeCards.length > 0 && decadeContainer) {
         if (clickedBtn) setActiveBtn(decadeContainer, clickedBtn);
         yearContainer.classList.remove('is-active'); 
         yearContainer.innerHTML = ''; 
+        if(searchInput) searchInput.value = ''; 
         filterGrid(() => true); 
     }
 
     function filterByDecade(decade, clickedBtn) {
         setActiveBtn(decadeContainer, clickedBtn);
+        if(searchInput) searchInput.value = ''; 
         filterGrid(card => parseInt(card.dataset.cleanDecade) === decade);
 
         yearContainer.innerHTML = ''; 
@@ -150,6 +153,21 @@ if (bikeCards.length > 0 && decadeContainer) {
             });
             yearContainer.classList.add('is-active'); 
         }
+    }
+
+    // D. SEARCH LOGIC (Restored)
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            
+            // Visual reset of decade buttons
+            const allDecadeBtns = decadeContainer.querySelectorAll('.filter-btn');
+            allDecadeBtns.forEach(b => b.classList.remove('active'));
+            
+            filterGrid(card => {
+                return card.dataset.searchText.includes(term);
+            });
+        });
     }
 
     function setActiveBtn(container, activeBtn) {

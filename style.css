@@ -14,7 +14,6 @@ body {
     color: var(--text-color);
     transition: opacity 0.3s ease-out;
     
-    /* Background settings */
     background-image: url('images/bg.png'); 
     background-color: var(--background-color);
     background-size: cover;
@@ -54,30 +53,34 @@ header::before {
 }
 header h1, header p { animation: fadeInDown 1s ease-out; }
 
-/* MENU BAR (Horizontal Filters Only) */
+/* =========================================
+   MENU BAR (Updated)
+========================================= */
 .filter-container {
     width: 100%;
     background-color: rgba(20, 20, 20, 0.95); 
     border-top: 1px solid #333;
     border-bottom: 1px solid #333;
-    padding: 10px 0;
+    padding: 15px 0;
+    
     position: sticky; 
     top: 0;
     z-index: 100;
     backdrop-filter: blur(10px);
+    
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
 }
 
-/* Decade Row */
+/* --- 1. DECADE ROW --- */
 .decade-nav {
     display: flex;
-    justify-content: center; 
-    flex-wrap: nowrap;       
-    overflow-x: auto;        
-    gap: 15px;
+    justify-content: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 12px; /* Spacing between pills */
     padding: 5px 20px;
     width: 100%;
     scrollbar-width: none; 
@@ -85,13 +88,14 @@ header h1, header p { animation: fadeInDown 1s ease-out; }
 }
 .decade-nav::-webkit-scrollbar { display: none; }
 
-/* Year Row */
+/* --- 2. YEAR ROW --- */
 .year-nav {
     display: flex;
     justify-content: center;
-    flex-wrap: nowrap;       
-    overflow-x: auto;        
+    flex-wrap: nowrap;
+    overflow-x: auto;
     gap: 10px;
+    
     height: 0; 
     opacity: 0;
     margin-top: 0;
@@ -102,41 +106,107 @@ header h1, header p { animation: fadeInDown 1s ease-out; }
     -ms-overflow-style: none;
 }
 .year-nav::-webkit-scrollbar { display: none; }
+
 .year-nav.is-active {
-    height: 45px; 
+    height: 50px; /* Enough height for pills */
     opacity: 1;
     margin-top: 5px;
-    padding-bottom: 5px;
     border-top: 1px solid #333; 
-    padding-top: 10px;
+    padding-top: 15px;
 }
 
-/* Menu Buttons */
+/* --- 3. NEW BUTTON STYLE (Glass Pills) --- */
 .filter-btn {
     font-family: var(--font-heading);
-    background-color: transparent; 
-    color: #AAAAAA;
-    border: none; 
-    border-bottom: 2px solid transparent; 
-    border-radius: 0;
-    padding: 5px 10px;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    
+    /* Glassmorphism Base */
+    background-color: rgba(255, 255, 255, 0.05); 
+    color: #CCCCCC;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px; /* Pill shape */
+    
+    padding: 8px 20px;
     cursor: pointer;
     transition: all 0.2s ease-out;
-    font-size: 1.1rem;
     white-space: nowrap; 
     flex-shrink: 0; 
 }
-.filter-btn:hover { color: var(--primary-color); }
-.filter-btn.active {
-    background-color: transparent;
-    color: white;
-    border-bottom: 2px solid var(--primary-color);
-    text-shadow: 0 0 10px rgba(123, 10, 10, 0.8);
-}
-.year-nav .filter-btn { font-size: 0.9rem; color: #888; }
-.year-nav .filter-btn.active { color: white; border-bottom: 2px solid white; }
 
-/* CATALOG GRID (5 Columns) */
+.filter-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(123, 10, 10, 0.6); /* Red glow */
+}
+
+/* Smaller styling for sub-years */
+.year-nav .filter-btn {
+    font-size: 0.9rem;
+    padding: 5px 15px;
+    background-color: transparent;
+    border-color: #444;
+}
+.year-nav .filter-btn.active {
+    background-color: white;
+    color: black; /* High contrast for sub-years */
+    border-color: white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* --- 4. SEARCH BAR (Below Categories) --- */
+.search-wrapper {
+    width: 100%;
+    max-width: 400px; /* Limit width */
+    position: relative;
+    margin-top: 5px;
+    padding: 0 20px;
+    border-top: 1px solid #333; /* Separator */
+    padding-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-input {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid #444;
+    border-radius: 30px; /* Pill shape search */
+    color: white;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    padding: 8px 20px 8px 40px; /* Space for icon */
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 10px rgba(123, 10, 10, 0.2);
+}
+
+.search-icon {
+    position: absolute;
+    left: 35px; /* Adjusted for wrapper padding */
+    top: 60%; /* Nudged down slightly due to padding-top */
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none;
+    font-size: 1.2em;
+}
+
+/* =========================================
+   CATALOG GRID
+========================================= */
 .catalog-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
