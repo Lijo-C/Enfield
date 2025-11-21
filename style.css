@@ -32,12 +32,14 @@ body, a, button { cursor: none; }
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
 
 /* =========================================
-   MENU BAR (Top Sticky)
+   MENU BAR (Compact & Sleek)
 ========================================= */
 .filter-container {
     width: 100%;
     background-color: rgba(20, 20, 20, 0.95); 
     border-bottom: 1px solid #333;
+    
+    /* --- MODIFIED: Very tight padding --- */
     padding: 5px 0; 
     
     position: sticky; 
@@ -46,81 +48,74 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
     backdrop-filter: blur(10px);
 }
 
-/* The Horizontal Scroll Area */
+/* Horizontal Layout */
 .top-bar-layout {
     display: flex;
     align-items: center;
-    justify-content: flex-start; 
-    flex-wrap: nowrap;           
+    justify-content: center; /* Center everything */
+    flex-wrap: wrap;         /* Allow wrapping if screen is tiny */
     
     width: 100%;
-    overflow-x: auto;            
     gap: 10px;
-    
-    padding: 10px 20px; 
-    
-    scrollbar-width: none; 
-    -ms-overflow-style: none;
+    padding: 0 10px;
 }
-.top-bar-layout::-webkit-scrollbar { display: none; }
 
-/* The JS button container */
+/* Button Container */
 .decade-nav {
     display: flex;
-    flex-wrap: nowrap;
-    gap: 10px;
-    flex-shrink: 0; 
+    flex-wrap: wrap; /* Allow buttons to wrap nicely */
+    justify-content: center;
+    gap: 8px;        /* Tighter gap */
 }
 
-/* RED GLASS SEARCH INPUT */
+/* --- MODIFIED: COMPACT SEARCH INPUT --- */
 .search-wrapper {
     position: relative;
-    flex-shrink: 0;
-    width: 180px; 
-    margin-left: 5px; 
+    width: 160px; /* Narrower */
+    margin-left: 5px;
 }
 
 .search-input {
     font-family: var(--font-heading);
-    font-size: 1rem;
+    font-size: 0.85rem; /* Smaller text */
     letter-spacing: 1px;
     
-    /* Active Red Glass Style */
     background: var(--primary-color); 
     border: 1px solid #ff4d4d;
     color: white;
-    border-radius: 8px; 
+    border-radius: 6px; 
     
-    padding: 10px 15px 10px 35px; 
+    /* Compact Padding */
+    padding: 6px 10px 6px 30px; 
     width: 100%;
     
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
     transition: all 0.3s ease;
 }
 
 .search-input::placeholder {
     color: rgba(255, 255, 255, 0.7);
     font-family: var(--font-body); 
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 .search-input:focus {
     outline: none;
-    box-shadow: 0 0 15px var(--primary-color), inset 0 0 10px rgba(0,0,0,0.3);
+    box-shadow: 0 0 10px var(--primary-color), inset 0 0 5px rgba(0,0,0,0.3);
     transform: translateY(-1px);
 }
 
 .search-icon {
     position: absolute;
-    left: 12px;
+    left: 8px;
     top: 50%;
     transform: translateY(-50%);
     color: white;
     pointer-events: none;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
-/* Dropdown Years Sub-menu */
+/* Dropdown Years */
 .year-nav {
     position: absolute;
     top: 100%; 
@@ -129,7 +124,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
     background-color: rgba(20, 20, 20, 0.98); 
     border-bottom: 1px solid #333;
     height: auto;
@@ -141,45 +136,52 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
     z-index: 90;
     box-shadow: 0 10px 20px rgba(0,0,0,0.5);
 }
-.year-nav.is-active { max-height: 200px; opacity: 1; padding: 15px 20px; }
+.year-nav.is-active { max-height: 200px; opacity: 1; padding: 10px 20px; }
 
-/* 3D GLASS BUTTONS */
+/* --- MODIFIED: COMPACT 3D GLASS BUTTONS --- */
 .filter-btn {
     font-family: var(--font-heading);
-    font-size: 1rem;
-    letter-spacing: 1px;
+    
+    /* Smaller Font */
+    font-size: 0.85rem; 
+    letter-spacing: 0.5px;
     color: #DDD;
+    
     background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
     border-top: 1px solid rgba(255,255,255,0.4);
     border-left: 1px solid rgba(255,255,255,0.2);
     border-right: 1px solid rgba(0,0,0,0.5);
     border-bottom: 1px solid rgba(0,0,0,0.5);
-    border-radius: 8px; 
-    padding: 10px 20px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3); 
+    border-radius: 6px; 
+    
+    /* Compact Padding */
+    padding: 6px 12px;
+    
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3); 
     cursor: pointer;
     transition: all 0.2s ease-out;
     white-space: nowrap; 
-    flex-shrink: 0;
 }
+
 .filter-btn:hover {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     background: linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
-    box-shadow: 0 6px 10px rgba(0,0,0,0.5), 0 0 10px rgba(255,255,255,0.1); 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5), 0 0 8px rgba(255,255,255,0.1); 
     color: white;
 }
+
 .filter-btn.active {
     background: var(--primary-color); 
     border-color: #ff4d4d; 
     color: white;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 0 15px var(--primary-color); 
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5), 0 0 10px var(--primary-color); 
     transform: translateY(1px); 
 }
 
-/* Sub-menu button style */
+/* Sub-menu buttons */
 .year-nav .filter-btn {
-    font-size: 0.9rem;
-    padding: 6px 15px;
+    font-size: 0.8rem;
+    padding: 4px 10px;
     background: transparent;
     border: 1px solid #444;
     box-shadow: none;
@@ -192,16 +194,14 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
     background: white;
     color: black;
     border-color: white;
-    box-shadow: 0 0 10px white;
+    box-shadow: 0 0 8px white;
 }
 
 /* =========================================
-   HEADER (Hero Image - REDUCED SIZE)
+   HEADER (Hero Image)
 ========================================= */
 header {
-    /* --- MODIFIED: Reduced to 40vh --- */
     height: 40vh; 
-    
     display: flex;
     flex-direction: column;
     justify-content: flex-end; 
@@ -248,15 +248,12 @@ header h3 {
 }
 
 /* =========================================
-   CATALOG GRID (Reduced Gap)
+   CATALOG GRID
 ========================================= */
 .catalog-grid {
     display: grid;
     gap: 30px;
-    
-    /* --- MODIFIED: Minimized Top Padding --- */
     padding: 10px 2% 50px; 
-    
     max-width: none; 
     margin: 0;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
