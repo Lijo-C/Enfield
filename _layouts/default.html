@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
+    
     <title>{{ site.title }}</title>
-    <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v=5">
+    <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v=7">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +23,15 @@
 </head>
 <body>
     
+    <div class="film-grain"></div>
+    
     {{ content }}
+
+    <div class="timeline-container">
+        <div class="timeline-progress" id="timelineProgress">
+            <div class="timeline-thumb"></div>
+        </div>
+    </div>
 
     <a href="#" id="scrollTopButton" class="scroll-top-btn" title="Scroll to top">
         <span>&uarr;</span>
@@ -32,5 +42,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     
     <script src="{{ site.baseurl }}/main.js"></script>
-    </body>
+</body>
 </html>

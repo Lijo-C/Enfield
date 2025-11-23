@@ -31,173 +31,18 @@ body.fade-out { opacity: 0; }
 body, a, button { cursor: none; }
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
 
-/* =========================================
-   MENU BAR (Slim & Full Width Search)
-========================================= */
-.filter-container {
-    width: 100%;
-    background-color: rgba(20, 20, 20, 0.95); 
-    border-bottom: 1px solid #333;
-    padding: 5px 0; 
-    
-    position: sticky; 
-    top: 0;
-    z-index: 1000;
-    backdrop-filter: blur(10px);
-}
-
-/* Horizontal Layout */
-.top-bar-layout {
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    flex-wrap: wrap;         
-    
-    width: 100%;
-    gap: 10px;
-    padding: 0 15px;
-}
-
-/* Button Container */
-.decade-nav {
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: center;
-    gap: 8px;        
-}
-
-/* --- MODIFIED: WIDE BUT SLIM SEARCH --- */
-.search-wrapper {
-    position: relative;
-    
-    /* This makes it fill the remaining space */
-    flex-grow: 1; 
-    max-width: 300px; /* But cap it so it's not too wide */
-    min-width: 150px; /* Ensure it doesn't vanish on mobile */
-    
-    margin-left: 5px;
-}
-
-.search-input {
-    font-family: var(--font-heading);
-    font-size: 0.9rem; 
-    letter-spacing: 1px;
-    
-    background: var(--primary-color); 
-    border: 1px solid #ff4d4d;
-    color: white;
-    border-radius: 6px; 
-    
-    /* --- MODIFIED: Reduced Padding for Slim Height --- */
-    padding: 6px 10px 6px 30px; 
-    
-    width: 100%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    transition: all 0.3s ease;
-}
-
-.search-input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-    font-family: var(--font-body); 
-    font-size: 0.8rem;
-}
-
-.search-input:focus {
-    outline: none;
-    box-shadow: 0 0 10px var(--primary-color), inset 0 0 5px rgba(0,0,0,0.3);
-    transform: translateY(-1px);
-}
-
-.search-icon {
-    position: absolute;
-    left: 8px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: white;
+/* === NEW: FILM GRAIN OVERLAY === */
+.film-grain {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none;
-    font-size: 0.9rem;
-}
-
-/* Dropdown Years */
-.year-nav {
-    position: absolute;
-    top: 100%; 
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    background-color: rgba(20, 20, 20, 0.98); 
-    border-bottom: 1px solid #333;
-    height: auto;
-    max-height: 0; 
-    opacity: 0;
-    padding: 0 20px;
-    overflow: hidden;
-    transition: all 0.3s ease-out;
-    z-index: 90;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-}
-.year-nav.is-active { max-height: 200px; opacity: 1; padding: 10px 20px; }
-
-/* COMPACT 3D GLASS BUTTONS */
-.filter-btn {
-    font-family: var(--font-heading);
-    font-size: 0.85rem; 
-    letter-spacing: 0.5px;
-    color: #DDD;
-    
-    background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-    border-top: 1px solid rgba(255,255,255,0.4);
-    border-left: 1px solid rgba(255,255,255,0.2);
-    border-right: 1px solid rgba(0,0,0,0.5);
-    border-bottom: 1px solid rgba(0,0,0,0.5);
-    border-radius: 6px; 
-    
-    padding: 6px 12px;
-    
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3); 
-    cursor: pointer;
-    transition: all 0.2s ease-out;
-    white-space: nowrap; 
-}
-
-.filter-btn:hover {
-    transform: translateY(-1px);
-    background: linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
-    box-shadow: 0 4px 8px rgba(0,0,0,0.5), 0 0 8px rgba(255,255,255,0.1); 
-    color: white;
-}
-
-.filter-btn.active {
-    background: var(--primary-color); 
-    border-color: #ff4d4d; 
-    color: white;
-    box-shadow: inset 0 0 5px rgba(0,0,0,0.5), 0 0 10px var(--primary-color); 
-    transform: translateY(1px); 
-}
-
-.year-nav .filter-btn {
-    font-size: 0.8rem;
-    padding: 4px 10px;
-    background: transparent;
-    border: 1px solid #444;
-    box-shadow: none;
-}
-.year-nav .filter-btn:hover {
-    border-color: white;
-    background: rgba(255,255,255,0.1);
-}
-.year-nav .filter-btn.active {
-    background: white;
-    color: black;
-    border-color: white;
-    box-shadow: 0 0 8px white;
+    z-index: 9000; /* High z-index but below cursor */
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
 /* =========================================
-   HEADER (Hero Image)
+   HEADER (Hero Image + Parallax)
 ========================================= */
 header {
     height: 40vh; 
@@ -216,12 +61,16 @@ header {
 header::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    /* Expanded size for parallax movement */
+    top: -5%; left: -5%; width: 110%; height: 110%;
     background-image: url('images/hero-motorcycle.png');
     background-size: cover;
     background-position: center;
     z-index: -1; 
-    animation: kenBurns 20s infinite;
+    
+    /* Parallax target class */
+    transition: transform 0.1s ease-out;
+    transform: translate(var(--move-x, 0px), var(--move-y, 0px));
 }
 header h1 { 
     animation: fadeInDown 1s ease-out; 
@@ -229,6 +78,8 @@ header h1 {
     color: white; 
     margin: 0; 
     line-height: 1;
+    /* Parallax on Text (Opposite direction) */
+    transform: translate(var(--move-x-rev, 0px), var(--move-y-rev, 0px));
 }
 header h2 {
     animation: fadeInDown 1.2s ease-out;
@@ -247,7 +98,112 @@ header h3 {
 }
 
 /* =========================================
-   CATALOG GRID (4 Columns 4:3)
+   MENU BAR
+========================================= */
+.filter-container {
+    width: 100%;
+    background-color: rgba(20, 20, 20, 0.95); 
+    border-bottom: 1px solid #333;
+    padding: 5px 0; 
+    position: sticky; 
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.top-bar-layout {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    flex-wrap: wrap;         
+    width: 100%;
+    gap: 10px;
+    padding: 0 15px;
+}
+
+.decade-nav {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 8px;        
+}
+
+.search-wrapper {
+    position: relative;
+    flex-grow: 1; 
+    max-width: 300px; 
+    min-width: 150px; 
+    margin-left: 5px;
+}
+
+.search-input {
+    font-family: var(--font-heading);
+    font-size: 0.9rem; 
+    letter-spacing: 1px;
+    background: var(--primary-color); 
+    border: 1px solid #ff4d4d;
+    color: white;
+    border-radius: 6px; 
+    padding: 6px 10px 6px 30px; 
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+.search-input::placeholder { color: rgba(255, 255, 255, 0.7); font-family: var(--font-body); font-size: 0.8rem; }
+.search-input:focus { outline: none; box-shadow: 0 0 10px var(--primary-color), inset 0 0 5px rgba(0,0,0,0.3); transform: translateY(-1px); }
+.search-icon { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); color: white; pointer-events: none; font-size: 0.9rem; }
+
+.year-nav {
+    position: absolute;
+    top: 100%; left: 0; width: 100%;
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 8px;
+    background-color: rgba(20, 20, 20, 0.98); 
+    border-bottom: 1px solid #333;
+    height: auto; max-height: 0; opacity: 0; padding: 0 20px; overflow: hidden;
+    transition: all 0.3s ease-out; z-index: 90;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+.year-nav.is-active { max-height: 200px; opacity: 1; padding: 10px 20px; }
+
+/* 3D GLASS BUTTONS + MAGNETIC CLASS */
+.filter-btn {
+    font-family: var(--font-heading);
+    font-size: 0.85rem; 
+    letter-spacing: 0.5px;
+    color: #DDD;
+    background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+    border-top: 1px solid rgba(255,255,255,0.4);
+    border-left: 1px solid rgba(255,255,255,0.2);
+    border-right: 1px solid rgba(0,0,0,0.5);
+    border-bottom: 1px solid rgba(0,0,0,0.5);
+    border-radius: 6px; 
+    padding: 6px 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3); 
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+    white-space: nowrap; 
+    
+    /* For Magnetic Effect */
+    display: inline-block;
+}
+.filter-btn:hover {
+    background: linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5), 0 0 8px rgba(255,255,255,0.1); 
+    color: white;
+}
+.filter-btn.active {
+    background: var(--primary-color); 
+    border-color: #ff4d4d; 
+    color: white;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5), 0 0 10px var(--primary-color); 
+    transform: translateY(1px); 
+}
+.year-nav .filter-btn { font-size: 0.8rem; padding: 4px 10px; background: transparent; border: 1px solid #444; box-shadow: none; }
+.year-nav .filter-btn:hover { border-color: white; background: rgba(255,255,255,0.1); }
+.year-nav .filter-btn.active { background: white; color: black; border-color: white; box-shadow: 0 0 8px white; }
+
+/* =========================================
+   CATALOG GRID (4 Col)
 ========================================= */
 .catalog-grid {
     display: grid;
@@ -257,12 +213,7 @@ header h3 {
     margin: 0;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
-
-@media (min-width: 1100px) {
-    .catalog-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
+@media (min-width: 1100px) { .catalog-grid { grid-template-columns: repeat(4, 1fr); } }
 
 .bike-card {
     background-color: #252525;
@@ -271,9 +222,11 @@ header h3 {
     overflow: hidden;
     text-decoration: none;
     color: var(--text-color);
-    display: flex; 
-    flex-direction: column; 
-    aspect-ratio: 4 / 3;    
+    display: flex; flex-direction: column; aspect-ratio: 4 / 3;    
+    
+    /* --- MODIFIED: SKELETON LOADING BASE --- */
+    background: #252525;
+    
     opacity: 0; 
     animation: fadeInUp 0.5s ease-out forwards;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease-out;
@@ -283,26 +236,69 @@ header h3 {
 .bike-card.is-gone { display: none; }
 .bike-card:hover { transform: translateY(-8px); border-color: var(--primary-color); box-shadow: 0 0 25px rgba(123, 10, 10, 0.5); }
 
+/* --- NEW: ARCHIVE EFFECT (B&W) --- */
 .bike-card img { 
-    width: 100%; 
-    height: auto !important;
-    flex: 1; 
-    min-height: 0; 
-    object-fit: cover; 
-    display: block; 
-    transition: transform 0.3s ease-out; 
+    width: 100%; height: auto !important; flex: 1; min-height: 0; object-fit: cover; display: block; 
+    transition: transform 0.3s ease-out, filter 0.5s ease; /* Add filter transition */
+    
+    /* Start Black & White */
+    filter: grayscale(100%) contrast(1.1);
 }
-.bike-card:hover img { transform: scale(1.05); }
+/* Hover Color */
+.bike-card:hover img { 
+    transform: scale(1.05); 
+    filter: grayscale(0%) contrast(1);
+}
 
 .card-details { padding: 12px; flex-shrink: 0; background-color: #252525; z-index: 1; }
 .card-details h2 { margin-top: 0; margin-bottom: 5px; font-size: 1.1em; color: var(--secondary-color); }
 .category, .engine-info, .year { font-size: 0.8em; color: #AAAAAA; margin: 2px 0; }
 
-/* DETAIL PAGE */
+/* =========================================
+   DETAIL PAGE
+========================================= */
 .detail-container { max-width: 1200px; margin: 10px auto 50px; padding: 10px; }
 .detail-header { text-align: center; border-bottom: 2px solid var(--primary-color); margin-bottom: 30px; padding-bottom: 10px; }
-.detail-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 4px; margin-bottom: 20px; transition: transform 0.3s ease-out; opacity: 0; transform: scale(0.95); animation: simpleFadeZoom 0.8s ease-out 0.2s forwards; }
-.detail-image:hover { transform: scale(1.02); }
+
+/* --- NEW: KNOCKOUT TEXT HEADER --- */
+.detail-header h1 {
+    font-size: 3rem;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--primary-color);
+    text-shadow: none;
+    letter-spacing: 2px;
+}
+
+.detail-image { 
+    width: 100%; max-height: 400px; object-fit: cover; 
+    border-radius: 4px; margin-bottom: 20px; 
+    transition: transform 0.3s ease-out; 
+    opacity: 0; transform: scale(0.95); 
+    animation: simpleFadeZoom 0.8s ease-out 0.2s forwards; 
+}
+
+/* --- NEW: BLUEPRINT EFFECT ON HOVER --- */
+.detail-image:hover { 
+    transform: scale(1.02); 
+    filter: invert(1) hue-rotate(180deg) contrast(1.2); /* Blueprint look */
+}
+
+/* --- NEW: AMBIENT GLOW (Behind Image) --- */
+.image-reveal-container {
+    position: relative;
+    z-index: 5;
+}
+.image-reveal-container::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%; width: 80%; height: 80%;
+    transform: translate(-50%, -50%);
+    background: var(--primary-color);
+    filter: blur(60px);
+    opacity: 0.3;
+    z-index: -1;
+}
+
 .spec-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
 .spec-table th, .spec-table td { padding: 12px 15px; border: 1px solid #333; text-align: left; }
 .spec-table th { background-color: transparent; font-weight: bold; color: var(--secondary-color); width: 30%; }
@@ -316,6 +312,45 @@ footer { text-align: center; padding: 20px; margin-top: 40px; border-top: 1px so
 .detail-main-content { order: 1; }
 .detail-sidebar { order: 2; position: sticky; top: 30px; align-self: start; }
 @media (max-width: 800px) { .detail-layout-grid { grid-template-columns: 1fr; } .detail-main-content { order: 1; } .detail-sidebar { order: 2; position: static; } }
+
+/* Audio Button */
+.audio-container { text-align: center; margin-top: -20px; margin-bottom: 30px; position: relative; z-index: 10; }
+.audio-btn { background: var(--primary-color); color: white; border: 2px solid white; border-radius: 30px; padding: 10px 25px; font-family: var(--font-heading); font-size: 1.1rem; cursor: pointer; box-shadow: 0 0 20px rgba(123, 10, 10, 0.8); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; }
+.audio-btn:hover { transform: scale(1.1); background: white; color: var(--primary-color); border-color: var(--primary-color); }
+.audio-btn.playing { animation: thumpPulse 0.8s infinite alternate; }
+@keyframes thumpPulse { 0% { transform: scale(1); box-shadow: 0 0 20px rgba(123, 10, 10, 0.8); } 100% { transform: scale(1.05); box-shadow: 0 0 40px red; } }
+
+/* =========================================
+   TIMELINE SCRUBBER (Bottom Fixed)
+========================================= */
+.timeline-container {
+    position: fixed;
+    bottom: 0; left: 0; width: 100%;
+    height: 6px;
+    background: rgba(0,0,0,0.5);
+    z-index: 9999;
+    display: flex;
+    cursor: pointer;
+    transition: height 0.2s ease;
+}
+.timeline-container:hover { height: 15px; }
+.timeline-progress {
+    height: 100%;
+    background: var(--primary-color);
+    width: 0%; /* JS will update this */
+    position: relative;
+    box-shadow: 0 0 10px red;
+}
+.timeline-thumb {
+    position: absolute;
+    right: -5px; top: 50%;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: white;
+    transform: translateY(-50%) scale(0);
+    transition: transform 0.2s ease;
+}
+.timeline-container:hover .timeline-thumb { transform: translateY(-50%) scale(1); }
 
 /* ANIMATIONS & EFFECTS */
 @keyframes kenBurns { 0% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 0.8; } }

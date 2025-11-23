@@ -10,13 +10,33 @@ window.addEventListener('pageshow', (event) => {
 // --- 1. CURSOR & HOVER LOGIC ---
 const cursorDot = document.querySelector('.cursor-dot');
 const cursorFollower = document.querySelector('.cursor-follower');
-const allLinks = document.querySelectorAll('a, button, .bike-card');
+const allLinks = document.querySelectorAll('a, button, .bike-card, .filter-btn');
 
 window.addEventListener('mousemove', (e) => {
     const posX = e.clientX;
     const posY = e.clientY;
     cursorDot.style.transform = `translate(${posX}px, ${posY}px)`;
+    
+    // Magnetic Button Effect (Pull cursor slightly if hovering button)
+    // We handle the visual button movement in a separate loop, 
+    // here we just move the follower normally.
     cursorFollower.style.transform = `translate(${posX}px, ${posY}px)`;
+    
+    // --- NEW: PARALLAX HERO EFFECT ---
+    // Move Header Elements based on mouse position
+    const header = document.querySelector('header');
+    if(header) {
+        const moveX = (posX / window.innerWidth - 0.5) * 20; // Max 20px move
+        const moveY = (posY / window.innerHeight - 0.5) * 20;
+        
+        // Background moves one way
+        header.style.setProperty('--move-x', `${moveX}px`);
+        header.style.setProperty('--move-y', `${moveY}px`);
+        
+        // Text moves opposite way (depth)
+        header.style.setProperty('--move-x-rev', `${-moveX}px`);
+        header.style.setProperty('--move-y-rev', `${-moveY}px`);
+    }
 });
 
 allLinks.forEach(link => {
@@ -25,17 +45,37 @@ allLinks.forEach(link => {
     });
     link.addEventListener('mouseleave', () => {
         cursorFollower.classList.remove('is-hovering');
+        
+        // Reset magnetic pull
+        link.style.transform = 'translate(0px, 0px)';
     });
+    
+    // --- NEW: MAGNETIC BUTTON LOGIC ---
+    if(link.classList.contains('filter-btn')) {
+        link.addEventListener('mousemove', (e) => {
+            const rect = link.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            // Pull button towards mouse (Max 5px)
+            link.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+        });
+    }
 });
 
-// --- 2. PAGE TRANSITION LOGIC ---
+// --- 2. PAGE TRANSITION ---
 allLinks.forEach(link => {
     if (link.tagName !== 'A') return;
     link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
-        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || link.target === '_blank' || e.ctrlKey || e.metaKey || link.hasAttribute('data-fancybox')) {
-            return;
+        
+        // View Transition API Support
+        if (document.startViewTransition) {
+            if (!href || href.startsWith('#') || href.startsWith('mailto:') || link.target === '_blank' || link.hasAttribute('data-fancybox')) return;
+            return; // Let browser handle morph
         }
+
+        if (!href || href.startsWith('#') || href.startsWith('mailto:') || link.target === '_blank' || link.hasAttribute('data-fancybox')) return;
         e.preventDefault();
         cursorFollower.classList.remove('is-hovering');
         document.body.classList.add('fade-out');
@@ -43,13 +83,27 @@ allLinks.forEach(link => {
     });
 });
 
-// --- 3. SCROLL TO TOP LOGIC ---
+// --- 3. SCROLL TO TOP & TIMELINE ---
 const scrollTopBtn = document.getElementById('scrollTopButton');
+const timelineProgress = document.getElementById('timelineProgress');
+
+window.addEventListener('scroll', () => {
+    // Scroll Top Button
+    if (scrollTopBtn) {
+        if (window.scrollY > 300) scrollTopBtn.classList.add('is-visible');
+        else scrollTopBtn.classList.remove('is-visible');
+    }
+    
+    // --- NEW: TIMELINE SCRUBBER LOGIC ---
+    if (timelineProgress) {
+        const scrollTop = window.scrollY;
+        const docHeight = document.body.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        timelineProgress.style.width = `${scrollPercent}%`;
+    }
+});
+
 if (scrollTopBtn) {
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) { scrollTopBtn.classList.add('is-visible'); } 
-        else { scrollTopBtn.classList.remove('is-visible'); }
-    });
     scrollTopBtn.addEventListener('click', (e) => {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -63,30 +117,21 @@ const yearContainer = document.getElementById('year-filters');
 const searchInput = document.getElementById('searchInput');
 
 if (bikeCards.length > 0 && decadeContainer) {
-    
-    // A. EXTRACT DATA
     const eraMap = new Map(); 
-
     bikeCards.forEach(card => {
         let yearRaw = card.getAttribute('data-year').toString();
         let year = parseInt(yearRaw.match(/\d{4}/)[0]); 
-        
         let eraLabel = "";
-        if (year <= 1900) {
-            eraLabel = "1890 - 1900";
-        } else {
+        if (year <= 1900) { eraLabel = "1890 - 1900"; } 
+        else {
             let offset = year - 1901;
             let chunkIndex = Math.floor(offset / 25);
             let startYear = 1901 + (chunkIndex * 25);
             let endYear = startYear + 24;
             eraLabel = `${startYear} - ${endYear}`;
         }
-
-        if (!eraMap.has(eraLabel)) {
-            eraMap.set(eraLabel, new Set());
-        }
+        if (!eraMap.has(eraLabel)) { eraMap.set(eraLabel, new Set()); }
         eraMap.get(eraLabel).add(year);
-        
         card.dataset.era = eraLabel;
         card.dataset.cleanYear = year;
         card.dataset.searchText = card.innerText.toLowerCase();
@@ -98,7 +143,6 @@ if (bikeCards.length > 0 && decadeContainer) {
         return numA - numB;
     });
 
-    // B. BUILD BUTTONS
     const allBtn = document.createElement('button');
     allBtn.className = 'filter-btn active';
     allBtn.textContent = 'All Time';
@@ -113,7 +157,6 @@ if (bikeCards.length > 0 && decadeContainer) {
         decadeContainer.appendChild(btn);
     });
 
-    // C. FILTER
     function filterGrid(matchFunction) {
         bikeCards.forEach(card => {
             if (matchFunction(card)) {
@@ -138,21 +181,17 @@ if (bikeCards.length > 0 && decadeContainer) {
         setActiveBtn(decadeContainer, clickedBtn);
         if(searchInput) searchInput.value = ''; 
         filterGrid(card => card.dataset.era === era);
-
         yearContainer.innerHTML = ''; 
         const yearsInEra = Array.from(eraMap.get(era)).sort();
-
         if (yearsInEra.length > 0) {
             const allEraBtn = document.createElement('button');
             allEraBtn.className = 'filter-btn active';
             allEraBtn.textContent = `All ${era}`;
-            
             allEraBtn.onclick = () => {
                 setActiveBtn(yearContainer, allEraBtn);
                 filterGrid(card => card.dataset.era === era);
             };
             yearContainer.appendChild(allEraBtn);
-
             yearsInEra.forEach(year => {
                 const yBtn = document.createElement('button');
                 yBtn.className = 'filter-btn';
@@ -167,16 +206,12 @@ if (bikeCards.length > 0 && decadeContainer) {
         }
     }
 
-    // D. SEARCH
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase();
             const allEraBtns = decadeContainer.querySelectorAll('.filter-btn');
             allEraBtns.forEach(b => b.classList.remove('active')); 
-            
-            filterGrid(card => {
-                return card.dataset.searchText.includes(term);
-            });
+            filterGrid(card => { return card.dataset.searchText.includes(term); });
         });
     }
 
@@ -184,5 +219,33 @@ if (bikeCards.length > 0 && decadeContainer) {
         const current = container.querySelector('.active');
         if (current) current.classList.remove('active');
         activeBtn.classList.add('active');
+    }
+}
+
+// --- 5. AUDIO PLAYER LOGIC ---
+const playBtn = document.getElementById('playThumpBtn');
+const audioEl = document.getElementById('bikeAudio');
+if (playBtn && audioEl) {
+    const audioSrc = playBtn.dataset.audio;
+    if(audioSrc) {
+        audioEl.src = audioSrc;
+        playBtn.addEventListener('click', () => {
+            if (audioEl.paused) {
+                audioEl.play().catch(e => console.log("Audio file not found or blocked"));
+                playBtn.classList.add('playing');
+                playBtn.innerHTML = "<span>&#10074;&#10074;</span> Stop Engine";
+            } else {
+                audioEl.pause();
+                audioEl.currentTime = 0;
+                playBtn.classList.remove('playing');
+                playBtn.innerHTML = "<span>&#9658;</span> Hear the Thump";
+            }
+        });
+        audioEl.addEventListener('ended', () => {
+            playBtn.classList.remove('playing');
+            playBtn.innerHTML = "<span>&#9658;</span> Hear the Thump";
+        });
+    } else {
+        playBtn.style.display = 'none';
     }
 }
