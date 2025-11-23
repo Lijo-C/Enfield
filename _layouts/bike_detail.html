@@ -6,7 +6,7 @@
     <meta name="view-transition" content="same-origin">
     
     <title>{{ page.name }} Details | Royal Enfield Catalog</title>
-    <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v=12"> 
+    <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v=13"> 
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,14 +25,13 @@
 <body>
     <div class="film-grain"></div>
 
+    <header>
+        <h1 style="view-transition-name: hero-title;">{{ page.name }}</h1>
+        <h2>Model Year: {{ page.year }}</h2>
+    </header>
     <div class="detail-container">
         
         <a href="{{ site.baseurl }}/" class="back-link"><span>&lt;</span> Back to Catalog</a>
-
-        <div class="detail-header">
-            <h1 style="view-transition-name: hero-title;">{{ page.name }}</h1>
-            <p>Model Year: {{ page.year }}</p>
-        </div>
         
         <div class="detail-layout-grid">
             
@@ -42,6 +41,7 @@
                     <a href="{{ site.baseurl }}/images/{{ page.image }}" 
                        data-fancybox="bike-gallery" 
                        data-caption="{{ page.name }}">
+                       
                         <img src="{{ site.baseurl }}/images/{{ page.image }}" 
                              alt="Image of {{ page.name }}" 
                              class="detail-image" 
@@ -55,7 +55,7 @@
                 </div>
             </div>
 
-            <div class="detail-right-column">
+            <aside class="detail-right-column">
                 <div class="detail-section">
                     <h3>Engine Specifications</h3>
                     <table class="spec-table">
@@ -73,10 +73,9 @@
                         {% endfor %}
                     </table>
                 </div>
-            </div>
-            
+            </aside>
         </div>
-        </div>
+    </div>
 
     <footer>
         <p>&copy; <script>document.write(new Date().getFullYear())</script> A Royal Enfield Lovers Catalog</p>
