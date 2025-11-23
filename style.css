@@ -140,44 +140,16 @@ header h1 {
 header h2 { animation: fadeInDown 1.2s ease-out; font-size: 1.5rem; color: white; margin: 0; margin-bottom: 5px; }
 header h3 { animation: fadeInDown 1.4s ease-out; font-size: 1rem; color: white; margin: 0; opacity: 0.9; margin-bottom: 15px; }
 
-/* --- MODIFIED: SMALLER AUDIO BUTTON --- */
+/* AUDIO BUTTON */
 .audio-container { 
-    margin-top: 15px; /* Space below text */
-    margin-bottom: 15px; 
-    position: relative; 
-    z-index: 10; 
-    animation: fadeInDown 1.6s ease-out;
+    margin-top: 15px; margin-bottom: 15px; position: relative; z-index: 10; animation: fadeInDown 1.6s ease-out;
 }
 .audio-btn { 
-    background: transparent; 
-    color: white; 
-    border: 1px solid var(--primary-color); /* Thinner border */
-    border-radius: 30px; 
-    padding: 6px 18px; /* Smaller padding */
-    font-family: var(--font-heading); 
-    font-size: 0.9rem; /* Smaller font */
-    cursor: pointer; 
-    box-shadow: 0 0 10px rgba(0,0,0,0.5); 
-    transition: all 0.3s ease; 
-    display: inline-flex; 
-    align-items: center; 
-    gap: 8px; 
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    background: transparent; color: white; border: 1px solid var(--primary-color); border-radius: 30px; padding: 6px 18px; font-family: var(--font-heading); font-size: 0.9rem; cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.5); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: 1px;
 }
-.audio-btn:hover { 
-    transform: scale(1.05); 
-    background: var(--primary-color); 
-    box-shadow: 0 0 15px var(--primary-color);
-}
-.audio-btn.playing { 
-    background: var(--primary-color);
-    animation: thumpPulse 0.8s infinite alternate; 
-}
-@keyframes thumpPulse { 
-    0% { transform: scale(1); box-shadow: 0 0 10px rgba(123, 10, 10, 0.8); } 
-    100% { transform: scale(1.05); box-shadow: 0 0 25px red; } 
-}
+.audio-btn:hover { transform: scale(1.05); background: var(--primary-color); box-shadow: 0 0 15px var(--primary-color); }
+.audio-btn.playing { background: var(--primary-color); animation: thumpPulse 0.8s infinite alternate; }
+@keyframes thumpPulse { 0% { transform: scale(1); box-shadow: 0 0 10px rgba(123, 10, 10, 0.8); } 100% { transform: scale(1.05); box-shadow: 0 0 25px red; } }
 
 /* =========================================
    CATALOG GRID
@@ -191,8 +163,7 @@ header h3 { animation: fadeInDown 1.4s ease-out; font-size: 1rem; color: white; 
 .bike-card {
     background-color: #252525; border: 2px solid #959595; border-radius: 8px; overflow: hidden;
     text-decoration: none; color: var(--text-color); display: flex; flex-direction: column; aspect-ratio: 4 / 3;    
-    opacity: 0; 
-    animation: fadeInUp 0.5s ease-out forwards;
+    opacity: 0; animation: fadeInUp 0.5s ease-out forwards;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease-out;
     will-change: transform;
 }
@@ -214,65 +185,52 @@ header h3 { animation: fadeInDown 1.4s ease-out; font-size: 1rem; color: white; 
 .category, .engine-info, .year { font-size: 0.8em; color: #AAAAAA; margin: 2px 0; }
 
 /* =========================================
-   DETAIL PAGE (SIDE-BY-SIDE LAYOUT)
+   DETAIL PAGE (SIDE-BY-SIDE)
 ========================================= */
-.detail-container { 
-    max-width: 1400px; /* Wider for side-by-side */
-    margin: 10px auto 50px; 
-    padding: 10px 20px; 
-}
-.detail-header { 
-    text-align: center; 
-    border-bottom: 2px solid var(--primary-color); 
-    margin-bottom: 30px; 
-    padding-bottom: 10px; 
-}
-.detail-header h1 {
-    font-size: 3rem; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); letter-spacing: 1px;
-}
+.detail-container { max-width: 1400px; margin: 10px auto 50px; padding: 10px 20px; }
+.detail-header { text-align: center; border-bottom: 2px solid var(--primary-color); margin-bottom: 30px; padding-bottom: 10px; }
+.detail-header h1 { font-size: 3rem; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); letter-spacing: 1px; }
 
-/* --- MODIFIED: 2-COLUMN LAYOUT --- */
+/* --- GRID LAYOUT --- */
 .detail-layout-grid { 
     display: grid; 
-    /* Equal 50/50 Split */
     grid-template-columns: 1fr 1fr; 
     gap: 40px; 
-    align-items: start;
+    align-items: start; 
 }
 
-/* Left Column: Image */
+/* Left Content: Image + History */
+.detail-left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Framed Image */
 .image-reveal-container {
     position: relative; z-index: 5;
-    background-color: #252525; border: 2px solid #959595; border-radius: 8px;
-    padding: 10px; 
-    
-    /* Make image sticky if content is long */
-    position: sticky;
-    top: 80px; /* Stick below nav bar */
-    
+    background-color: #252525; border: 2px solid #959595; border-radius: 8px; padding: 10px;
     opacity: 0; animation: fadeInUp 0.6s ease-out 0.3s forwards;
 }
-
-.detail-image { 
-    width: 100%; 
-    height: auto; 
-    max-height: 70vh; /* Limit height */
-    object-fit: cover; border-radius: 4px; 
-    display: block;
-    transition: transform 0.3s ease-out; 
-    opacity: 0; transform: scale(0.95); 
-    animation: simpleFadeZoom 0.8s ease-out 0.2s forwards; 
-}
-.detail-image:hover { transform: scale(1.02); }
-
 .image-reveal-container::after {
     content: ''; position: absolute; top: 50%; left: 50%; width: 80%; height: 80%;
     transform: translate(-50%, -50%); background: var(--primary-color); filter: blur(60px); opacity: 0.3; z-index: -1;
 }
 
-/* Right Column: Text & Specs */
-.detail-info-col {
-    opacity: 0; animation: fadeInUp 0.6s ease-out 0.5s forwards;
+.detail-image { 
+    width: 100%; max-height: 600px; object-fit: cover; border-radius: 4px; display: block;
+    transition: transform 0.3s ease-out; opacity: 0; transform: scale(0.95); 
+    animation: simpleFadeZoom 0.8s ease-out 0.2s forwards; 
+}
+.detail-image:hover { transform: scale(1.02); }
+
+/* Right Content: Specs (Sticky) */
+.detail-right-column {
+    position: sticky;
+    top: 100px; /* Sticks below the nav bar */
+    
+    opacity: 0; 
+    animation: fadeInUp 0.6s ease-out 0.5s forwards;
 }
 
 .detail-section {
@@ -284,10 +242,9 @@ header h3 { animation: fadeInDown 1.4s ease-out; font-size: 1rem; color: white; 
 .spec-table th, .spec-table td { padding: 12px 15px; border: 1px solid #333; text-align: left; }
 .spec-table th { background-color: transparent; font-weight: bold; color: var(--secondary-color); width: 35%; }
 
-/* Responsive Stack */
 @media (max-width: 900px) { 
     .detail-layout-grid { grid-template-columns: 1fr; } 
-    .image-reveal-container { position: static; }
+    .detail-right-column { position: static; }
 }
 
 footer { text-align: center; padding: 20px; margin-top: 40px; border-top: 1px solid #333; color: #AAAAAA; font-size: 0.8em; }

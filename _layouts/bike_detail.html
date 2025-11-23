@@ -6,7 +6,7 @@
     <meta name="view-transition" content="same-origin">
     
     <title>{{ page.name }} Details | Royal Enfield Catalog</title>
-    <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v=11"> 
+    <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v=12"> 
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,25 +36,26 @@
         
         <div class="detail-layout-grid">
             
-            <div class="image-reveal-container">
-                <a href="{{ site.baseurl }}/images/{{ page.image }}" 
-                   data-fancybox="bike-gallery" 
-                   data-caption="{{ page.name }}">
-                    
-                    <img src="{{ site.baseurl }}/images/{{ page.image }}" 
-                         alt="Image of {{ page.name }}" 
-                         class="detail-image" 
-                         style="--bike-transition-name: bike-{{ page.url | slugify }};">
-                </a>
-            </div>
-
-            <div class="detail-info-col">
+            <div class="detail-left-column">
                 
+                <div class="image-reveal-container">
+                    <a href="{{ site.baseurl }}/images/{{ page.image }}" 
+                       data-fancybox="bike-gallery" 
+                       data-caption="{{ page.name }}">
+                        <img src="{{ site.baseurl }}/images/{{ page.image }}" 
+                             alt="Image of {{ page.name }}" 
+                             class="detail-image" 
+                             style="--bike-transition-name: bike-{{ page.url | slugify }};">
+                    </a>
+                </div>
+
                 <div class="detail-section">
                     <h3>Historical Notes</h3>
                     <p>{{ page.history }}</p>
                 </div>
+            </div>
 
+            <div class="detail-right-column">
                 <div class="detail-section">
                     <h3>Engine Specifications</h3>
                     <table class="spec-table">
@@ -72,8 +73,8 @@
                         {% endfor %}
                     </table>
                 </div>
-
             </div>
+            
         </div>
         </div>
 
