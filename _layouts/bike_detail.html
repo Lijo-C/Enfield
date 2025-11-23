@@ -6,7 +6,7 @@
     <meta name="view-transition" content="same-origin">
     
     <title>{{ page.name }} Details | Royal Enfield Catalog</title>
-    <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v=10"> 
+    <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v=11"> 
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,27 +36,25 @@
         
         <div class="detail-layout-grid">
             
-            <div class="detail-main-content">
-                
-                <div class="image-reveal-container">
-                    <a href="{{ site.baseurl }}/images/{{ page.image }}" 
-                       data-fancybox="bike-gallery" 
-                       data-caption="{{ page.name }}">
-                       
-                        <img src="{{ site.baseurl }}/images/{{ page.image }}" 
-                             alt="Image of {{ page.name }}" 
-                             class="detail-image" 
-                             style="--bike-transition-name: bike-{{ page.url | slugify }};">
-                    </a>
-                </div>
+            <div class="image-reveal-container">
+                <a href="{{ site.baseurl }}/images/{{ page.image }}" 
+                   data-fancybox="bike-gallery" 
+                   data-caption="{{ page.name }}">
+                    
+                    <img src="{{ site.baseurl }}/images/{{ page.image }}" 
+                         alt="Image of {{ page.name }}" 
+                         class="detail-image" 
+                         style="--bike-transition-name: bike-{{ page.url | slugify }};">
+                </a>
+            </div>
 
+            <div class="detail-info-col">
+                
                 <div class="detail-section">
                     <h3>Historical Notes</h3>
                     <p>{{ page.history }}</p>
                 </div>
-            </div>
 
-            <aside class="detail-sidebar">
                 <div class="detail-section">
                     <h3>Engine Specifications</h3>
                     <table class="spec-table">
@@ -74,7 +72,8 @@
                         {% endfor %}
                     </table>
                 </div>
-            </aside>
+
+            </div>
         </div>
         </div>
 
@@ -90,12 +89,10 @@
     <div class="cursor-follower"></div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
-    
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
     <script>
       Fancybox.bind("[data-fancybox]", { });
     </script>
-    
     <script src="{{ site.baseurl }}/main.js"></script>
-    </body>
+</body>
 </html>

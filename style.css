@@ -19,7 +19,6 @@ body {
     color: var(--text-color);
     transition: opacity 0.3s ease-out;
     
-    /* Background Image */
     background-image: url('images/bg.png'); 
     background-color: var(--background-color);
     background-size: cover;
@@ -29,15 +28,12 @@ body {
     position: relative;
 }
 
-/* --- NEW: GLOBAL GLASS BACKGROUND OVERLAY --- */
-/* This creates the blurred glass effect over the background image */
+/* GLASS BACKGROUND OVERLAY */
 body::after {
     content: '';
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    z-index: -1; /* Behind content, on top of body background */
-    
-    /* The Glass Effect */
+    z-index: -1; 
     backdrop-filter: blur(8px) brightness(0.7); 
     background: rgba(0, 0, 0, 0.2); 
     pointer-events: none;
@@ -144,6 +140,45 @@ header h1 {
 header h2 { animation: fadeInDown 1.2s ease-out; font-size: 1.5rem; color: white; margin: 0; margin-bottom: 5px; }
 header h3 { animation: fadeInDown 1.4s ease-out; font-size: 1rem; color: white; margin: 0; opacity: 0.9; margin-bottom: 15px; }
 
+/* --- MODIFIED: SMALLER AUDIO BUTTON --- */
+.audio-container { 
+    margin-top: 15px; /* Space below text */
+    margin-bottom: 15px; 
+    position: relative; 
+    z-index: 10; 
+    animation: fadeInDown 1.6s ease-out;
+}
+.audio-btn { 
+    background: transparent; 
+    color: white; 
+    border: 1px solid var(--primary-color); /* Thinner border */
+    border-radius: 30px; 
+    padding: 6px 18px; /* Smaller padding */
+    font-family: var(--font-heading); 
+    font-size: 0.9rem; /* Smaller font */
+    cursor: pointer; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+    transition: all 0.3s ease; 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 8px; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.audio-btn:hover { 
+    transform: scale(1.05); 
+    background: var(--primary-color); 
+    box-shadow: 0 0 15px var(--primary-color);
+}
+.audio-btn.playing { 
+    background: var(--primary-color);
+    animation: thumpPulse 0.8s infinite alternate; 
+}
+@keyframes thumpPulse { 
+    0% { transform: scale(1); box-shadow: 0 0 10px rgba(123, 10, 10, 0.8); } 
+    100% { transform: scale(1.05); box-shadow: 0 0 25px red; } 
+}
+
 /* =========================================
    CATALOG GRID
 ========================================= */
@@ -179,74 +214,88 @@ header h3 { animation: fadeInDown 1.4s ease-out; font-size: 1rem; color: white; 
 .category, .engine-info, .year { font-size: 0.8em; color: #AAAAAA; margin: 2px 0; }
 
 /* =========================================
-   DETAIL PAGE
+   DETAIL PAGE (SIDE-BY-SIDE LAYOUT)
 ========================================= */
-.detail-container { max-width: 1200px; margin: 10px auto 50px; padding: 10px; }
-.detail-header { text-align: center; border-bottom: 2px solid var(--primary-color); margin-bottom: 30px; padding-bottom: 10px; }
-
+.detail-container { 
+    max-width: 1400px; /* Wider for side-by-side */
+    margin: 10px auto 50px; 
+    padding: 10px 20px; 
+}
+.detail-header { 
+    text-align: center; 
+    border-bottom: 2px solid var(--primary-color); 
+    margin-bottom: 30px; 
+    padding-bottom: 10px; 
+}
 .detail-header h1 {
-    font-size: 3rem;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-    letter-spacing: 1px;
+    font-size: 3rem; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); letter-spacing: 1px;
 }
 
-/* --- MODIFIED: FRAMED IMAGE BOX --- */
+/* --- MODIFIED: 2-COLUMN LAYOUT --- */
+.detail-layout-grid { 
+    display: grid; 
+    /* Equal 50/50 Split */
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px; 
+    align-items: start;
+}
+
+/* Left Column: Image */
 .image-reveal-container {
-    position: relative;
-    z-index: 5;
+    position: relative; z-index: 5;
+    background-color: #252525; border: 2px solid #959595; border-radius: 8px;
+    padding: 10px; 
     
-    /* Box Styling matches Cards */
-    background-color: #252525;
-    border: 2px solid #959595;
-    border-radius: 8px;
-    padding: 10px; /* Inner frame space */
-    margin-bottom: 20px;
+    /* Make image sticky if content is long */
+    position: sticky;
+    top: 80px; /* Stick below nav bar */
     
-    /* Reveal Animation */
-    opacity: 0; 
-    animation: fadeInUp 0.6s ease-out 0.3s forwards;
+    opacity: 0; animation: fadeInUp 0.6s ease-out 0.3s forwards;
 }
 
 .detail-image { 
     width: 100%; 
-    max-height: 500px; /* Taller allowed for detail */
-    object-fit: cover; 
-    border-radius: 4px; 
+    height: auto; 
+    max-height: 70vh; /* Limit height */
+    object-fit: cover; border-radius: 4px; 
     display: block;
     transition: transform 0.3s ease-out; 
+    opacity: 0; transform: scale(0.95); 
+    animation: simpleFadeZoom 0.8s ease-out 0.2s forwards; 
 }
-
 .detail-image:hover { transform: scale(1.02); }
 
-/* Ambient Glow */
 .image-reveal-container::after {
     content: ''; position: absolute; top: 50%; left: 50%; width: 80%; height: 80%;
     transform: translate(-50%, -50%); background: var(--primary-color); filter: blur(60px); opacity: 0.3; z-index: -1;
 }
 
-.spec-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+/* Right Column: Text & Specs */
+.detail-info-col {
+    opacity: 0; animation: fadeInUp 0.6s ease-out 0.5s forwards;
+}
+
+.detail-section {
+    background: #252525; border-radius: 8px; padding: 20px; margin-bottom: 20px; color: var(--text-color); 
+}
+.detail-section h3 { color: var(--primary-color); border-left: 4px solid var(--primary-color); padding-left: 10px; margin-top: 0; }
+
+.spec-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
 .spec-table th, .spec-table td { padding: 12px 15px; border: 1px solid #333; text-align: left; }
-.spec-table th { background-color: transparent; font-weight: bold; color: var(--secondary-color); width: 30%; }
-.detail-section h3 { color: var(--primary-color); border-left: 4px solid var(--primary-color); padding-left: 10px; margin-top: 30px; }
-.detail-sidebar .detail-section h3 { margin-top: 0; margin-bottom: 15px; }
+.spec-table th { background-color: transparent; font-weight: bold; color: var(--secondary-color); width: 35%; }
+
+/* Responsive Stack */
+@media (max-width: 900px) { 
+    .detail-layout-grid { grid-template-columns: 1fr; } 
+    .image-reveal-container { position: static; }
+}
+
 footer { text-align: center; padding: 20px; margin-top: 40px; border-top: 1px solid #333; color: #AAAAAA; font-size: 0.8em; }
 .back-link { display: inline-block; margin-bottom: 20px; text-decoration: none; color: white; font-weight: bold; position: relative; transition: all 0.2s ease-out; }
 .back-link:hover { padding-left: 20px; }
 .back-link:hover span { opacity: 1; transform: translateX(0); }
-.detail-layout-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 30px; }
-.detail-main-content { order: 1; }
-.detail-sidebar { order: 2; position: sticky; top: 30px; align-self: start; }
-@media (max-width: 800px) { .detail-layout-grid { grid-template-columns: 1fr; } .detail-main-content { order: 1; } .detail-sidebar { order: 2; position: static; } }
 
-/* Audio Button */
-.audio-container { text-align: center; margin-top: -20px; margin-bottom: 30px; position: relative; z-index: 10; }
-.audio-btn { background: var(--primary-color); color: white; border: 2px solid white; border-radius: 30px; padding: 10px 25px; font-family: var(--font-heading); font-size: 1.1rem; cursor: pointer; box-shadow: 0 0 20px rgba(123, 10, 10, 0.8); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; }
-.audio-btn:hover { transform: scale(1.1); background: white; color: var(--primary-color); border-color: var(--primary-color); }
-.audio-btn.playing { animation: thumpPulse 0.8s infinite alternate; }
-@keyframes thumpPulse { 0% { transform: scale(1); box-shadow: 0 0 20px rgba(123, 10, 10, 0.8); } 100% { transform: scale(1.05); box-shadow: 0 0 40px red; } }
-
-/* TIMELINE SCRUBBER */
+/* TIMELINE */
 .timeline-container {
     position: fixed; bottom: 0; left: 0; width: 100%; height: 6px;
     background: rgba(0,0,0,0.5); z-index: 9999; display: flex; cursor: pointer;
@@ -281,7 +330,6 @@ footer { text-align: center; padding: 20px; margin-top: 40px; border-top: 1px so
 .back-link { animation-delay: 0.1s; } .detail-header { animation-delay: 0.2s; } .detail-sidebar { animation-delay: 0.3s; } .detail-main-content .detail-section { animation-delay: 0.8s; }
 ::-webkit-scrollbar { width: 10px; } ::-webkit-scrollbar-track { background: var(--background-color); } ::-webkit-scrollbar-thumb { background-color: #444; border-radius: 20px; border: 2.5px solid var(--background-color); } ::-webkit-scrollbar-thumb:hover { background-color: var(--primary-color); }
 .back-link span { display: inline-block; opacity: 0; transform: translateX(-10px); transition: all 0.2s ease-out; } .back-link:hover { padding-left: 20px; } .back-link:hover span { opacity: 1; transform: translateX(0); }
-.detail-sidebar .detail-section { background: #252525; border-radius: 8px; padding: 20px; margin-top: 30px; color: var(--text-color); }
 .scroll-top-btn { position: fixed; bottom: 30px; right: 30px; z-index: 999; width: 40px; height: 40px; background-color: var(--primary-color); color: var(--secondary-color); border: none; border-radius: 50%; text-align: center; font-size: 1.5em; line-height: 40px; text-decoration: none; opacity: 0; pointer-events: none; transition: opacity 0.3s ease-out, transform 0.2s ease-out; }
 .scroll-top-btn:hover { transform: scale(1.1); } .scroll-top-btn.is-visible { opacity: 1; pointer-events: all; }
 @keyframes simpleFadeZoom { 0% { opacity: 0; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1); } }
