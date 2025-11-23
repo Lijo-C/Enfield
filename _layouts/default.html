@@ -6,7 +6,7 @@
     <meta name="view-transition" content="same-origin">
     
     <title>{{ site.title }}</title>
-    <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v=7">
+    <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v=8">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +29,9 @@
 
     <div class="timeline-container">
         <div class="timeline-progress" id="timelineProgress">
-            <div class="timeline-thumb"></div>
+            <div class="timeline-thumb">
+                <div class="timeline-tooltip" id="timelineTooltip"></div>
+            </div>
         </div>
     </div>
 

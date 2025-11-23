@@ -31,70 +31,14 @@ body.fade-out { opacity: 0; }
 body, a, button { cursor: none; }
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
 
-/* === NEW: FILM GRAIN OVERLAY === */
+/* FILM GRAIN */
 .film-grain {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none;
-    z-index: 9000; /* High z-index but below cursor */
+    z-index: 9000;
     opacity: 0.05;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-}
-
-/* =========================================
-   HEADER (Hero Image + Parallax)
-========================================= */
-header {
-    height: 40vh; 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end; 
-    align-items: center;
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
-    padding: 20px; 
-    text-align: center;
-    border-bottom: 5px solid #000000;
-    position: relative; 
-    z-index: 1;       
-    overflow: hidden; 
-}
-header::before {
-    content: '';
-    position: absolute;
-    /* Expanded size for parallax movement */
-    top: -5%; left: -5%; width: 110%; height: 110%;
-    background-image: url('images/hero-motorcycle.png');
-    background-size: cover;
-    background-position: center;
-    z-index: -1; 
-    
-    /* Parallax target class */
-    transition: transform 0.1s ease-out;
-    transform: translate(var(--move-x, 0px), var(--move-y, 0px));
-}
-header h1 { 
-    animation: fadeInDown 1s ease-out; 
-    font-size: 3.5rem;
-    color: white; 
-    margin: 0; 
-    line-height: 1;
-    /* Parallax on Text (Opposite direction) */
-    transform: translate(var(--move-x-rev, 0px), var(--move-y-rev, 0px));
-}
-header h2 {
-    animation: fadeInDown 1.2s ease-out;
-    font-size: 1.5rem;
-    color: white; 
-    margin: 0;
-    margin-bottom: 5px; 
-}
-header h3 {
-    animation: fadeInDown 1.4s ease-out;
-    font-size: 1rem;
-    color: white; 
-    margin: 0;
-    opacity: 0.9;
-    margin-bottom: 15px; 
 }
 
 /* =========================================
@@ -105,48 +49,27 @@ header h3 {
     background-color: rgba(20, 20, 20, 0.95); 
     border-bottom: 1px solid #333;
     padding: 5px 0; 
-    position: sticky; 
-    top: 0;
-    z-index: 1000;
+    position: sticky; top: 0; z-index: 1000;
     backdrop-filter: blur(10px);
 }
 
 .top-bar-layout {
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    flex-wrap: wrap;         
-    width: 100%;
-    gap: 10px;
-    padding: 0 15px;
+    display: flex; align-items: center; justify-content: center; flex-wrap: wrap;         
+    width: 100%; gap: 10px; padding: 0 15px;
 }
 
 .decade-nav {
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: center;
-    gap: 8px;        
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;        
 }
 
 .search-wrapper {
-    position: relative;
-    flex-grow: 1; 
-    max-width: 300px; 
-    min-width: 150px; 
-    margin-left: 5px;
+    position: relative; flex-grow: 1; max-width: 300px; min-width: 150px; margin-left: 5px;
 }
 
 .search-input {
-    font-family: var(--font-heading);
-    font-size: 0.9rem; 
-    letter-spacing: 1px;
-    background: var(--primary-color); 
-    border: 1px solid #ff4d4d;
-    color: white;
-    border-radius: 6px; 
-    padding: 6px 10px 6px 30px; 
-    width: 100%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    font-family: var(--font-heading); font-size: 0.9rem; letter-spacing: 1px;
+    background: var(--primary-color); border: 1px solid #ff4d4d; color: white; border-radius: 6px; 
+    padding: 6px 10px 6px 30px; width: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.3);
     transition: all 0.3s ease;
 }
 .search-input::placeholder { color: rgba(255, 255, 255, 0.7); font-family: var(--font-body); font-size: 0.8rem; }
@@ -154,81 +77,74 @@ header h3 {
 .search-icon { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); color: white; pointer-events: none; font-size: 0.9rem; }
 
 .year-nav {
-    position: absolute;
-    top: 100%; left: 0; width: 100%;
+    position: absolute; top: 100%; left: 0; width: 100%;
     display: flex; justify-content: center; flex-wrap: wrap; gap: 8px;
-    background-color: rgba(20, 20, 20, 0.98); 
-    border-bottom: 1px solid #333;
+    background-color: rgba(20, 20, 20, 0.98); border-bottom: 1px solid #333;
     height: auto; max-height: 0; opacity: 0; padding: 0 20px; overflow: hidden;
-    transition: all 0.3s ease-out; z-index: 90;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    transition: all 0.3s ease-out; z-index: 90; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
 }
 .year-nav.is-active { max-height: 200px; opacity: 1; padding: 10px 20px; }
 
-/* 3D GLASS BUTTONS + MAGNETIC CLASS */
 .filter-btn {
-    font-family: var(--font-heading);
-    font-size: 0.85rem; 
-    letter-spacing: 0.5px;
-    color: #DDD;
+    font-family: var(--font-heading); font-size: 0.85rem; letter-spacing: 0.5px; color: #DDD;
     background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-    border-top: 1px solid rgba(255,255,255,0.4);
-    border-left: 1px solid rgba(255,255,255,0.2);
-    border-right: 1px solid rgba(0,0,0,0.5);
-    border-bottom: 1px solid rgba(0,0,0,0.5);
-    border-radius: 6px; 
-    padding: 6px 12px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3); 
-    cursor: pointer;
-    transition: all 0.2s ease-out;
-    white-space: nowrap; 
-    
-    /* For Magnetic Effect */
-    display: inline-block;
+    border-top: 1px solid rgba(255,255,255,0.4); border-left: 1px solid rgba(255,255,255,0.2);
+    border-right: 1px solid rgba(0,0,0,0.5); border-bottom: 1px solid rgba(0,0,0,0.5);
+    border-radius: 6px; padding: 6px 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.3); 
+    cursor: pointer; transition: all 0.2s ease-out; white-space: nowrap; display: inline-block;
 }
 .filter-btn:hover {
+    transform: translateY(-1px);
     background: linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
-    box-shadow: 0 4px 8px rgba(0,0,0,0.5), 0 0 8px rgba(255,255,255,0.1); 
-    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5), 0 0 8px rgba(255,255,255,0.1); color: white;
 }
 .filter-btn.active {
-    background: var(--primary-color); 
-    border-color: #ff4d4d; 
-    color: white;
-    box-shadow: inset 0 0 5px rgba(0,0,0,0.5), 0 0 10px var(--primary-color); 
-    transform: translateY(1px); 
+    background: var(--primary-color); border-color: #ff4d4d; color: white;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5), 0 0 10px var(--primary-color); transform: translateY(1px); 
 }
 .year-nav .filter-btn { font-size: 0.8rem; padding: 4px 10px; background: transparent; border: 1px solid #444; box-shadow: none; }
 .year-nav .filter-btn:hover { border-color: white; background: rgba(255,255,255,0.1); }
 .year-nav .filter-btn.active { background: white; color: black; border-color: white; box-shadow: 0 0 8px white; }
 
 /* =========================================
-   CATALOG GRID (4 Col)
+   HEADER
+========================================= */
+header {
+    height: 40vh; 
+    display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8); padding: 20px; text-align: center;
+    border-bottom: 5px solid #000000; position: relative; z-index: 1; overflow: hidden; 
+}
+header::before {
+    content: ''; position: absolute; top: -5%; left: -5%; width: 110%; height: 110%;
+    background-image: url('images/hero-motorcycle.png'); background-size: cover; background-position: center;
+    z-index: -1; transition: transform 0.1s ease-out; transform: translate(var(--move-x, 0px), var(--move-y, 0px));
+}
+header h1 { 
+    animation: fadeInDown 1s ease-out; font-size: 3.5rem; color: white; margin: 0; line-height: 1;
+    transform: translate(var(--move-x-rev, 0px), var(--move-y-rev, 0px));
+    view-transition-name: hero-title; 
+}
+header h2 { animation: fadeInDown 1.2s ease-out; font-size: 1.5rem; color: white; margin: 0; margin-bottom: 5px; }
+header h3 { animation: fadeInDown 1.4s ease-out; font-size: 1rem; color: white; margin: 0; opacity: 0.9; margin-bottom: 15px; }
+
+/* =========================================
+   CATALOG GRID
 ========================================= */
 .catalog-grid {
-    display: grid;
-    gap: 30px;
-    padding: 10px 2% 50px; 
-    max-width: none; 
-    margin: 0;
+    display: grid; gap: 30px; padding: 10px 2% 50px; max-width: none; margin: 0;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 @media (min-width: 1100px) { .catalog-grid { grid-template-columns: repeat(4, 1fr); } }
 
 .bike-card {
-    background-color: #252525;
-    border: 2px solid #959595;
-    border-radius: 8px;
-    overflow: hidden;
-    text-decoration: none;
-    color: var(--text-color);
-    display: flex; flex-direction: column; aspect-ratio: 4 / 3;    
-    
-    /* --- MODIFIED: SKELETON LOADING BASE --- */
-    background: #252525;
-    
+    background-color: #252525; border: 2px solid #959595; border-radius: 8px; overflow: hidden;
+    text-decoration: none; color: var(--text-color); display: flex; flex-direction: column; aspect-ratio: 4 / 3;    
     opacity: 0; 
+    
+    /* Standard fade in, removing skeleton logic to fix visibility issues */
     animation: fadeInUp 0.5s ease-out forwards;
+    
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease-out;
     will-change: transform;
 }
@@ -236,19 +152,15 @@ header h3 {
 .bike-card.is-gone { display: none; }
 .bike-card:hover { transform: translateY(-8px); border-color: var(--primary-color); box-shadow: 0 0 25px rgba(123, 10, 10, 0.5); }
 
-/* --- NEW: ARCHIVE EFFECT (B&W) --- */
+/* ARCHIVE EFFECT */
 .bike-card img { 
     width: 100%; height: auto !important; flex: 1; min-height: 0; object-fit: cover; display: block; 
-    transition: transform 0.3s ease-out, filter 0.5s ease; /* Add filter transition */
-    
-    /* Start Black & White */
+    transition: transform 0.3s ease-out, filter 0.5s ease; 
     filter: grayscale(100%) contrast(1.1);
+    view-transition-name: var(--bike-transition-name, none);
+    contain: layout paint;
 }
-/* Hover Color */
-.bike-card:hover img { 
-    transform: scale(1.05); 
-    filter: grayscale(0%) contrast(1);
-}
+.bike-card:hover img { transform: scale(1.05); filter: grayscale(0%) contrast(1); }
 
 .card-details { padding: 12px; flex-shrink: 0; background-color: #252525; z-index: 1; }
 .card-details h2 { margin-top: 0; margin-bottom: 5px; font-size: 1.1em; color: var(--secondary-color); }
@@ -260,43 +172,34 @@ header h3 {
 .detail-container { max-width: 1200px; margin: 10px auto 50px; padding: 10px; }
 .detail-header { text-align: center; border-bottom: 2px solid var(--primary-color); margin-bottom: 30px; padding-bottom: 10px; }
 
-/* --- NEW: KNOCKOUT TEXT HEADER --- */
+/* --- MODIFIED: SOLID TEXT HEADER --- */
 .detail-header h1 {
     font-size: 3rem;
-    color: transparent;
-    -webkit-text-stroke: 1px var(--primary-color);
-    text-shadow: none;
-    letter-spacing: 2px;
+    color: white; /* Back to solid white */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    letter-spacing: 1px;
 }
 
 .detail-image { 
-    width: 100%; max-height: 400px; object-fit: cover; 
-    border-radius: 4px; margin-bottom: 20px; 
+    width: 100%; max-height: 400px; object-fit: cover; border-radius: 4px; margin-bottom: 20px; 
     transition: transform 0.3s ease-out; 
     opacity: 0; transform: scale(0.95); 
     animation: simpleFadeZoom 0.8s ease-out 0.2s forwards; 
 }
+/* Blueprint Effect */
+.detail-image:hover { transform: scale(1.02); filter: invert(1) hue-rotate(180deg) contrast(1.2); }
 
-/* --- NEW: BLUEPRINT EFFECT ON HOVER --- */
-.detail-image:hover { 
-    transform: scale(1.02); 
-    filter: invert(1) hue-rotate(180deg) contrast(1.2); /* Blueprint look */
+/* Reflection */
+.detail-image.reflection {
+    -webkit-box-reflect: below 0px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+    margin-bottom: 50px; 
 }
 
-/* --- NEW: AMBIENT GLOW (Behind Image) --- */
-.image-reveal-container {
-    position: relative;
-    z-index: 5;
-}
+/* Ambient Glow */
+.image-reveal-container { position: relative; z-index: 5; }
 .image-reveal-container::after {
-    content: '';
-    position: absolute;
-    top: 50%; left: 50%; width: 80%; height: 80%;
-    transform: translate(-50%, -50%);
-    background: var(--primary-color);
-    filter: blur(60px);
-    opacity: 0.3;
-    z-index: -1;
+    content: ''; position: absolute; top: 50%; left: 50%; width: 80%; height: 80%;
+    transform: translate(-50%, -50%); background: var(--primary-color); filter: blur(60px); opacity: 0.3; z-index: -1;
 }
 
 .spec-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
@@ -321,38 +224,42 @@ footer { text-align: center; padding: 20px; margin-top: 40px; border-top: 1px so
 @keyframes thumpPulse { 0% { transform: scale(1); box-shadow: 0 0 20px rgba(123, 10, 10, 0.8); } 100% { transform: scale(1.05); box-shadow: 0 0 40px red; } }
 
 /* =========================================
-   TIMELINE SCRUBBER (Bottom Fixed)
+   TIMELINE SCRUBBER (Visual Update)
 ========================================= */
 .timeline-container {
-    position: fixed;
-    bottom: 0; left: 0; width: 100%;
-    height: 6px;
-    background: rgba(0,0,0,0.5);
-    z-index: 9999;
-    display: flex;
-    cursor: pointer;
+    position: fixed; bottom: 0; left: 0; width: 100%; height: 6px;
+    background: rgba(0,0,0,0.5); z-index: 9999; display: flex; cursor: pointer;
     transition: height 0.2s ease;
 }
 .timeline-container:hover { height: 15px; }
 .timeline-progress {
-    height: 100%;
-    background: var(--primary-color);
-    width: 0%; /* JS will update this */
-    position: relative;
-    box-shadow: 0 0 10px red;
+    height: 100%; background: var(--primary-color); width: 0%; position: relative; box-shadow: 0 0 10px red;
 }
 .timeline-thumb {
-    position: absolute;
-    right: -5px; top: 50%;
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: white;
-    transform: translateY(-50%) scale(0);
-    transition: transform 0.2s ease;
+    position: absolute; right: -5px; top: 50%; width: 10px; height: 10px;
+    border-radius: 50%; background: white; transform: translateY(-50%) scale(0); transition: transform 0.2s ease;
 }
 .timeline-container:hover .timeline-thumb { transform: translateY(-50%) scale(1); }
 
-/* ANIMATIONS & EFFECTS */
+/* --- NEW: YEAR BUBBLE TOOLTIP --- */
+.timeline-tooltip {
+    position: absolute;
+    right: -20px; /* Center over thumb */
+    top: -35px;
+    background: white;
+    color: black;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    font-family: sans-serif;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+.timeline-container:hover .timeline-tooltip { opacity: 1; }
+
+/* ANIMATIONS */
 @keyframes kenBurns { 0% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 0.8; } }
 @keyframes fadeInDown { 0% { opacity: 0; transform: translateY(-20px); } 100% { opacity: 1; transform: translateY(0); } }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }

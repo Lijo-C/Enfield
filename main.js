@@ -7,7 +7,7 @@ window.addEventListener('pageshow', (event) => {
     if (cursorFollower) cursorFollower.classList.remove('is-hovering');
 });
 
-// --- 1. CURSOR & HOVER LOGIC ---
+// --- 1. CURSOR & HOVER ---
 const cursorDot = document.querySelector('.cursor-dot');
 const cursorFollower = document.querySelector('.cursor-follower');
 const allLinks = document.querySelectorAll('a, button, .bike-card, .filter-btn');
@@ -16,48 +16,27 @@ window.addEventListener('mousemove', (e) => {
     const posX = e.clientX;
     const posY = e.clientY;
     cursorDot.style.transform = `translate(${posX}px, ${posY}px)`;
-    
-    // Magnetic Button Effect (Pull cursor slightly if hovering button)
-    // We handle the visual button movement in a separate loop, 
-    // here we just move the follower normally.
     cursorFollower.style.transform = `translate(${posX}px, ${posY}px)`;
     
-    // --- NEW: PARALLAX HERO EFFECT ---
-    // Move Header Elements based on mouse position
     const header = document.querySelector('header');
     if(header) {
-        const moveX = (posX / window.innerWidth - 0.5) * 20; // Max 20px move
+        const moveX = (posX / window.innerWidth - 0.5) * 20; 
         const moveY = (posY / window.innerHeight - 0.5) * 20;
-        
-        // Background moves one way
         header.style.setProperty('--move-x', `${moveX}px`);
         header.style.setProperty('--move-y', `${moveY}px`);
-        
-        // Text moves opposite way (depth)
         header.style.setProperty('--move-x-rev', `${-moveX}px`);
         header.style.setProperty('--move-y-rev', `${-moveY}px`);
     }
 });
 
 allLinks.forEach(link => {
-    link.addEventListener('mouseenter', () => {
-        cursorFollower.classList.add('is-hovering');
-    });
-    link.addEventListener('mouseleave', () => {
-        cursorFollower.classList.remove('is-hovering');
-        
-        // Reset magnetic pull
-        link.style.transform = 'translate(0px, 0px)';
-    });
-    
-    // --- NEW: MAGNETIC BUTTON LOGIC ---
+    link.addEventListener('mouseenter', () => { cursorFollower.classList.add('is-hovering'); });
+    link.addEventListener('mouseleave', () => { cursorFollower.classList.remove('is-hovering'); link.style.transform = 'translate(0px, 0px)'; });
     if(link.classList.contains('filter-btn')) {
         link.addEventListener('mousemove', (e) => {
             const rect = link.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
-            
-            // Pull button towards mouse (Max 5px)
             link.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
         });
     }
@@ -68,13 +47,10 @@ allLinks.forEach(link => {
     if (link.tagName !== 'A') return;
     link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
-        
-        // View Transition API Support
         if (document.startViewTransition) {
             if (!href || href.startsWith('#') || href.startsWith('mailto:') || link.target === '_blank' || link.hasAttribute('data-fancybox')) return;
-            return; // Let browser handle morph
+            return; 
         }
-
         if (!href || href.startsWith('#') || href.startsWith('mailto:') || link.target === '_blank' || link.hasAttribute('data-fancybox')) return;
         e.preventDefault();
         cursorFollower.classList.remove('is-hovering');
@@ -83,23 +59,35 @@ allLinks.forEach(link => {
     });
 });
 
-// --- 3. SCROLL TO TOP & TIMELINE ---
+// --- 3. SCROLL TO TOP & TIMELINE (UPDATED) ---
 const scrollTopBtn = document.getElementById('scrollTopButton');
 const timelineProgress = document.getElementById('timelineProgress');
+const timelineTooltip = document.getElementById('timelineTooltip');
 
 window.addEventListener('scroll', () => {
-    // Scroll Top Button
     if (scrollTopBtn) {
         if (window.scrollY > 300) scrollTopBtn.classList.add('is-visible');
         else scrollTopBtn.classList.remove('is-visible');
     }
     
-    // --- NEW: TIMELINE SCRUBBER LOGIC ---
+    // Timeline Calculation
     if (timelineProgress) {
         const scrollTop = window.scrollY;
         const docHeight = document.body.scrollHeight - window.innerHeight;
-        const scrollPercent = (scrollTop / docHeight) * 100;
-        timelineProgress.style.width = `${scrollPercent}%`;
+        const scrollPercent = (scrollTop / docHeight); // 0.0 to 1.0
+        const widthPercent = scrollPercent * 100;
+        
+        timelineProgress.style.width = `${widthPercent}%`;
+        
+        // Calculate Year
+        // Assumption: Timeline represents 1901 to 2025 (approx 124 years)
+        const startYear = 1901;
+        const totalYears = 124;
+        const currentYear = Math.round(startYear + (totalYears * scrollPercent));
+        
+        if(timelineTooltip) {
+            timelineTooltip.textContent = currentYear;
+        }
     }
 });
 
