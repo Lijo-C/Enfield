@@ -107,7 +107,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
 .year-nav .filter-btn.active { background: white; color: black; border-color: white; box-shadow: 0 0 8px white; }
 
 /* =========================================
-   HEADER (Hero Image)
+   HEADER
 ========================================= */
 header {
     height: 40vh; 
@@ -126,43 +126,7 @@ header h1 {
     view-transition-name: hero-title; 
 }
 header h2 { animation: fadeInDown 1.2s ease-out; font-size: 1.5rem; color: white; margin: 0; margin-bottom: 5px; }
-header h3 { animation: fadeInDown 1.4s ease-out; font-size: 1rem; color: white; margin: 0; opacity: 0.9; margin-bottom: 10px; }
-
-/* --- MODIFIED: AUDIO BUTTON STYLES --- */
-.audio-container { 
-    margin-top: 10px; 
-    position: relative; 
-    z-index: 10; 
-    animation: fadeInDown 1.6s ease-out; /* Animate in with text */
-}
-.audio-btn { 
-    background: transparent; 
-    color: white; 
-    border: 2px solid var(--primary-color); 
-    border-radius: 30px; 
-    padding: 8px 20px; 
-    font-family: var(--font-heading); 
-    font-size: 1rem; 
-    cursor: pointer; 
-    box-shadow: 0 0 10px rgba(0,0,0,0.5); 
-    transition: all 0.3s ease; 
-    display: inline-flex; 
-    align-items: center; 
-    gap: 8px; 
-}
-.audio-btn:hover { 
-    transform: scale(1.05); 
-    background: var(--primary-color); 
-    box-shadow: 0 0 15px var(--primary-color);
-}
-.audio-btn.playing { 
-    background: var(--primary-color);
-    animation: thumpPulse 0.8s infinite alternate; 
-}
-@keyframes thumpPulse { 
-    0% { transform: scale(1); box-shadow: 0 0 20px rgba(123, 10, 10, 0.8); } 
-    100% { transform: scale(1.05); box-shadow: 0 0 40px red; } 
-}
+header h3 { animation: fadeInDown 1.4s ease-out; font-size: 1rem; color: white; margin: 0; opacity: 0.9; margin-bottom: 15px; }
 
 /* =========================================
    CATALOG GRID
@@ -185,6 +149,7 @@ header h3 { animation: fadeInDown 1.4s ease-out; font-size: 1rem; color: white; 
 .bike-card.is-gone { display: none; }
 .bike-card:hover { transform: translateY(-8px); border-color: var(--primary-color); box-shadow: 0 0 25px rgba(123, 10, 10, 0.5); }
 
+/* ARCHIVE EFFECT */
 .bike-card img { 
     width: 100%; height: auto !important; flex: 1; min-height: 0; object-fit: cover; display: block; 
     transition: transform 0.3s ease-out, filter 0.5s ease; 
@@ -204,9 +169,10 @@ header h3 { animation: fadeInDown 1.4s ease-out; font-size: 1rem; color: white; 
 .detail-container { max-width: 1200px; margin: 10px auto 50px; padding: 10px; }
 .detail-header { text-align: center; border-bottom: 2px solid var(--primary-color); margin-bottom: 30px; padding-bottom: 10px; }
 
+/* Solid Text Header */
 .detail-header h1 {
     font-size: 3rem;
-    color: white; 
+    color: white;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
     letter-spacing: 1px;
 }
@@ -217,13 +183,17 @@ header h3 { animation: fadeInDown 1.4s ease-out; font-size: 1rem; color: white; 
     opacity: 0; transform: scale(0.95); 
     animation: simpleFadeZoom 0.8s ease-out 0.2s forwards; 
 }
-.detail-image:hover { transform: scale(1.02); filter: invert(1) hue-rotate(180deg) contrast(1.2); }
 
+/* --- MODIFIED: Removed Blueprint, just scale --- */
+.detail-image:hover { transform: scale(1.02); }
+
+/* Reflection */
 .detail-image.reflection {
     -webkit-box-reflect: below 0px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
     margin-bottom: 50px; 
 }
 
+/* Ambient Glow */
 .image-reveal-container { position: relative; z-index: 5; }
 .image-reveal-container::after {
     content: ''; position: absolute; top: 50%; left: 50%; width: 80%; height: 80%;
@@ -244,7 +214,14 @@ footer { text-align: center; padding: 20px; margin-top: 40px; border-top: 1px so
 .detail-sidebar { order: 2; position: sticky; top: 30px; align-self: start; }
 @media (max-width: 800px) { .detail-layout-grid { grid-template-columns: 1fr; } .detail-main-content { order: 1; } .detail-sidebar { order: 2; position: static; } }
 
-/* TIMELINE */
+/* Audio Button */
+.audio-container { text-align: center; margin-top: -20px; margin-bottom: 30px; position: relative; z-index: 10; }
+.audio-btn { background: var(--primary-color); color: white; border: 2px solid white; border-radius: 30px; padding: 10px 25px; font-family: var(--font-heading); font-size: 1.1rem; cursor: pointer; box-shadow: 0 0 20px rgba(123, 10, 10, 0.8); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; }
+.audio-btn:hover { transform: scale(1.1); background: white; color: var(--primary-color); border-color: var(--primary-color); }
+.audio-btn.playing { animation: thumpPulse 0.8s infinite alternate; }
+@keyframes thumpPulse { 0% { transform: scale(1); box-shadow: 0 0 20px rgba(123, 10, 10, 0.8); } 100% { transform: scale(1.05); box-shadow: 0 0 40px red; } }
+
+/* TIMELINE SCRUBBER */
 .timeline-container {
     position: fixed; bottom: 0; left: 0; width: 100%; height: 6px;
     background: rgba(0,0,0,0.5); z-index: 9999; display: flex; cursor: pointer;
