@@ -119,7 +119,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
 .year-nav .filter-btn.active { background: white; color: black; border-color: white; box-shadow: 0 0 8px white; }
 
 /* =========================================
-   HEADER (Hero + Video Fog)
+   HEADER (Hero + Code-Only Mist)
 ========================================= */
 header {
     height: 40vh; 
@@ -137,36 +137,58 @@ header::before {
     filter: brightness(0.9) contrast(1.1) sepia(0.05); 
 }
 
-/* --- NEW: FOG VIDEO CONTAINER --- */
+/* --- NEW: PROCEDURAL CSS MIST --- */
 .fog-container {
     position: absolute;
-    bottom: 0; /* Lock to bottom */
+    bottom: 0;
     left: 0;
-    width: 100%; 
-    height: 50%; /* Only fill bottom 50% */
+    width: 100%;
+    height: 40%; /* Occupy bottom 40% */
     overflow: hidden;
-    z-index: -1; /* Behind text */
+    z-index: -1;
     pointer-events: none;
+    /* Fade out the top edge of the mist */
+    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
 }
 
-/* --- NEW: SMOKE VIDEO STYLE --- */
-.smoke-video {
-    width: 100%;
+/* The drifting cloud layers */
+.fog-mist {
+    position: absolute;
+    width: 200%;
     height: 100%;
-    object-fit: cover; /* Stretch to fill */
+    top: 0;
+    left: 0;
+    opacity: 0.3; /* Very subtle */
     
-    /* Blend Mode: Makes black transparent */
-    mix-blend-mode: screen; 
-    opacity: 0.3; /* Very light/subtle */
+    /* Generate "Clouds" using gradients */
+    background-image: 
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.4) 0%, transparent 50%),
+        radial-gradient(circle at 20% 60%, rgba(255,255,255,0.4) 0%, transparent 40%),
+        radial-gradient(circle at 80% 40%, rgba(255,255,255,0.4) 0%, transparent 50%);
     
-    /* Fade out the top edge so no hard line */
-    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 90%);
-    mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 90%);
+    /* Blur them into mist */
+    filter: blur(40px); 
+    animation: mistFlow 30s linear infinite;
+}
+
+.fog-mist-2 {
+    opacity: 0.2;
+    /* Different cloud pattern */
+    background-image: 
+        radial-gradient(circle at 30% 40%, rgba(255,255,255,0.4) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(255,255,255,0.4) 0%, transparent 50%);
+        
+    animation: mistFlow 45s linear infinite reverse; /* Move opposite way */
+}
+
+@keyframes mistFlow {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 header h1 { 
     animation: fadeInDown 1s ease-out; font-size: 3.5rem; color: white; margin: 0; line-height: 1;
-    transform: translate(var(--move-x-rev, 0px), var(--move-y-rev, 0px));
     view-transition-name: hero-title; 
     position: relative; z-index: 2;
 }

@@ -6,7 +6,7 @@
     <meta name="view-transition" content="same-origin">
     
     <title>{{ page.name }} Details | Royal Enfield Catalog</title>
-    <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v=16"> 
+    <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v=17"> 
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,9 +27,8 @@
 
     <header>
         <div class="fog-container">
-            <video class="smoke-video" autoplay loop muted playsinline>
-                <source src="{{ site.baseurl }}/video/smoke.mov" type="video/mov">
-            </video>
+            <div class="fog-mist"></div>
+            <div class="fog-mist fog-mist-2"></div>
         </div>
         <h1 style="view-transition-name: hero-title;">{{ page.name }}</h1>
         <h2>Model Year: {{ page.year }}</h2>
