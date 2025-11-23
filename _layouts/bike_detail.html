@@ -6,7 +6,7 @@
     <meta name="view-transition" content="same-origin">
     
     <title>{{ page.name }} Details | Royal Enfield Catalog</title>
-    <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v=13"> 
+    <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v=15"> 
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,29 +26,29 @@
     <div class="film-grain"></div>
 
     <header>
+        <div class="fog-container">
+            <div class="fog-img"></div>
+            <div class="fog-img fog-img-2"></div>
+        </div>
         <h1 style="view-transition-name: hero-title;">{{ page.name }}</h1>
         <h2>Model Year: {{ page.year }}</h2>
     </header>
+
     <div class="detail-container">
-        
         <a href="{{ site.baseurl }}/" class="back-link"><span>&lt;</span> Back to Catalog</a>
         
         <div class="detail-layout-grid">
-            
             <div class="detail-left-column">
-                
                 <div class="image-reveal-container">
                     <a href="{{ site.baseurl }}/images/{{ page.image }}" 
                        data-fancybox="bike-gallery" 
                        data-caption="{{ page.name }}">
-                       
                         <img src="{{ site.baseurl }}/images/{{ page.image }}" 
                              alt="Image of {{ page.name }}" 
                              class="detail-image" 
                              style="--bike-transition-name: bike-{{ page.url | slugify }};">
                     </a>
                 </div>
-
                 <div class="detail-section">
                     <h3>Historical Notes</h3>
                     <p>{{ page.history }}</p>
@@ -64,7 +64,6 @@
                         {% endfor %}
                     </table>
                 </div>
-                
                 <div class="detail-section">
                     <h3>Chassis & Dimensions</h3>
                     <table class="spec-table">
@@ -84,6 +83,14 @@
     <a href="#" id="scrollTopButton" class="scroll-top-btn" title="Scroll to top">
         <span>&uarr;</span>
     </a>
+
+    <div class="timeline-container">
+        <div class="timeline-progress" id="timelineProgress">
+            <div class="timeline-thumb">
+                <div class="timeline-tooltip" id="timelineTooltip"></div>
+            </div>
+        </div>
+    </div>
 
     <div class="cursor-dot"></div>
     <div class="cursor-follower"></div>

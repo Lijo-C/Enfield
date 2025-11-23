@@ -54,7 +54,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
 }
 
 /* =========================================
-   MENU BAR
+   MENU BAR (Top Sticky)
 ========================================= */
 .filter-container {
     width: 100%;
@@ -119,7 +119,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
 .year-nav .filter-btn.active { background: white; color: black; border-color: white; box-shadow: 0 0 8px white; }
 
 /* =========================================
-   HEADER (Brighter & Blended)
+   HEADER (Hero + Fog)
 ========================================= */
 header {
     height: 40vh; 
@@ -128,22 +128,59 @@ header {
     border-bottom: 5px solid #000000; position: relative; z-index: 1; overflow: hidden; 
 }
 header::before {
-    content: ''; position: absolute; top: -5%; left: -5%; width: 110%; height: 110%;
-    z-index: -1; 
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -2; /* Behind fog */
     
-    /* --- MODIFIED: Lighter Gradient --- */
+    /* Lighter gradient for visibility */
     background-image: 
-        linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(18,18,18,0.9)), /* Much lighter top */
+        linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(18,18,18,0.9)), 
         url('images/hero-motorcycle.png');
         
     background-size: cover; background-position: center;
-    
-    /* --- MODIFIED: Brighter Filter --- */
+    /* Brightened filter */
     filter: brightness(0.9) contrast(1.1) sepia(0.05); 
 }
+
+/* --- NEW: FOG ANIMATION --- */
+.fog-container {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    overflow: hidden;
+    z-index: 2; /* In FRONT of text for depth, or -1 for behind text. 2 looks 3D */
+    pointer-events: none;
+}
+
+.fog-img {
+    position: absolute;
+    height: 100%;
+    width: 200%;
+    background: url('images/fog.png') repeat-x;
+    background-size: contain;
+    background-position: center bottom;
+    
+    /* The Magic Blend Mode */
+    mix-blend-mode: screen; 
+    opacity: 0.4; 
+    
+    animation: fogFlow 60s linear infinite;
+}
+
+.fog-img-2 {
+    background-position: center top;
+    animation: fogFlow 40s linear infinite reverse;
+    opacity: 0.3;
+    bottom: 0;
+}
+
+@keyframes fogFlow {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Header Text */
 header h1 { 
     animation: fadeInDown 1s ease-out; font-size: 3.5rem; color: white; margin: 0; line-height: 1;
-    transform: translate(var(--move-x-rev, 0px), var(--move-y-rev, 0px));
     view-transition-name: hero-title; 
 }
 header h2 { animation: fadeInDown 1.2s ease-out; font-size: 1.5rem; color: white; margin: 0; margin-bottom: 5px; }
@@ -204,19 +241,18 @@ header h3 { animation: fadeInDown 1.4s ease-out; font-size: 1rem; color: white; 
 }
 
 .detail-layout-grid { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 40px; 
-    align-items: start; 
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; 
 }
 
 .detail-left-column { display: flex; flex-direction: column; gap: 30px; }
 
+/* Framed Image Box */
 .image-reveal-container {
     position: relative; z-index: 5;
     background-color: #252525; border: 2px solid #959595; border-radius: 8px; padding: 10px;
     opacity: 0; animation: fadeInUp 0.6s ease-out 0.3s forwards;
 }
+/* Ambient Glow */
 .image-reveal-container::after {
     content: ''; position: absolute; top: 50%; left: 50%; width: 80%; height: 80%;
     transform: translate(-50%, -50%); background: var(--primary-color); filter: blur(60px); opacity: 0.3; z-index: -1;
@@ -229,6 +265,7 @@ header h3 { animation: fadeInDown 1.4s ease-out; font-size: 1rem; color: white; 
 }
 .detail-image:hover { transform: scale(1.02); }
 
+/* Sticky Right Column */
 .detail-right-column {
     position: sticky; top: 100px; opacity: 0; animation: fadeInUp 0.6s ease-out 0.5s forwards;
 }
@@ -268,22 +305,13 @@ footer { text-align: center; padding: 20px; margin-top: 40px; border-top: 1px so
 }
 .timeline-container:hover .timeline-thumb { transform: translateY(-50%) scale(1); }
 
-/* --- MODIFIED: TOOLTIP ALWAYS VISIBLE --- */
+/* VISIBLE TOOLTIP */
 .timeline-tooltip {
-    position: absolute; 
-    right: -20px; 
-    top: -35px; 
-    
-    background: white; 
-    color: black; 
-    padding: 2px 6px;
-    border-radius: 4px; 
-    font-size: 0.8rem; 
-    font-weight: bold; 
-    font-family: sans-serif;
-    
-    opacity: 1; /* VISIBLE */
-    pointer-events: none; 
+    position: absolute; right: -20px; top: -35px; 
+    background: white; color: black; padding: 2px 6px;
+    border-radius: 4px; font-size: 0.8rem; font-weight: bold; font-family: sans-serif;
+    opacity: 1; /* ALWAYS VISIBLE */
+    pointer-events: none; transition: opacity 0.2s ease;
 }
 
 /* ANIMATIONS */
