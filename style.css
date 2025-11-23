@@ -19,12 +19,28 @@ body {
     color: var(--text-color);
     transition: opacity 0.3s ease-out;
     
+    /* Background Image */
     background-image: url('images/bg.png'); 
     background-color: var(--background-color);
     background-size: cover;
     background-position: center center;
     background-attachment: fixed; 
     overflow-x: hidden; 
+    position: relative;
+}
+
+/* --- NEW: GLOBAL GLASS BACKGROUND OVERLAY --- */
+/* This creates the blurred glass effect over the background image */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1; /* Behind content, on top of body background */
+    
+    /* The Glass Effect */
+    backdrop-filter: blur(8px) brightness(0.7); 
+    background: rgba(0, 0, 0, 0.2); 
+    pointer-events: none;
 }
 
 body.fade-out { opacity: 0; }
@@ -149,7 +165,6 @@ header h3 { animation: fadeInDown 1.4s ease-out; font-size: 1rem; color: white; 
 .bike-card.is-gone { display: none; }
 .bike-card:hover { transform: translateY(-8px); border-color: var(--primary-color); box-shadow: 0 0 25px rgba(123, 10, 10, 0.5); }
 
-/* ARCHIVE EFFECT */
 .bike-card img { 
     width: 100%; height: auto !important; flex: 1; min-height: 0; object-fit: cover; display: block; 
     transition: transform 0.3s ease-out, filter 0.5s ease; 
@@ -169,7 +184,6 @@ header h3 { animation: fadeInDown 1.4s ease-out; font-size: 1rem; color: white; 
 .detail-container { max-width: 1200px; margin: 10px auto 50px; padding: 10px; }
 .detail-header { text-align: center; border-bottom: 2px solid var(--primary-color); margin-bottom: 30px; padding-bottom: 10px; }
 
-/* Solid Text Header */
 .detail-header h1 {
     font-size: 3rem;
     color: white;
@@ -177,24 +191,35 @@ header h3 { animation: fadeInDown 1.4s ease-out; font-size: 1rem; color: white; 
     letter-spacing: 1px;
 }
 
-.detail-image { 
-    width: 100%; max-height: 400px; object-fit: cover; border-radius: 4px; margin-bottom: 20px; 
-    transition: transform 0.3s ease-out; 
-    opacity: 0; transform: scale(0.95); 
-    animation: simpleFadeZoom 0.8s ease-out 0.2s forwards; 
+/* --- MODIFIED: FRAMED IMAGE BOX --- */
+.image-reveal-container {
+    position: relative;
+    z-index: 5;
+    
+    /* Box Styling matches Cards */
+    background-color: #252525;
+    border: 2px solid #959595;
+    border-radius: 8px;
+    padding: 10px; /* Inner frame space */
+    margin-bottom: 20px;
+    
+    /* Reveal Animation */
+    opacity: 0; 
+    animation: fadeInUp 0.6s ease-out 0.3s forwards;
 }
 
-/* --- MODIFIED: Removed Blueprint, just scale --- */
+.detail-image { 
+    width: 100%; 
+    max-height: 500px; /* Taller allowed for detail */
+    object-fit: cover; 
+    border-radius: 4px; 
+    display: block;
+    transition: transform 0.3s ease-out; 
+}
+
 .detail-image:hover { transform: scale(1.02); }
 
-/* Reflection */
-.detail-image.reflection {
-    -webkit-box-reflect: below 0px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
-    margin-bottom: 50px; 
-}
-
 /* Ambient Glow */
-.image-reveal-container { position: relative; z-index: 5; }
 .image-reveal-container::after {
     content: ''; position: absolute; top: 50%; left: 50%; width: 80%; height: 80%;
     transform: translate(-50%, -50%); background: var(--primary-color); filter: blur(60px); opacity: 0.3; z-index: -1;
