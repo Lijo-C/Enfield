@@ -7,7 +7,7 @@ window.addEventListener('pageshow', (event) => {
     if (cursorFollower) cursorFollower.classList.remove('is-hovering');
 });
 
-// --- 1. CURSOR & HOVER ---
+// --- 1. CURSOR & HOVER LOGIC ---
 const cursorDot = document.querySelector('.cursor-dot');
 const cursorFollower = document.querySelector('.cursor-follower');
 const allLinks = document.querySelectorAll('a, button, .bike-card, .filter-btn');
@@ -17,21 +17,21 @@ window.addEventListener('mousemove', (e) => {
     const posY = e.clientY;
     cursorDot.style.transform = `translate(${posX}px, ${posY}px)`;
     cursorFollower.style.transform = `translate(${posX}px, ${posY}px)`;
-    
-    const header = document.querySelector('header');
-    if(header) {
-        const moveX = (posX / window.innerWidth - 0.5) * 20; 
-        const moveY = (posY / window.innerHeight - 0.5) * 20;
-        header.style.setProperty('--move-x', `${moveX}px`);
-        header.style.setProperty('--move-y', `${moveY}px`);
-        header.style.setProperty('--move-x-rev', `${-moveX}px`);
-        header.style.setProperty('--move-y-rev', `${-moveY}px`);
-    }
 });
 
 allLinks.forEach(link => {
-    link.addEventListener('mouseenter', () => { cursorFollower.classList.add('is-hovering'); });
-    link.addEventListener('mouseleave', () => { cursorFollower.classList.remove('is-hovering'); link.style.transform = 'translate(0px, 0px)'; });
+    link.addEventListener('mouseenter', () => {
+        cursorFollower.classList.add('is-hovering');
+    });
+    link.addEventListener('mouseleave', () => {
+        cursorFollower.classList.remove('is-hovering');
+        // Reset magnetic pull
+        if(link.classList.contains('filter-btn')) {
+            link.style.transform = 'translate(0px, 0px)';
+        }
+    });
+    
+    // MAGNETIC BUTTON LOGIC
     if(link.classList.contains('filter-btn')) {
         link.addEventListener('mousemove', (e) => {
             const rect = link.getBoundingClientRect();
@@ -59,7 +59,7 @@ allLinks.forEach(link => {
     });
 });
 
-// --- 3. SCROLL TO TOP & TIMELINE (UPDATED) ---
+// --- 3. SCROLL TO TOP & TIMELINE ---
 const scrollTopBtn = document.getElementById('scrollTopButton');
 const timelineProgress = document.getElementById('timelineProgress');
 const timelineTooltip = document.getElementById('timelineTooltip');
@@ -70,24 +70,17 @@ window.addEventListener('scroll', () => {
         else scrollTopBtn.classList.remove('is-visible');
     }
     
-    // Timeline Calculation
     if (timelineProgress) {
         const scrollTop = window.scrollY;
         const docHeight = document.body.scrollHeight - window.innerHeight;
-        const scrollPercent = (scrollTop / docHeight); // 0.0 to 1.0
+        const scrollPercent = (scrollTop / docHeight); 
         const widthPercent = scrollPercent * 100;
-        
         timelineProgress.style.width = `${widthPercent}%`;
         
-        // Calculate Year
-        // Assumption: Timeline represents 1901 to 2025 (approx 124 years)
         const startYear = 1901;
         const totalYears = 124;
         const currentYear = Math.round(startYear + (totalYears * scrollPercent));
-        
-        if(timelineTooltip) {
-            timelineTooltip.textContent = currentYear;
-        }
+        if(timelineTooltip) timelineTooltip.textContent = currentYear;
     }
 });
 
@@ -105,21 +98,29 @@ const yearContainer = document.getElementById('year-filters');
 const searchInput = document.getElementById('searchInput');
 
 if (bikeCards.length > 0 && decadeContainer) {
+    
     const eraMap = new Map(); 
+
     bikeCards.forEach(card => {
         let yearRaw = card.getAttribute('data-year').toString();
         let year = parseInt(yearRaw.match(/\d{4}/)[0]); 
+        
         let eraLabel = "";
-        if (year <= 1900) { eraLabel = "1890 - 1900"; } 
-        else {
+        if (year <= 1900) {
+            eraLabel = "1890 - 1900";
+        } else {
             let offset = year - 1901;
             let chunkIndex = Math.floor(offset / 25);
             let startYear = 1901 + (chunkIndex * 25);
             let endYear = startYear + 24;
             eraLabel = `${startYear} - ${endYear}`;
         }
-        if (!eraMap.has(eraLabel)) { eraMap.set(eraLabel, new Set()); }
+
+        if (!eraMap.has(eraLabel)) {
+            eraMap.set(eraLabel, new Set());
+        }
         eraMap.get(eraLabel).add(year);
+        
         card.dataset.era = eraLabel;
         card.dataset.cleanYear = year;
         card.dataset.searchText = card.innerText.toLowerCase();
@@ -168,18 +169,23 @@ if (bikeCards.length > 0 && decadeContainer) {
     function filterByEra(era, clickedBtn) {
         setActiveBtn(decadeContainer, clickedBtn);
         if(searchInput) searchInput.value = ''; 
+        
         filterGrid(card => card.dataset.era === era);
+
         yearContainer.innerHTML = ''; 
         const yearsInEra = Array.from(eraMap.get(era)).sort();
+
         if (yearsInEra.length > 0) {
             const allEraBtn = document.createElement('button');
             allEraBtn.className = 'filter-btn active';
             allEraBtn.textContent = `All ${era}`;
+            
             allEraBtn.onclick = () => {
                 setActiveBtn(yearContainer, allEraBtn);
                 filterGrid(card => card.dataset.era === era);
             };
             yearContainer.appendChild(allEraBtn);
+
             yearsInEra.forEach(year => {
                 const yBtn = document.createElement('button');
                 yBtn.className = 'filter-btn';
@@ -199,7 +205,10 @@ if (bikeCards.length > 0 && decadeContainer) {
             const term = e.target.value.toLowerCase();
             const allEraBtns = decadeContainer.querySelectorAll('.filter-btn');
             allEraBtns.forEach(b => b.classList.remove('active')); 
-            filterGrid(card => { return card.dataset.searchText.includes(term); });
+            
+            filterGrid(card => {
+                return card.dataset.searchText.includes(term);
+            });
         });
     }
 
@@ -210,7 +219,7 @@ if (bikeCards.length > 0 && decadeContainer) {
     }
 }
 
-// --- 5. AUDIO PLAYER LOGIC ---
+// --- 5. AUDIO PLAYER ---
 const playBtn = document.getElementById('playThumpBtn');
 const audioEl = document.getElementById('bikeAudio');
 if (playBtn && audioEl) {
@@ -219,7 +228,7 @@ if (playBtn && audioEl) {
         audioEl.src = audioSrc;
         playBtn.addEventListener('click', () => {
             if (audioEl.paused) {
-                audioEl.play().catch(e => console.log("Audio file not found or blocked"));
+                audioEl.play().catch(e => console.log("Audio blocked"));
                 playBtn.classList.add('playing');
                 playBtn.innerHTML = "<span>&#10074;&#10074;</span> Stop Engine";
             } else {
