@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <meta name="view-transition" content="same-origin">
     
     <title>{{ page.name }} Details | Royal Enfield Catalog</title>
-    <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v=8"> 
+    <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v=9"> 
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +24,10 @@
     </script>
 </head>
 <body>
+    <div class="film-grain"></div>
+
     <div class="detail-container">
+        
         <a href="{{ site.baseurl }}/" class="back-link"><span>&lt;</span> Back to Catalog</a>
 
         <div class="detail-header">
@@ -32,23 +36,19 @@
         </div>
         
         <div class="detail-layout-grid">
+            
             <div class="detail-main-content">
+                
                 <div class="image-reveal-container">
                     <a href="{{ site.baseurl }}/images/{{ page.image }}" 
                        data-fancybox="bike-gallery" 
                        data-caption="{{ page.name }}">
+                       
                         <img src="{{ site.baseurl }}/images/{{ page.image }}" 
                              alt="Image of {{ page.name }}" 
                              class="detail-image reflection" 
                              style="--bike-transition-name: bike-{{ page.url | slugify }};">
                     </a>
-                </div>
-                
-                <div class="audio-container">
-                    <button id="playThumpBtn" class="audio-btn" data-audio="{{ site.baseurl }}/audio/thump.mp3">
-                        <span>&#9658;</span> Hear the Thump
-                    </button>
-                    <audio id="bikeAudio"></audio>
                 </div>
 
                 <div class="detail-section">
@@ -66,6 +66,7 @@
                         {% endfor %}
                     </table>
                 </div>
+                
                 <div class="detail-section">
                     <h3>Chassis & Dimensions</h3>
                     <table class="spec-table">
@@ -76,7 +77,7 @@
                 </div>
             </aside>
         </div>
-    </div>
+        </div>
 
     <footer>
         <p>&copy; <script>document.write(new Date().getFullYear())</script> A Royal Enfield Lovers Catalog</p>
@@ -90,10 +91,12 @@
     <div class="cursor-follower"></div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
     <script>
       Fancybox.bind("[data-fancybox]", { });
     </script>
+    
     <script src="{{ site.baseurl }}/main.js"></script>
-</body>
+    </body>
 </html>

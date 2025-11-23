@@ -3,18 +3,13 @@ layout: default
 ---
 
 <section class="filter-container">
-    
     <div class="top-bar-layout">
-        
         <div id="decade-filters" class="decade-nav"></div>
-        
         <div class="search-wrapper">
             <span class="search-icon">&#128269;</span>
             <input type="text" id="searchInput" class="search-input" placeholder="Search...">
         </div>
-        
     </div>
-    
     <div id="year-filters" class="year-nav"></div>
 </section>
 
@@ -22,7 +17,14 @@ layout: default
     <h1>Royal Enfield</h1>
     <h2>Made like a Gun</h2>
     <h3>A Royal Enfield Lovers Catalog</h3>
-</header>
+    
+    <div class="audio-container">
+        <button id="playThumpBtn" class="audio-btn" data-audio="{{ site.baseurl }}/audio/thump.mp3">
+            <span>&#9658;</span> Hear the Thump
+        </button>
+        <audio id="bikeAudio"></audio>
+    </div>
+    </header>
 
 <main class="catalog-grid">
     
@@ -32,7 +34,10 @@ layout: default
        data-tilt
        data-year="{{ bike.year }}">
         
-        <img src="{{ site.baseurl }}/images/{{ bike.image }}" alt="Royal Enfield {{ bike.name }}" aria-label="Image of Royal Enfield {{ bike.name }}" loading="lazy">
+        <img src="{{ site.baseurl }}/images/{{ bike.image }}" 
+             alt="Royal Enfield {{ bike.name }}" 
+             loading="lazy"
+             style="--bike-transition-name: bike-{{ bike.url | slugify }};">
         
         <div class="card-details">
             <h2>{{ bike.name }}</h2>
