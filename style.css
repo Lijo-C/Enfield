@@ -119,7 +119,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
 .year-nav .filter-btn.active { background: white; color: black; border-color: white; box-shadow: 0 0 8px white; }
 
 /* =========================================
-   HEADER (Hero + VIDEO Fog)
+   HEADER (Hero + MOVING IMAGE FOG)
 ========================================= */
 header {
     height: 40vh; 
@@ -137,31 +137,51 @@ header::before {
     filter: brightness(0.9) contrast(1.1) sepia(0.05); 
 }
 
-/* --- RESTORED: FOG VIDEO CONTAINER --- */
+/* --- RESTORED: MOVING IMAGE FOG --- */
 .fog-container {
     position: absolute;
-    bottom: 0;
+    bottom: 0; /* Lock to bottom */
     left: 0;
     width: 100%;
-    height: 50%; /* Bottom 50% only */
+    height: 50%; /* Only bottom 50% */
     overflow: hidden;
     z-index: -1; /* Behind text */
     pointer-events: none;
-}
-
-/* --- RESTORED: VIDEO STYLE --- */
-.smoke-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     
-    /* Blending */
-    mix-blend-mode: screen; 
-    opacity: 0.3; /* Light smoke */
-    
-    /* Fade out top edge */
+    /* Fade out the top edge */
     -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
     mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+}
+
+.fog-img {
+    position: absolute;
+    height: 100%;
+    width: 200%; /* Double width for looping */
+    
+    /* 1. Try to load image. 2. Fallback to code-mist if image missing */
+    background: url('images/fog.png') repeat-x, 
+                linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    
+    background-size: contain;
+    background-position: center bottom;
+    
+    /* Blend Mode makes black transparent */
+    mix-blend-mode: screen; 
+    opacity: 0.4; /* Subtle */
+    
+    animation: fogFlow 60s linear infinite;
+}
+
+.fog-img-2 {
+    background-position: center top;
+    animation: fogFlow 40s linear infinite reverse;
+    opacity: 0.3;
+    bottom: 0;
+}
+
+@keyframes fogFlow {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 header h1 { 
@@ -221,9 +241,15 @@ header h3 { animation: fadeInDown 1.4s ease-out; font-size: 1rem; color: white; 
 ========================================= */
 .detail-container { max-width: 1200px; margin: 10px auto 50px; padding: 10px; }
 .detail-header { text-align: center; border-bottom: 2px solid var(--primary-color); margin-bottom: 30px; padding-bottom: 10px; }
-.detail-header h1 { font-size: 3rem; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); letter-spacing: 1px; }
 
-.detail-layout-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.detail-header h1 {
+    font-size: 3rem; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); letter-spacing: 1px;
+}
+
+.detail-layout-grid { 
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; 
+}
+
 .detail-left-column { display: flex; flex-direction: column; gap: 30px; }
 
 .image-reveal-container {
@@ -243,9 +269,13 @@ header h3 { animation: fadeInDown 1.4s ease-out; font-size: 1rem; color: white; 
 }
 .detail-image:hover { transform: scale(1.02); }
 
-.detail-right-column { position: sticky; top: 100px; opacity: 0; animation: fadeInUp 0.6s ease-out 0.5s forwards; }
+.detail-right-column {
+    position: sticky; top: 100px; opacity: 0; animation: fadeInUp 0.6s ease-out 0.5s forwards;
+}
 
-.detail-section { background: #252525; border-radius: 8px; padding: 20px; margin-bottom: 20px; color: var(--text-color); }
+.detail-section {
+    background: #252525; border-radius: 8px; padding: 20px; margin-bottom: 20px; color: var(--text-color); 
+}
 .detail-section h3 { color: var(--primary-color); border-left: 4px solid var(--primary-color); padding-left: 10px; margin-top: 0; }
 
 .spec-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
@@ -265,12 +295,25 @@ footer { text-align: center; padding: 20px; margin-top: 40px; border-top: 1px so
 .scroll-top-btn:hover { transform: scale(1.1); } .scroll-top-btn.is-visible { opacity: 1; pointer-events: all; }
 
 /* TIMELINE */
-.timeline-container { position: fixed; bottom: 0; left: 0; width: 100%; height: 6px; background: rgba(0,0,0,0.5); z-index: 9999; display: flex; cursor: pointer; transition: height 0.2s ease; }
+.timeline-container {
+    position: fixed; bottom: 0; left: 0; width: 100%; height: 6px;
+    background: rgba(0,0,0,0.5); z-index: 9999; display: flex; cursor: pointer;
+    transition: height 0.2s ease;
+}
 .timeline-container:hover { height: 15px; }
-.timeline-progress { height: 100%; background: var(--primary-color); width: 0%; position: relative; box-shadow: 0 0 10px red; }
-.timeline-thumb { position: absolute; right: -5px; top: 50%; width: 10px; height: 10px; border-radius: 50%; background: white; transform: translateY(-50%) scale(0); transition: transform 0.2s ease; }
+.timeline-progress {
+    height: 100%; background: var(--primary-color); width: 0%; position: relative; box-shadow: 0 0 10px red;
+}
+.timeline-thumb {
+    position: absolute; right: -5px; top: 50%; width: 10px; height: 10px;
+    border-radius: 50%; background: white; transform: translateY(-50%) scale(0); transition: transform 0.2s ease;
+}
 .timeline-container:hover .timeline-thumb { transform: translateY(-50%) scale(1); }
-.timeline-tooltip { position: absolute; right: -20px; top: -35px; background: white; color: black; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; font-family: sans-serif; opacity: 1; pointer-events: none; transition: opacity 0.2s ease; }
+.timeline-tooltip {
+    position: absolute; right: -20px; top: -35px; background: white; color: black; padding: 2px 6px;
+    border-radius: 4px; font-size: 0.8rem; font-weight: bold; font-family: sans-serif;
+    opacity: 1; pointer-events: none; transition: opacity 0.2s ease;
+}
 
 /* ANIMATIONS */
 @keyframes kenBurns { 0% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 0.8; } }
