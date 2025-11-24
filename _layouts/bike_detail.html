@@ -6,7 +6,7 @@
     <meta name="view-transition" content="same-origin">
     
     <title>{{ page.name }} Details | Royal Enfield Catalog</title>
-    <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v=17"> 
+    <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v=18"> 
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,19 +27,18 @@
 
     <header>
         <div class="fog-container">
-            <div class="fog-mist"></div>
-            <div class="fog-mist fog-mist-2"></div>
+            <video class="smoke-video" autoplay loop muted playsinline>
+                <source src="{{ site.baseurl }}/video/smoke.mp4" type="video/mp4">
+            </video>
         </div>
         <h1 style="view-transition-name: hero-title;">{{ page.name }}</h1>
         <h2>Model Year: {{ page.year }}</h2>
     </header>
 
     <div class="detail-container">
-        
         <a href="{{ site.baseurl }}/" class="back-link"><span>&lt;</span> Back to Catalog</a>
         
         <div class="detail-layout-grid">
-            
             <div class="detail-left-column">
                 <div class="image-reveal-container">
                     <a href="{{ site.baseurl }}/images/{{ page.image }}" 
@@ -51,7 +50,6 @@
                              style="--bike-transition-name: bike-{{ page.url | slugify }};">
                     </a>
                 </div>
-
                 <div class="detail-section">
                     <h3>Historical Notes</h3>
                     <p>{{ page.history }}</p>
@@ -67,7 +65,6 @@
                         {% endfor %}
                     </table>
                 </div>
-                
                 <div class="detail-section">
                     <h3>Chassis & Dimensions</h3>
                     <table class="spec-table">

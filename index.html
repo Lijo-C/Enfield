@@ -15,8 +15,9 @@ layout: default
 
 <header>
     <div class="fog-container">
-        <div class="fog-mist"></div>
-        <div class="fog-mist fog-mist-2"></div>
+        <video class="smoke-video" autoplay loop muted playsinline>
+            <source src="{{ site.baseurl }}/video/smoke.mp4" type="video/mp4">
+        </video>
     </div>
     <h1>Royal Enfield</h1>
     <h2>Made like a Gun</h2>
@@ -31,18 +32,12 @@ layout: default
 </header>
 
 <main class="catalog-grid">
-    
     {% for bike in site.bikes %}
     <a href="{{ bike.url | relative_url }}" 
        class="bike-card" 
        data-tilt
        data-year="{{ bike.year }}">
-        
-        <img src="{{ site.baseurl }}/images/{{ bike.image }}" 
-             alt="Royal Enfield {{ bike.name }}" 
-             loading="lazy"
-             style="--bike-transition-name: bike-{{ bike.url | slugify }};">
-        
+        <img src="{{ site.baseurl }}/images/{{ bike.image }}" alt="Royal Enfield {{ bike.name }}" loading="lazy" style="--bike-transition-name: bike-{{ bike.url | slugify }};">
         <div class="card-details">
             <h2>{{ bike.name }}</h2>
             <p class="category">{{ bike.category }}</p>
