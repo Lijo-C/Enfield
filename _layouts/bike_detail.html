@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="view-transition" content="same-origin">
+    
     <title>{{ page.name }} Details | Royal Enfield Catalog</title>
-    <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v=21"> 
+    <link rel="stylesheet" href="{{ site.baseurl }}/style.css?v=22"> 
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=New+Rocker&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TE04CL3LX1"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
@@ -22,17 +26,13 @@
     <div class="film-grain"></div>
 
     <header>
-        <canvas id="lightningCanvas"></canvas>
-        <div class="fog-container">
-            <div class="fog-mist"></div>
-            <div class="fog-mist fog-mist-2"></div>
-        </div>
         <h1 style="view-transition-name: hero-title;">{{ page.name }}</h1>
         <h2>Model Year: {{ page.year }}</h2>
     </header>
 
     <div class="detail-container">
         <a href="{{ site.baseurl }}/" class="back-link"><span>&lt;</span> Back to Catalog</a>
+        
         <div class="detail-layout-grid">
             <div class="detail-left-column">
                 <div class="image-reveal-container">
@@ -50,6 +50,7 @@
                     <p>{{ page.history }}</p>
                 </div>
             </div>
+
             <aside class="detail-right-column">
                 <div class="detail-section">
                     <h3>Engine Specifications</h3>
@@ -70,13 +71,31 @@
             </aside>
         </div>
     </div>
-    <footer><p>&copy; <script>document.write(new Date().getFullYear())</script> A Royal Enfield Lovers Catalog</p></footer>
-    <a href="#" id="scrollTopButton" class="scroll-top-btn" title="Scroll to top"><span>&uarr;</span></a>
-    <div class="timeline-container"><div class="timeline-progress" id="timelineProgress"><div class="timeline-thumb"><div class="timeline-tooltip" id="timelineTooltip"></div></div></div></div>
-    <div class="cursor-dot"></div><div class="cursor-follower"></div>
+
+    <footer>
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> A Royal Enfield Lovers Catalog</p>
+    </footer>
+    
+    <a href="#" id="scrollTopButton" class="scroll-top-btn" title="Scroll to top">
+        <span>&uarr;</span>
+    </a>
+
+    <div class="timeline-container">
+        <div class="timeline-progress" id="timelineProgress">
+            <div class="timeline-thumb">
+                <div class="timeline-tooltip" id="timelineTooltip"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-follower"></div>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-    <script>Fancybox.bind("[data-fancybox]", { });</script>
+    <script>
+      Fancybox.bind("[data-fancybox]", { });
+    </script>
     <script src="{{ site.baseurl }}/main.js"></script>
 </body>
 </html>
