@@ -119,7 +119,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
 .year-nav .filter-btn.active { background: white; color: black; border-color: white; box-shadow: 0 0 8px white; }
 
 /* =========================================
-   HEADER (Hero + SLOW BIG FOG)
+   HEADER (Hero + SIZE ADJUSTED FOG)
 ========================================= */
 header {
     height: 40vh; 
@@ -153,40 +153,37 @@ header::before {
     mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
 }
 
-/* --- SLOW & BIG MOVING FOG --- */
+/* --- MODIFIED: SMALLER & DETAILED FOG --- */
 .fog-img {
     position: absolute;
     height: 100%;
     
-    /* Bigger width = slower perception + easier looping */
-    width: 300%; 
+    /* 200% width for standard loop */
+    width: 200%; 
     
-    /* Fallback to code-mist if image missing */
     background: url('images/fog.png') repeat-x;
     
-    /* COVER makes the texture huge */
-    background-size: cover; 
+    /* --- CHANGED: 50% size creates smaller, detailed clouds --- */
+    background-size: 50% 100%; 
     background-position: center bottom;
     
     mix-blend-mode: screen; 
+    opacity: 0.4; /* Slightly more visible to see detail */
     
-    /* --- MODIFIED: Lower Opacity + Slower Speed --- */
-    opacity: 0.25; 
-    animation: fogFlow 120s linear infinite; /* 2 minutes per loop */
+    /* Slower speed for realism */
+    animation: fogFlow 80s linear infinite; 
 }
 
 .fog-img-2 {
     background-position: center top;
-    
-    /* Move slightly faster for parallax depth */
-    animation: fogFlow 90s linear infinite reverse; 
-    opacity: 0.15; /* Even fainter back layer */
+    animation: fogFlow 60s linear infinite reverse;
+    opacity: 0.3;
     bottom: 0;
 }
 
 @keyframes fogFlow {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-33.33%); } /* Move 1/3rd because width is 300% */
+    100% { transform: translateX(-50%); }
 }
 
 header h1 { 
