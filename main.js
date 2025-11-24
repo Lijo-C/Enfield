@@ -7,7 +7,7 @@ window.addEventListener('pageshow', (event) => {
     if (cursorFollower) cursorFollower.classList.remove('is-hovering');
 });
 
-// --- 1. CURSOR & HOVER LOGIC ---
+// --- 1. CURSOR & HOVER ---
 const cursorDot = document.querySelector('.cursor-dot');
 const cursorFollower = document.querySelector('.cursor-follower');
 const allLinks = document.querySelectorAll('a, button, .bike-card, .filter-btn');
@@ -20,18 +20,8 @@ window.addEventListener('mousemove', (e) => {
 });
 
 allLinks.forEach(link => {
-    link.addEventListener('mouseenter', () => {
-        cursorFollower.classList.add('is-hovering');
-    });
-    link.addEventListener('mouseleave', () => {
-        cursorFollower.classList.remove('is-hovering');
-        // Reset magnetic pull
-        if(link.classList.contains('filter-btn')) {
-            link.style.transform = 'translate(0px, 0px)';
-        }
-    });
-    
-    // MAGNETIC BUTTON LOGIC
+    link.addEventListener('mouseenter', () => { cursorFollower.classList.add('is-hovering'); });
+    link.addEventListener('mouseleave', () => { cursorFollower.classList.remove('is-hovering'); if(link.classList.contains('filter-btn')) link.style.transform = 'translate(0px, 0px)'; });
     if(link.classList.contains('filter-btn')) {
         link.addEventListener('mousemove', (e) => {
             const rect = link.getBoundingClientRect();
@@ -69,14 +59,12 @@ window.addEventListener('scroll', () => {
         if (window.scrollY > 300) scrollTopBtn.classList.add('is-visible');
         else scrollTopBtn.classList.remove('is-visible');
     }
-    
     if (timelineProgress) {
         const scrollTop = window.scrollY;
         const docHeight = document.body.scrollHeight - window.innerHeight;
         const scrollPercent = (scrollTop / docHeight); 
         const widthPercent = scrollPercent * 100;
         timelineProgress.style.width = `${widthPercent}%`;
-        
         const startYear = 1901;
         const totalYears = 124;
         const currentYear = Math.round(startYear + (totalYears * scrollPercent));
@@ -98,46 +86,35 @@ const yearContainer = document.getElementById('year-filters');
 const searchInput = document.getElementById('searchInput');
 
 if (bikeCards.length > 0 && decadeContainer) {
-    
     const eraMap = new Map(); 
-
     bikeCards.forEach(card => {
         let yearRaw = card.getAttribute('data-year').toString();
         let year = parseInt(yearRaw.match(/\d{4}/)[0]); 
-        
         let eraLabel = "";
-        if (year <= 1900) {
-            eraLabel = "1890 - 1900";
-        } else {
+        if (year <= 1900) { eraLabel = "1890 - 1900"; } 
+        else {
             let offset = year - 1901;
             let chunkIndex = Math.floor(offset / 25);
             let startYear = 1901 + (chunkIndex * 25);
             let endYear = startYear + 24;
             eraLabel = `${startYear} - ${endYear}`;
         }
-
-        if (!eraMap.has(eraLabel)) {
-            eraMap.set(eraLabel, new Set());
-        }
+        if (!eraMap.has(eraLabel)) { eraMap.set(eraLabel, new Set()); }
         eraMap.get(eraLabel).add(year);
-        
         card.dataset.era = eraLabel;
         card.dataset.cleanYear = year;
         card.dataset.searchText = card.innerText.toLowerCase();
     });
-
     const sortedEras = Array.from(eraMap.keys()).sort((a, b) => {
         let numA = parseInt(a.match(/\d{4}/)[0]);
         let numB = parseInt(b.match(/\d{4}/)[0]);
         return numA - numB;
     });
-
     const allBtn = document.createElement('button');
     allBtn.className = 'filter-btn active';
     allBtn.textContent = 'All Time';
     allBtn.onclick = () => resetFilter(allBtn);
     decadeContainer.appendChild(allBtn);
-
     sortedEras.forEach(era => {
         const btn = document.createElement('button');
         btn.className = 'filter-btn';
@@ -145,7 +122,6 @@ if (bikeCards.length > 0 && decadeContainer) {
         btn.onclick = () => filterByEra(era, btn);
         decadeContainer.appendChild(btn);
     });
-
     function filterGrid(matchFunction) {
         bikeCards.forEach(card => {
             if (matchFunction(card)) {
@@ -157,7 +133,6 @@ if (bikeCards.length > 0 && decadeContainer) {
             }
         });
     }
-
     function resetFilter(clickedBtn) {
         if (clickedBtn) setActiveBtn(decadeContainer, clickedBtn);
         yearContainer.classList.remove('is-active'); 
@@ -165,53 +140,36 @@ if (bikeCards.length > 0 && decadeContainer) {
         if(searchInput) searchInput.value = ''; 
         filterGrid(() => true); 
     }
-
     function filterByEra(era, clickedBtn) {
         setActiveBtn(decadeContainer, clickedBtn);
         if(searchInput) searchInput.value = ''; 
-        
         filterGrid(card => card.dataset.era === era);
-
         yearContainer.innerHTML = ''; 
         const yearsInEra = Array.from(eraMap.get(era)).sort();
-
         if (yearsInEra.length > 0) {
             const allEraBtn = document.createElement('button');
             allEraBtn.className = 'filter-btn active';
             allEraBtn.textContent = `All ${era}`;
-            
-            allEraBtn.onclick = () => {
-                setActiveBtn(yearContainer, allEraBtn);
-                filterGrid(card => card.dataset.era === era);
-            };
+            allEraBtn.onclick = () => { setActiveBtn(yearContainer, allEraBtn); filterGrid(card => card.dataset.era === era); };
             yearContainer.appendChild(allEraBtn);
-
             yearsInEra.forEach(year => {
                 const yBtn = document.createElement('button');
                 yBtn.className = 'filter-btn';
                 yBtn.textContent = year;
-                yBtn.onclick = () => {
-                    setActiveBtn(yearContainer, yBtn);
-                    filterGrid(card => parseInt(card.dataset.cleanYear) === year);
-                };
+                yBtn.onclick = () => { setActiveBtn(yearContainer, yBtn); filterGrid(card => parseInt(card.dataset.cleanYear) === year); };
                 yearContainer.appendChild(yBtn);
             });
             yearContainer.classList.add('is-active'); 
         }
     }
-
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase();
             const allEraBtns = decadeContainer.querySelectorAll('.filter-btn');
             allEraBtns.forEach(b => b.classList.remove('active')); 
-            
-            filterGrid(card => {
-                return card.dataset.searchText.includes(term);
-            });
+            filterGrid(card => { return card.dataset.searchText.includes(term); });
         });
     }
-
     function setActiveBtn(container, activeBtn) {
         const current = container.querySelector('.active');
         if (current) current.classList.remove('active');
@@ -242,7 +200,61 @@ if (playBtn && audioEl) {
             playBtn.classList.remove('playing');
             playBtn.innerHTML = "<span>&#9658;</span> Hear the Thump";
         });
-    } else {
-        playBtn.style.display = 'none';
+    } else { playBtn.style.display = 'none'; }
+}
+
+// --- 6. NEW: PROCEDURAL LIGHTNING ---
+const canvas = document.getElementById('lightningCanvas');
+if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let width, height;
+
+    function resize() {
+        width = canvas.width = canvas.parentElement.offsetWidth;
+        height = canvas.height = canvas.parentElement.offsetHeight;
     }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function drawLightning() {
+        ctx.clearRect(0, 0, width, height);
+        
+        // Flash Background
+        ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.15 + 0.05})`; // 5-20% opacity flash
+        ctx.fillRect(0, 0, width, height);
+
+        // Draw Bolt
+        let x = Math.random() * width;
+        let y = 0;
+        
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.lineWidth = 2;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = "rgba(200, 220, 255, 0.8)"; // Blue-ish glow
+
+        while (y < height) {
+            x += (Math.random() - 0.5) * 30; // Jagged X
+            y += (Math.random() * 15) + 5;  // Step Down Y
+            ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+
+        // Fade out quickly
+        setTimeout(() => {
+             ctx.clearRect(0, 0, width, height);
+        }, 100); // Flash lasts 100ms
+        
+        // Next bolt in random 2-8 seconds
+        scheduleNextBolt();
+    }
+
+    function scheduleNextBolt() {
+        const delay = Math.random() * 6000 + 2000; // 2s to 8s
+        setTimeout(drawLightning, delay);
+    }
+
+    // Start the storm
+    scheduleNextBolt();
 }
