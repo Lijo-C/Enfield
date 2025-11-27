@@ -140,7 +140,7 @@ header::before {
 header.home-header::before {
     background-image: 
         linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(18,18,18,0.9)), 
-        url('images/Video.mp4');
+        url('images/hero3.gif');
     filter: none; /* Ensure GIF stays sharp */
 }
 
